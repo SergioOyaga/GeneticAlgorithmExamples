@@ -38,42 +38,42 @@ flowchart TB
     subgraph  ide0 [Structure]
     Genome
     end
-    subgraph  ide1 [Key =1]
+    subgraph  ide1 [ Key =1]
     direction TB    
-    Genome o--o Chromosome1
+    Genome -...- Chromosome1
     end
     subgraph  ide2 [Key =X]
-    Genome o--o ChromosomeX
+    Genome -...- ChromosomeX
     end
     subgraph  ide3 [Key =N]
-    Genome o--o ChromosomeN
+    Genome -...- ChromosomeN
     end
     subgraph  ide4 [Key =1]
-    Chromosome1 o--o Gen11
+    Chromosome1 -...- Gen11
     end
     subgraph  ide5 [Key =Z]
-    Chromosome1 o--o Gen1Z
+    Chromosome1 -...- Gen1Z
     end
     subgraph  ide6 [Key =N]
-    Chromosome1 o--o Gen1N
+    Chromosome1 -...- Gen1N
     end
     subgraph  ide7 [Key =1]
-    ChromosomeX o--o GenX1
+    ChromosomeX -...- GenX1
     end
     subgraph  ide8 [Key =Z]
-    ChromosomeX o--o GenXZ
+    ChromosomeX -...- GenXZ
     end
     subgraph  ide9 [Key =N]
-    ChromosomeX o--o GenXN
+    ChromosomeX -...- GenXN
     end
     subgraph  ide10 [Key =1]
-    ChromosomeN o--o GenN1
+    ChromosomeN -...- GenN1
     end
     subgraph  ide11 [Key =Z]
-    ChromosomeN o--o GenNZ
+    ChromosomeN -...- GenNZ
     end
     subgraph  ide12 [Key =N]
-    ChromosomeN o--o GenNN
+    ChromosomeN -...- GenNN
     end
 
     
@@ -95,8 +95,8 @@ This function return a Double containing the number collisions between queens.
 
 
 ### [MapCrossover](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/SimpleGAs/HashMaps/MapCrossover.java):
-Crossover that interchanges random chromosomes between parents. In this case, this is interchanging values associated to 
-the same key in the Entry Set of pairs &lt Key, Val &gt of the Genome Hashmap.
+Crossover that interchanges random chromosomes between parents. In this case, it interchanges values associated to 
+the same key in the Entry Set of pairs &lt; Key, Val &gt; of the Genome Hashmap.
 The same methodology is applied to the Genes inside a Chromosome.
 
 ### [RunNQueenOptimization](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/SimpleGAs/HashMaps/RunNQueenOptimization.java):
@@ -110,7 +110,7 @@ The specific components for the ChessGA are:
   - MapCrossover: The Crossover previously defined.
 - UnorderedSingleProbabilityMutPol: A MutationPolicy that applies mutation stored in HasSets and filters the
 probability of applying the mutation with a fixed probability.
-  - GeneticMapSwapMutation: A mutation that consist on swapping values between key of a HasMap.
+  - GeneticMapSwapMutation: A mutation that consist on swapping values associated with a key of different HasMap.
 - FixedElitismPolicy: An ElitismPolicy that applies each iteration a fixed number of elitist individuals.
 - FixedNewbornPolicy: A newbornPolicy that applies each iteration a fixed number o newborn individuals.
 - ChessGAInitializer: The Initializer previously defined.

@@ -2,7 +2,7 @@
 Solution of the NQueen optimization problem using Sets as base structure to store information.
 
 ## In this folder:
-We find 6 different classes that defines the problem dependent structures that we have to create (Implementing their 
+We find 17 different classes that defines the problem structures that we decided to create (Implementing their 
 corresponding OptimizationLib.ga interfaces).
 1. [CustomGeneticAlgorithm](#customgeneticalgorithm): Implements GeneticAlgorithm.
 2. [ChessGAInitializer](#chessgainitializer): Extends GAInitializer.
@@ -42,9 +42,9 @@ store the information of a randomly initialized individual.
 public Individual initializeIndividual()
 ````
 In this case, all information is stored in the CustomBase. N/2 Chromosomes are created. Each Chromosome contains 2 
-CustomGenes (N Genes that represents where queens are placed). And each CustomGen contains 2 CustomBases. This bases 
-try to represent the DNA bases, but in our case each one represent one number,the colum or the row numbers. These 2 
-bases together represent a coordinate where the Queen is placed.  
+CustomGenes (N Genes in total that represents where queens are placed). And each CustomGen contains 2 CustomBases. 
+This bases try to represent the DNA bases, but in our case each one represent one number, the colum or the row numbers. 
+These 2 bases together represent a coordinate where the Queen is placed.  
 
 ````mermaid
 flowchart TB
@@ -80,8 +80,8 @@ flowchart TB
 
 ### [ChessFeasibilityFunction](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/CustomGA/ChessFeasibilityFunction.java):
 This function evaluates the feasibility of a solution. In the case of the NQueen problem it may or may not have sense 
-to talk about feasibility. We decided to give it the mission of ensuring that The N Queens are placed in different rows a
-nd columns
+to talk about feasibility. We decided to give it the mission of ensuring that The N Queens are placed in different rows 
+and columns
 
 
 ### [ChessObjectiveFunction](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/CustomGA/ChessObjectiveFunction.java):
@@ -91,10 +91,11 @@ we have to only count the number of collisions (confronted Queens) looking in th
 This function return a Double containing the number diagonal collisions between queens.
 
 ### [CustomGenome](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/CustomGA/CustomGenome.java):
-A Genome that contains the genetic information contained in a HashSet &lt CustomChromosome &gt.
+A Genome that contains the genetic information contained in a HashSet &lt;CustomChromosome&gt;. It is composed of N/2 
+CustomChromosomes.
 
 ### [CustomChromosome](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/CustomGA/CustomChromosome.java):
-A Chromosome that contains the genetic information contained in a HashSet &lt CustomGen &gt.
+A Chromosome that contains the genetic information contained in a HashSet &lt;CustomGen&gt;. It contains 2 CustomGenes.
 
 ### [CustomGen](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/CustomGA/CustomGen.java):
 A Gen that contains the genetic information contained in two CustomBase variables:
@@ -114,7 +115,7 @@ A MutationPolicy that applies mutations to the CustomBase Objects. In even itera
 iterations rows.
 
 ### [CustomMutation](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/CustomGA/CustomMutation.java):
-A Mutation that takes a CustomBase object and changes randomly its value between 0 and QueenNumber-1.
+A Mutation that takes a CustomBase object and changes randomly its value between 0 and N-1.
 
 ### [CustomCrossoverPolicy](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/CustomGA/CustomCrossoverPolicy.java):
 A CrossoverPolicy that creates different number of crossed individuals depending on the iteration parity. 
@@ -145,9 +146,9 @@ The specific components for the ChessGA are:
   - CustomSelection: The Selection previously defined.
   - CustomCrossover: The Crossover  previously defined.
 - CustomMutationPolicy: The MutationPolicy previously defined.
-  - CustomMutation: The mutation previously defined.
+  - CustomMutation: The Mutation previously defined.
 - CustomElitismPolicy: The ElitismPolicy previously defined.
-- CustomNewbornPolicy: The newbornPolicy previously defined.
+- CustomNewbornPolicy: The NewbornPolicy previously defined.
 - ChessGAInitializer: The Initializer previously defined.
   - ChessFeasibilityFunction: The FeasibilityFunction previously defined.
   - ChessObjectiveFunction: The ObjectiveFunction previously defined.
@@ -198,7 +199,7 @@ Generation = 2057
 ````
 
 ## Comment:
-Notice that this example is far from being a good usage of the capabilities of the Genetic algorithm library.It's also
+Notice that this example is far from being a good usage of the capabilities of the Genetic algorithm library. It's also
 a terrible approach to solve the N Queen problem (Genome with N/2 Chromosomes?? 2 Genes per Chromosome?? Bases to store 
 an Integer?? Random selections?? No Crossover??). This seems like a weird implementation, but even so, IT WORKS!!!
 This implementation is just to illustrate that we can define a totally custom GA that can implement daemon actions, 

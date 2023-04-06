@@ -1,10 +1,10 @@
 # LessClasses
 Solution of the NQueen optimization problem cutting the genetic information at the Genome level. For a problem as simple
 as this one, it is not necessary to encapsulate the info in deeper levels than the genome itself. This example 
-uses an ArrayList &lt Integer &gt as genetic information container.  
+uses an ArrayList &lt;Integer&gt; as genetic information container.  
 
 ## In this folder:
-We find 6 different classes that defines the problem dependent structures that we have to create (Implementing their 
+We find 5 different classes that defines the problem dependent structures that we have to create (Implementing their 
 corresponding OptimizationLib.ga interfaces).
 1. [ChessGA](#chessga): Extends SimpleGeneticAlgorithm.
 2. [ChessGAInitializer](#chessgainitializer): Extends GAInitializer.
@@ -25,19 +25,19 @@ optimization procedure. The <i>getResults</i> function returns a String that wil
 with the best solution found.
 
 ### [ChessGAInitializer](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/AdHocGA/ChessGAInitializer.java):
-Initializes a new individual from zero. In our case, uses HashMapGenome, ArrayList &lt Integer &gt to 
+Initializes a new individual from zero. In our case, uses HashMapGenome, ArrayList &lt;Integer&gt; to 
 store the information of a randomly initialized individual.
 ````code
 public Individual initializeIndividual()
 ````
 In this case, the information is stored using a methodology equivalent as the used in the Arrays example. The row number
-is implicit in the ArrayList position (from 0 to N-1) and the column number is the Integer stored in the ArrayList
+is implicitly stored in the ArrayList position (from 0 to N-1) and the column number is the Integer stored in the ArrayList
 (also from 0 to N-1).
 
 ````mermaid
 flowchart LR
     subgraph  ide0 [Genome]
-        subgraph ide1 [ArrayList&ltInteger&gt]
+        subgraph ide1 [ArrayList &ltInteger&gt]
             Integer1 o--o Integer2 o--o Integer3 o--o IntegerX o--o IntegerN
         end
     end
@@ -69,11 +69,11 @@ The specific components for the ChessGA are:
   - RandomSelection: A Selection procedure in which each parent is chosen randomly.
   - OnePointCrossover: A Crossover procedure in which the genome of the parents is combined by braking it in two pieces
     and joining one part from one parent and the other part from the other parent in the child.
-- OrderedSingleProbabilityMutPol: A MutationPolicy that applies mutation stored in arrays sequentially and filters the
+- OrderedSingleProbabilityMutPol: A MutationPolicy that applies mutations stored in arrays sequentially and filters the
   probability of applying the mutation with a fixed probability.
   - ChromosomeSwapMutation: A mutation that consist on interchanging Chromosomes stored in an ArrayList.
 - FixedElitismPolicy: An ElitismPolicy that applies each iteration a fixed number of elitist individuals.
-- FixedNewbornPolicy: A newbornPolicy that applies each iteration a fixed number o newborn individuals.
+- FixedNewbornPolicy: A newbornPolicy that applies each iteration a fixed number of newborn individuals.
 - ChessGAInitializer: The Initializer previously defined.
   - ChessFeasibilityFunction: The FeasibilityFunction previously defined.
   - ChessObjectiveFunction: The ObjectiveFunction previously defined.

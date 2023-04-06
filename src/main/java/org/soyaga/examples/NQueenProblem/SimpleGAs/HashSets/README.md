@@ -83,11 +83,11 @@ The specific components for the ChessGA are:
   - RandomSelection: A Selection procedure in which each parent is chosen randomly.
   - HeuristicCrossover: A crossover that copies the whole genome of only one parent into the child. This makes the 
   semi-heuristic a more heuristic process by removing the cross between individuals.
-- UnorderedSingleProbabilityMutPol: A MutationPolicy that applies mutation stored in HasSets and filters the
+- UnorderedSingleProbabilityMutPol: A MutationPolicy that applies mutations stored in HasSets and filters the
 probability of applying the mutation with a fixed probability.
   - BoolGenDenialMutation: A mutation that consist on negating a Gen with its information in a boolean type.
 - FixedElitismPolicy: An ElitismPolicy that applies each iteration a fixed number of elitist individuals.
-- FixedNewbornPolicy: A newbornPolicy that applies each iteration a fixed number o newborn individuals.
+- FixedNewbornPolicy: A newbornPolicy that applies each iteration a fixed number of newborn individuals.
 - ChessGAInitializer: The Initializer previously defined.
   - ChessFeasibilityFunction: The FeasibilityFunction previously defined.
   - ChessObjectiveFunction: The ObjectiveFunction previously defined.
@@ -118,6 +118,6 @@ For:
  _  Q  _  _  _  _  _  _ 
 ````
 Although the solution is almost a good one, as you can see, the lack of Crossover makes difficult to achieve the best 
-result. Ths is an example of how important is to define a good strategy to sole your problems. We could have implemented
+result. Ths is an example of how important is to define a good strategy to solve your problem. We could have implemented
 a more complex crossover procedure that mixes the genomes in a fancy way, but we wanted to keep this example as simple 
 as possible.

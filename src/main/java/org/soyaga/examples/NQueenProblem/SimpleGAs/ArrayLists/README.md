@@ -6,7 +6,7 @@ We find 5 different classes that defines the problem dependent structures that w
 corresponding OptimizationLib.ga interfaces).
 1. [ChessGA](#chessga): Extends SimpleGeneticAlgorithm.
 2. [ChessGAInitializer](#chessgainitializer): Extends GAInitializer.
-3. [ChessFeasibilityFunction](#chessfeasibilityfunction):Extends FeasibilityFunction.
+3. [ChessFeasibilityFunction](#chessfeasibilityfunction): Extends FeasibilityFunction.
 4. [ChessObjectiveFunction](#chessobjectivefunction): Extends ObjectiveFunction.
 5. [RunNQueenOptimization](#runnqueenoptimization): This is the main class. Here we instantiate our ChessGA Object with all his 
 components.
@@ -28,8 +28,8 @@ store the information of a randomly initialized individual.
 ````code
 public Individual initializeIndividual()
 ````
-In this case, we already store implicitly tha row position by knowing the position of the chromosome in the 
-ArrayList &lt Chromosome &gt. As consequence, only N Chromosomes with one Gen each one are created. Each Gen contains an
+In this case, we already store implicitly the row position by knowing the position of the chromosome in the Genome
+ArrayList&lt;Chromosome&gt;. As consequence, only N Chromosomes with one Gen each one are created. Each Gen contains an
 integer with the column position.
 
 ````mermaid
@@ -86,7 +86,7 @@ The specific components for the ChessGA are:
   - RandomSelection: A Selection procedure in which each parent is chosen randomly.
   - OnePointCrossover: A Crossover procedure in which the genome of the parents is combined by braking it in two pieces 
   and joining one part from one parent and the other part from the other parent in the child.
-- OrderedSingleProbabilityMutPol: A MutationPolicy that applies mutation stored in arrays sequentially and filters the
+- OrderedSingleProbabilityMutPol: A MutationPolicy that applies mutations stored in arrays sequentially and filters the
 probability of applying the mutation with a fixed probability.
   - ChromosomeSwapMutation: A mutation that consist on interchanging Chromosomes stored in an ArrayList.
 - FixedElitismPolicy: An ElitismPolicy that applies each iteration a fixed number of elitist individuals.

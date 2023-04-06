@@ -8,11 +8,11 @@ some computationally "hard" problems (P, NP, NP-Complete and/or NP-Hard).
 ## In this folder:
 We find 3 different implementations for solving the nQueen optimization problem.
 1. [ArrayLists](https://github.com/SergioOyaga/GeneticAlgorithmExamples/tree/master/src/main/java/org/soyaga/examples/NQueenProblem/SimpleGAs/ArrayLists):
-Genome, and Chromosomes contains the genetic information stored in ArrayLists.
+Genomes and Chromosomes contain the genetic information stored in ArrayLists.
 2. [HashSets](https://github.com/SergioOyaga/GeneticAlgorithmExamples/tree/master/src/main/java/org/soyaga/examples/NQueenProblem/SimpleGAs/HashSets):
-Genome, and Chromosomes contains the genetic information stored in HashSets.
+Genomes and Chromosomes contain the genetic information stored in HashSets.
 3. [HashMaps](https://github.com/SergioOyaga/GeneticAlgorithmExamples/tree/master/src/main/java/org/soyaga/examples/NQueenProblem/SimpleGAs/HashMaps):
-Genome, and Chromosomes contains the genetic information stored in HashMaps.
+Genomes and Chromosomes contain the genetic information stored in HashMaps.
 
 ## Comment:
 This three structures are the three most frequently used to store information. Most of the problems we will want to 

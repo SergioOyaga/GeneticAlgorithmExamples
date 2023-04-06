@@ -46,8 +46,8 @@ The 27×27 board is the highest-order board that has been completely enumerated:
 | 26 | 2789712466510289      | 22317699616364044  | 57746226578042013138408988185727715132037050952    |
 | 27 | 29363495934315694     | 234907967154122528 | 11091107763254898773425731705373527055193637625824 |
 
-As you can see, the number of solutions increases as we increase the number of queens. On the other hand our space to 
-search increases dramatically. This makes inviable a Linear approach.
+As you can see, the number of solutions increases as we increase the number of queens. On the other hand our search space 
+increases dramatically. This makes inviable a Linear approach.
 
 For more information about the problem refer [Here](https://en.wikipedia.org/wiki/Eight_queens_puzzle#Counting_solutions_for_other_sizes_n)
 
@@ -59,11 +59,11 @@ Three different ways of solving the problem using build.in structures.
 2. [AdHocGA](https://github.com/SergioOyaga/GeneticAlgorithmExamples/tree/master/src/main/java/org/soyaga/examples/NQueenProblem/AdHocGA):
 Solve the problem adjusting the GeneticInformationContainers to minimal structures.
 3. [CustomGA](https://github.com/SergioOyaga/GeneticAlgorithmExamples/tree/master/src/main/java/org/soyaga/examples/NQueenProblem/CustomGA):
-Opposite to AdHoc, A fully customized solver, implementing (in dummy ways) most of the 
+Opposite to AdHoc, a fully customized solverperforms the optimization. It implements (in dummy ways) most of the 
 capabilities of the GA package.
 
 ## Comment:
 The examples in these folders are just to illustrate the power of GAs, and the simplicity of use/implementation
 that give us the ga library in the OptimizationLib framework. The problem is solved using 5 different configurations, 
-some configurations are mor suitable for this problem and others are not. Just remember they are examples that you can 
+some configurations are more suitable for this problem and others are not. Just remember they are examples that you can 
 use as template to adapt for your specific problems. 
