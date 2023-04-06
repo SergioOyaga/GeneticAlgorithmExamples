@@ -11,7 +11,7 @@ corresponding OptimizationLib.ga interfaces).
 5. [RunNQueenOptimization](#runnqueenoptimization): This is the main class. Here we instantiate our ChessGA Object with all his 
 components.
 
-### [ChessGA](TODO:addLink):
+### [ChessGA](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/SimpleGAs/ArrayLists/ChessGA.java):
 This class extends SimpleGeneticAlgorithm, which by extension makes it an Optimizer instance. In other words this class 
 can be optimized and its results can be gathered.
 ````code
@@ -22,7 +22,7 @@ The <i>optimize</i> function is already implemented by the abstract class Simple
 optimization procedure. The <i>getResults</i> function returns a String that will be [printed in the console](#result-example)
 with the best solution found.
 
-### [ChessGAInitializer](TODO:addLink):
+### [ChessGAInitializer](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/SimpleGAs/ArrayLists/ChessGA.java):
 Initializes a new individual from zero. In our case, uses ArrayListGenome, ArrayListChromosome and GenericGen to 
 store the information of a randomly initialized individual.
 ````code
@@ -61,7 +61,7 @@ flowchart LR
 ````
 
 
-### [ChessFeasibilityFunction](TODO:addLink):
+### [ChessFeasibilityFunction](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/SimpleGAs/ArrayLists/ChessFeasibilityFunction.java):
 This function evaluates the feasibility of a solution. In the case of the NQueen problem it may or may not have sense 
 to talk about feasibility. We decided to give it the mission of ensuring that each queen is placed in a 
 different column and row than the other queens.
@@ -69,14 +69,14 @@ different column and row than the other queens.
 This function return a Double containing the number of collisions (missing rows or columns where no queen is placed).
 
 
-### [ChessObjectiveFunction](TODO:addLink):
+### [ChessObjectiveFunction](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/SimpleGAs/ArrayLists/ChessObjectiveFunction.java):
 This function evaluates the objective function of a solution. In the case of the NQueen problem in this array design, 
 we only have to count the number of collisions (confronted Queens) looking at the diagonals.
 
 This function return a Double containing the number of diagonal collisions between queens.
 
 
-### [RunNQueenOptimization](TODO:addLink):
+### [RunNQueenOptimization](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/SimpleGAs/ArrayLists/RunNQueenOptimization.java):
 This is the main class. Is where the run starts. As simple as instantiate the ChessGA object (previously defined) filled
 with its components, optimize it, and retrieve the results.
 

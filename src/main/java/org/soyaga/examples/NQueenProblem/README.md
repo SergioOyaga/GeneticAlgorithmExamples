@@ -54,9 +54,12 @@ For more information about the problem refer [Here](https://en.wikipedia.org/wik
 ## In this folder:
 We find 3 different design approached for solving the nQueen optimization problem using the Genetic Algorithm (GA)
 from the OptimizationLib.
-1. [SimpleGA](TODO:addLink): Three different ways of solving the problem using build.in structures.
-2. [AdHocGA](TODO:addLink): Solve the problem adjusting the GeneticInformationContainers to minimal structures.
-3. [CustomGA](TODO:addLink): Opposite to AdHoc, A fully customized solver, implementing (in dummy ways) most of the 
+1. [SimpleGA](https://github.com/SergioOyaga/GeneticAlgorithmExamples/tree/master/src/main/java/org/soyaga/examples/NQueenProblem/SimpleGAs):
+Three different ways of solving the problem using build.in structures.
+2. [AdHocGA](https://github.com/SergioOyaga/GeneticAlgorithmExamples/tree/master/src/main/java/org/soyaga/examples/NQueenProblem/AdHocGA):
+Solve the problem adjusting the GeneticInformationContainers to minimal structures.
+3. [CustomGA](https://github.com/SergioOyaga/GeneticAlgorithmExamples/tree/master/src/main/java/org/soyaga/examples/NQueenProblem/CustomGA):
+Opposite to AdHoc, A fully customized solver, implementing (in dummy ways) most of the 
 capabilities of the GA package.
 
 ## Comment:
