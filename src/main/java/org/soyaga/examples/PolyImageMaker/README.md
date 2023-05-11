@@ -18,11 +18,11 @@ as an overlap of polygons.
     <td> <b>Reference</b> </td>
   </tr>
   <tr>
-    <td> <img src="https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/out/triangle.gif"  title="Solution for a triangle" alt="Solution for a triangle" width="300" height="300" /></td>
+    <td> <img src="https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/out/PolyImageMaker/triangle.gif"  title="Solution for a triangle" alt="Solution for a triangle" width="300" height="300" /></td>
     <td> <img src="https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/resources/PolyImageMaker/triangle.png"  title="Reference triangle" alt="Reference triangle" width="300" height="300" /></td>
-    <td> <img src="https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/out/geom.gif"  title="Solution for geometric shapes" alt="Solution for geometric shapes" width="300" height="300" /></td>
+    <td> <img src="https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/out/PolyImageMaker/geom.gif"  title="Solution for geometric shapes" alt="Solution for geometric shapes" width="300" height="300" /></td>
     <td> <img src="https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/resources/PolyImageMaker/geom.png"  title="Reference geometric shapes" alt="Reference geometric shapes" width="300" height="300" /></td>
-    <td> <img src="https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/out/monalisa.gif"  title="Solution for the monalisa" alt="Solution for the monalisa" width="200" height="300" /></td>
+    <td> <img src="https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/out/PolyImageMaker/monalisa.gif"  title="Solution for the monalisa" alt="Solution for the monalisa" width="200" height="300" /></td>
     <td> <img src="https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/resources/PolyImageMaker/monalisa.png"  title="Reference monalisa" alt="Reference monalisa" width="200" height="300" /></td>
   </tr>
 </table>
@@ -40,9 +40,9 @@ Some hard shapes to replicate with triangles are curves.
     <td> <b>Reference</b> </td>
   </tr>
   <tr>
-    <td> <img src="https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/out/circle.gif"  title="Solution for a circle" alt="Solution for a circle" width="500" height="500" /></td>
+    <td> <img src="https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/out/PolyImageMaker/circle.gif"  title="Solution for a circle" alt="Solution for a circle" width="500" height="500" /></td>
     <td> <img src="https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/resources/PolyImageMaker/circle.png"  title="Reference circle" alt="Reference circle" width="500" height="500" /></td>
-    <td> <img src="https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/out/ring.gif"  title="Solution for a ring" alt="Solution for a ring" width="500" height="500" /></td>
+    <td> <img src="https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/out/PolyImageMaker/ring.gif"  title="Solution for a ring" alt="Solution for a ring" width="500" height="500" /></td>
     <td> <img src="https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/resources/PolyImageMaker/ring.png"  title="Reference geometric ring" alt="Reference ring" width="500" height="500" /></td>
   </tr>
 </table>
@@ -230,9 +230,9 @@ We have:
     <td> <b>Convergence Graph </b></td>
   </tr>
   <tr>
-    <td> <img src="https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/out/monalisa_cubes.gif"  title="Evolution monalisa" alt="Evolution monalisa" width="200" height="300" /></td>
-    <td> <img src="https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/out/monalisa_cubes.png"  title="Solution monalisa" alt="Solution monalisa" width="200" height="300" /></td>
-    <td> <img src="https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/out/graph.png"  title="Convergence graph" alt="Convergence graph" width="300" height="300" /></td>
+    <td> <img src="https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/out/PolyImageMaker/monalisa_cubes.gif"  title="Evolution monalisa" alt="Evolution monalisa" width="200" height="300" /></td>
+    <td> <img src="https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/out/PolyImageMaker/monalisa_cubes.png"  title="Solution monalisa" alt="Solution monalisa" width="200" height="300" /></td>
+    <td> <img src="https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/out/PolyImageMaker/graph.png"  title="Convergence graph" alt="Convergence graph" width="300" height="300" /></td>
   </tr>
 </table>
 
