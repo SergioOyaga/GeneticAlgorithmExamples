@@ -251,7 +251,7 @@ We have:
   <tr>
     <td> <img src="https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/out/PolyImageMaker/monalisa_cubes.gif"  title="Evolution monalisa" alt="Evolution monalisa" width="200" height="300" /></td>
     <td> <img src="https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/out/PolyImageMaker/monalisa_cubes.png"  title="Solution monalisa" alt="Solution monalisa" width="200" height="300" /></td>
-    <td> <img src="https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/out/PolyImageMaker/graph.png"  title="Convergence graph" alt="Convergence graph" width="300" height="300" /></td>
+    <td> <img src="https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/out/PolyImageMaker/graph.png"  title="Convergence graph" alt="Convergence graph" width="500" height="300" /></td>
   </tr>
 </table>
 
