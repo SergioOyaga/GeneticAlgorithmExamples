@@ -28,7 +28,7 @@ public class RunPolyImageOptimization {
         //String with the path to the image we want to recreate.
         String imageToRecreate = "PolyImageMaker/monalisa.png";
         //String with the path to the image we want to recreate, without the .png/.jpg, it is added by default.
-        String outputPath = "src/out/image";
+        String outputPath = "src/out/PolyImageMaker/image";
 
 
         InputStream stream = RunPolyImageOptimization.class.getClassLoader().getResourceAsStream(imageToRecreate);
