@@ -50,8 +50,8 @@ Some hard shapes to replicate with triangles are curves.
     <td> <b>Reference</b> </td>
   </tr>
   <tr>
-    <td> <img src="https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/out/PolyImageMaker/circle.gif"  title="Solution for a circle" alt="Solution for a circle" width="500" height="500" /></td>
-    <td> <img src="https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/resources/PolyImageMaker/circle.png"  title="Reference circle" alt="Reference circle" width="500" height="500" /></td>
+    <td> <img src="https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/out/PolyImageMaker/circle.gif"  title="Solution for a circle" alt="Solution for a circle" width="300" height="300" /></td>
+    <td> <img src="https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/resources/PolyImageMaker/circle.png"  title="Reference circle" alt="Reference circle" width="300" height="300" /></td>
   </tr>
   <tr>
     <th colspan="2"> <b>Ring</b> </th>
@@ -61,8 +61,8 @@ Some hard shapes to replicate with triangles are curves.
     <td> <b>Reference</b> </td>
   </tr>
   <tr>
-    <td> <img src="https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/out/PolyImageMaker/ring.gif"  title="Solution for a ring" alt="Solution for a ring" width="500" height="500" /></td>
-    <td> <img src="https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/resources/PolyImageMaker/ring.png"  title="Reference geometric ring" alt="Reference ring" width="500" height="500" /></td>
+    <td> <img src="https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/out/PolyImageMaker/ring.gif"  title="Solution for a ring" alt="Solution for a ring" width="300" height="300" /></td>
+    <td> <img src="https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/resources/PolyImageMaker/ring.png"  title="Reference geometric ring" alt="Reference ring" width="300" height="300" /></td>
   </tr>
 </table>
 
@@ -78,7 +78,7 @@ corresponding OptimizationLib.ga interfaces).
 7. [CustomCrossover](#customcrossover): Implements Crossover.
 8. [GifCreator](#gifcreator): Creates a gif.
 9. [Mutations](#mutations): Folder with the mutations.
-   1. [ChromosomeMutationColor](#chromosomemutationmolor):Implements Mutation.
+   1. [ChromosomeMutationColor](#chromosomemutationcolor):Implements Mutation.
    2. [ChromosomeMutationMoveOneVertex](#chromosomemutationmoveonevertex): Implements Mutation.
    3. [GenomeMutationAddChromosome](#genomemutationaddchromosome): Implements Mutation.
    4. [GenomeMutationBackground](#genomemutationbackground): Implements Mutation.
@@ -175,7 +175,7 @@ Folder that contains all the mutations that are applied to the genomes.
    Class that mutates the Genome. Randomly removes one Chromosome from the genome.
 
 
-### [RunNQueenOptimization](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/CustomGA/RunNQueenOptimization.java):
+### [RunPolyImageOptimization](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/PolyImageMaker/RunPolyImageOptimization.java):
 This is the main class. Is where the run starts. As simple as instantiate the CustomGeneticAlgorithm object (previously defined) filled
 with its components, optimize it, and retrieve the results.
 
