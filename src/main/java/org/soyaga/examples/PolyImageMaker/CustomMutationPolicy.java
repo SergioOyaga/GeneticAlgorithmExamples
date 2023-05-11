@@ -13,7 +13,7 @@ import java.util.random.RandomGenerator;
  * application of mutations and a fixed probability rate for each one.
  */
 @AllArgsConstructor
-public class CustomMutaionPolicy implements MutationPolicy {
+public class CustomMutationPolicy implements MutationPolicy {
     /**
      * List of Genome mutations. These are mutations that requires the known of the whole genome structure to be able to
      * happen.

@@ -59,7 +59,7 @@ public class RunPolyImageOptimization {
                 new FixedCrossoverPolicy(initialPopulationSize*90/100,
                         new TournamentSelection(),
                         new CustomCrossover()),
-                new CustomMutaionPolicy(
+                new CustomMutationPolicy(
                         new ArrayList<>(){{
                             add(new GenomeMutationBackground(maxGenerations*50/100, 10));
                             add(new GenomeMutationPolygonOrder(maxGenerations*60/100));
