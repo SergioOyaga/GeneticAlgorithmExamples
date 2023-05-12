@@ -1,4 +1,4 @@
-package org.soyaga.examples.PolyImageMaker;
+package org.soyaga.examples.PolyImageMaker.SimplePolyImageMaker;
 
 import org.soyaga.ga.CrossoverPolicy.ParentCross.Crossover;
 import org.soyaga.ga.GeneticInformationContainer.Chromosome.Chromosome;

@@ -1,4 +1,4 @@
-package org.soyaga.examples.PolyImageMaker;
+package org.soyaga.examples.PolyImageMaker.SimplePolyImageMaker;
 
 import lombok.AllArgsConstructor;
 import org.soyaga.Initialaizer.GAInitializer;

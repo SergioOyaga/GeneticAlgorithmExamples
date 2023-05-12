@@ -1,4 +1,4 @@
-package org.soyaga.examples.PolyImageMaker;
+package org.soyaga.examples.PolyImageMaker.SimplePolyImageMaker;
 
 import java.awt.image.BufferedImage;
 import java.io.File;

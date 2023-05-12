@@ -1,7 +1,7 @@
-package org.soyaga.examples.PolyImageMaker.Mutations;
+package org.soyaga.examples.PolyImageMaker.SimplePolyImageMaker.Mutations;
 
 import lombok.AllArgsConstructor;
-import org.soyaga.examples.PolyImageMaker.CustomChromosome;
+import org.soyaga.examples.PolyImageMaker.SimplePolyImageMaker.CustomChromosome;
 import org.soyaga.ga.MutationPolicy.Mutations.Mutation;
 import java.awt.*;
 import java.util.ArrayList;

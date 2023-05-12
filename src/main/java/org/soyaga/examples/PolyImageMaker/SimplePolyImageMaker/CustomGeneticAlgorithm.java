@@ -1,11 +1,10 @@
-package org.soyaga.examples.PolyImageMaker;
+package org.soyaga.examples.PolyImageMaker.SimplePolyImageMaker;
 
 import lombok.Getter;
 import org.soyaga.Initialaizer.GAInitializer;
 import org.soyaga.ga.CrossoverPolicy.CrossoverPolicy;
 import org.soyaga.ga.ElitismPolicy.ElitismPolicy;
 import org.soyaga.ga.GeneticAlgorithm.GeneticAlgorithm;
-import org.soyaga.ga.Individual;
 import org.soyaga.ga.MutationPolicy.MutationPolicy;
 import org.soyaga.ga.NewbornPolicy.NewbornPolicy;
 import org.soyaga.ga.Population;
@@ -15,10 +14,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.random.RandomGenerator;
 
 /**
  * Extends GeneticAlgorithm and defines how we perform the optimization cycles and how we gather the results.

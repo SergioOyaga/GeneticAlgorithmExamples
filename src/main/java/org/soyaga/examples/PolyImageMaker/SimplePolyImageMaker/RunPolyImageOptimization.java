@@ -1,6 +1,6 @@
-package org.soyaga.examples.PolyImageMaker;
+package org.soyaga.examples.PolyImageMaker.SimplePolyImageMaker;
 
-import org.soyaga.examples.PolyImageMaker.Mutations.*;
+import org.soyaga.examples.PolyImageMaker.SimplePolyImageMaker.Mutations.*;
 import org.soyaga.ga.CrossoverPolicy.FixedCrossoverPolicy;
 import org.soyaga.ga.CrossoverPolicy.ParentSelection.TournamentSelection;
 import org.soyaga.ga.ElitismPolicy.FixedElitismPolicy;
@@ -22,7 +22,7 @@ public class RunPolyImageOptimization {
         //Integer with the initial number of polygons in the new individuals.
         Integer initialNumberOfPolygons = 1;
         //Integer with the number of vertexes on the polygons.
-        Integer numberOfVertexes = 3;
+        Integer numberOfVertexes = 7;
         //Integer with the number of iterations.
         int maxGenerations = 20000;
         //String with the path to the image we want to recreate.
