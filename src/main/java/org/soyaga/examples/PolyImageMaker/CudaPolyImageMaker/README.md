@@ -13,7 +13,7 @@ OptimizationLib framework is. By some simple adjustments we can use any kind of 
   </tr>
   <tr>
     <td> <img src="https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/out/PolyImageMaker/galaxy.gif"  title="Solution for the galaxy" alt="Solution for the Galaxy" width="300" height="300" /></td>
-    <td> <img src="https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/resources/PolyImageMaker/galaxy.png"  title="Reference galaxy" alt="Reference galaxy" width="300" height="300" /></td>
+    <td> <img src="https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/resources/PolyImageMaker/galaxy.jpg"  title="Reference galaxy" alt="Reference galaxy" width="300" height="300" /></td>
   </tr>
   <tr>
     <th colspan="2"> <b>Big Landscape (1920x1280 pixels)</b> </th>
