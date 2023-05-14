@@ -123,7 +123,13 @@ public class CustomGeneticAlgorithm implements GeneticAlgorithm {
     public void optimize() throws IOException {
         this.gaInitializer.initialize(this);
         this.population.evaluate(this.generation);
-        System.out.println("Generation = "+this.generation + ", Fitness = "+this.population.getBestIndividual().getFitnessValue());
+        long start = System.currentTimeMillis();
+        this.population.evaluate(this.generation);
+        long finish = System.currentTimeMillis();
+        long timeElapsed = finish - start;
+        System.out.println("Generation = "+this.generation +
+                ", Fitness = "+this.population.getBestIndividual().getFitnessValue()+
+                ", EvaluationTime = "+ timeElapsed);
         this.bestImages.add((BufferedImage) this.getResult());
         while (this.stoppingCriteriaPolicy.hasToContinue(this.generation)){
             Population newPopulation = this.crossoverPolicy.apply(this.population, this.generation);
@@ -131,9 +137,14 @@ public class CustomGeneticAlgorithm implements GeneticAlgorithm {
             newPopulation.add(this.elitismPolicy.apply(this.population, this.generation));
             newPopulation.add(this.newbornPolicy.apply(this.gaInitializer, this.generation));
             this.population = newPopulation;
+            start = System.currentTimeMillis();
             this.population.evaluate(this.generation);
+            finish = System.currentTimeMillis();
+            timeElapsed = finish - start;
             this.generation++;
-            System.out.println("Generation = "+this.generation + ", Fitness = "+this.population.getBestIndividual().getFitnessValue());
+            System.out.println("Generation = "+this.generation +
+                    ", Fitness = "+this.population.getBestIndividual().getFitnessValue()+
+                    ", EvaluationTime = "+ timeElapsed);
             if(this.generation%this.gifStep==0)this.bestImages.add((BufferedImage) this.getResult());
         }
     }
