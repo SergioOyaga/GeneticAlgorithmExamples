@@ -1,5 +1,5 @@
-# PolyImageMaker
-The PolyImageMaker is the problem of finding a set of colored polygons that represents an image.
+# SimplePolyImageMaker
+The SimplePolyImageMaker is the problem of finding a set of colored polygons that represents an image.
 Classically this problem has been proposed for solving the Monalisa painting, however any image can be represented 
 as an overlap of polygons.
 
