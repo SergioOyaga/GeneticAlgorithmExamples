@@ -35,8 +35,8 @@ We  can find the description of the classes in [SimplePolyImageMaker](https://gi
 2. [Kernel](#kernel): Folder with the CUDA kernel.
    1. [ColorDifKernel](#colordifkernel): Class that follows the NVRTC structure to build the kernel.
    2. [JCudaColorDistance.cu](#jcudacolordistancecu): C code for the NVRTC compiler.
-3. [RunPolyImageOptimization](#runpolyimageoptimization): This is the main class. Here we instantiate our ChessGA Object with all his 
-components.
+3. [RunPolyImageOptimization](#runpolyimageoptimization): This is the main class. Here we instantiate our 
+CustomGeneticAlgorithm Object with all his components.
 
 ### [PolyImageObjectiveFunction](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/ImageMaker/CudaPolyImageMaker/PolyImageObjectiveFunction.java):
 This function evaluates the objective function of a solution. In this case we compute the l~2~ norm for the RGBA colors
@@ -100,5 +100,5 @@ Notice that this example is not a good practice for the use of the JCuda framewo
 performance is almost inappreciable because thh time spent moving each image to the GPU is almost the same 
 time we would spend computing directly the distance in CPU. However, it is a good example on how we can connect the 
 optimization process with foreign precesses (GPU computing, IA forecasts, DeepLearning recommendations...).
-(You know what they say, mixing technologies is powerful, but "With great power comes great responsibility" :triumph:)
+You know what they say, mixing technologies is powerful, but "With great power comes great responsibility" :triumph:
 

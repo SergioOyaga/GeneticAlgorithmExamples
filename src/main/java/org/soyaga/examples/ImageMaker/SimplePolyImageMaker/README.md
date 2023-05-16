@@ -84,8 +84,8 @@ corresponding OptimizationLib.ga interfaces).
    4. [GenomeMutationBackground](#genomemutationbackground): Implements Mutation.
    5. [GenomeMutationPolygonOrder](#genomemutationpolygonorder): Implements Mutation.
    6. [GenomeMutationRemoveChromosome](#genomemutationremovechromosome): Implements Mutation.
-9. [RunPolyImageOptimization](#runpolyimageoptimization): This is the main class. Here we instantiate our ChessGA Object with all his 
-components.
+9. [RunPolyImageOptimization](#runpolyimageoptimization): This is the main class. Here we instantiate our 
+CustomGeneticAlgorithm Object with all his components.
 
 ### [CustomGeneticAlgorithm](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/ImageMaker/SimplePolyImageMaker/CustomGeneticAlgorithm.java):
 This class implements GeneticAlgorithm, which by extension makes it an Optimizer instance. In other words this class 
