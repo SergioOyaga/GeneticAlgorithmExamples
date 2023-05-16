@@ -19,9 +19,9 @@ problems. We recommend the reader to start with the easier ones, conceptually an
 
 ## In this folder:
 We find 2 different problems solved using the Genetic Algorithm (GA) from the OptimizationLib.
-1. [Imagemaker](https://github.com/SergioOyaga/GeneticAlgorithmExamples/tree/master/src/main/java/org/soyaga/examples/NQueenProblem):
+1. [NQueenProblem](https://github.com/SergioOyaga/GeneticAlgorithmExamples/tree/master/src/main/java/org/soyaga/examples/NQueenProblem):
 This problem consist on placing N queens in a NxN chessboard such a way that no queen is threatening other queen.
-2. [CudaPolyImageMaker](https://github.com/SergioOyaga/GeneticAlgorithmExamples/tree/master/src/main/java/org/soyaga/examples/ImageMaker):
+2. [ImageMaker](https://github.com/SergioOyaga/GeneticAlgorithmExamples/tree/master/src/main/java/org/soyaga/examples/ImageMaker):
 This problem consist on recreating an image using only shapes (Polygons classically). 
 
 
