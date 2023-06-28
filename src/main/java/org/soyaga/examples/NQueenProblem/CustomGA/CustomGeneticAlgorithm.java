@@ -1,6 +1,6 @@
 package org.soyaga.examples.NQueenProblem.CustomGA;
 
-import org.soyaga.Initialaizer.GAInitializer;
+import org.soyaga.Initializer.GAInitializer;
 import org.soyaga.ga.CrossoverPolicy.CrossoverPolicy;
 import org.soyaga.ga.ElitismPolicy.ElitismPolicy;
 import org.soyaga.ga.GeneticAlgorithm.GeneticAlgorithm;

@@ -1,7 +1,7 @@
 package org.soyaga.examples.NQueenProblem.AdHocGA;
 
 import lombok.AllArgsConstructor;
-import org.soyaga.Initialaizer.GAInitializer;
+import org.soyaga.Initializer.GAInitializer;
 import org.soyaga.ga.Evaluable.FeasibilityFunction;
 import org.soyaga.ga.Evaluable.ObjectiveFunction;
 import org.soyaga.ga.GeneticInformationContainer.Genome.ArrayListGenome;

@@ -1,7 +1,7 @@
 package org.soyaga.examples.NQueenProblem.CustomGA;
 
 import lombok.AllArgsConstructor;
-import org.soyaga.Initialaizer.GAInitializer;
+import org.soyaga.Initializer.GAInitializer;
 import org.soyaga.ga.Individual;
 import org.soyaga.ga.NewbornPolicy.NewbornPolicy;
 

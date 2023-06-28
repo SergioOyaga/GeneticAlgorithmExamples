@@ -1,7 +1,7 @@
 package org.soyaga.examples.ImageMaker.ShapeImageMaker;
 
 import lombok.AllArgsConstructor;
-import org.soyaga.Initialaizer.GAInitializer;
+import org.soyaga.Initializer.GAInitializer;
 import org.soyaga.ga.Evaluable.ObjectiveFunction;
 import org.soyaga.ga.Individual;
 
