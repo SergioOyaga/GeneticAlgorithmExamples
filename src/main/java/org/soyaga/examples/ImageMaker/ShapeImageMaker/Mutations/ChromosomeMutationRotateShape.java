@@ -23,7 +23,7 @@ public class ChromosomeMutationRotateShape implements Mutation {
     /**
      * Double with the angle in radians that we want to explore in each time we rotate the shape.
      * Something between 0.0 and 2 Math.Pi.
-     * something relatively small. Ej.: 0.18
+     * Something relatively small. Ej.: 0.18
      */
     private final Double arch;
     /**
