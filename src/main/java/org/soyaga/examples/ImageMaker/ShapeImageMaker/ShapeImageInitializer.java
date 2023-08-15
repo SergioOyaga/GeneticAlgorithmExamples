@@ -2,7 +2,7 @@ package org.soyaga.examples.ImageMaker.ShapeImageMaker;
 
 import lombok.AllArgsConstructor;
 import org.soyaga.Initializer.GAInitializer;
-import org.soyaga.ga.Evaluable.ObjectiveFunction;
+import org.soyaga.ga.Evaluable.Objective.ObjectiveFunction;
 import org.soyaga.ga.Individual;
 
 import java.awt.*;
@@ -182,7 +182,7 @@ public class ShapeImageInitializer extends GAInitializer {
                     RandomGenerator.getDefault().nextFloat(),
                     RandomGenerator.getDefault().nextFloat()),
                 chromosomes);
-        return new Individual(genome,null, this.objectiveFunction);
+        return new Individual(genome,null, this.objectiveFunction,100.);
 
     }
 }

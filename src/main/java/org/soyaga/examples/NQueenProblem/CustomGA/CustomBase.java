@@ -8,11 +8,16 @@ import org.soyaga.ga.GeneticInformationContainer.GeneticInformationContainer;
  * column number.
  */
 @AllArgsConstructor
-public class CustomBase implements GeneticInformationContainer {
+public class CustomBase implements GeneticInformationContainer<Integer> {
+    /**
+     * Integer with the information of the class.
+     */
     Integer baseVal;
+
     /**
      * Function that gathers the genetic information.
-     * @return Object containing the genetic information. Typically, Genome, Chromosome or Gen.
+     *
+     * @return Object containing the genetic information. In this case, an Integer.
      */
     @Override
     public Integer getGeneticInformation() {
@@ -21,7 +26,8 @@ public class CustomBase implements GeneticInformationContainer {
 
     /**
      * Function that sets the genetic information.
-     * @param geneticInformation Object containing the genetic information. Typically, Genome, Chromosome or Gen.
+     *
+     * @param geneticInformation Object containing the genetic information. In this case, an Integer.
      */
     @Override
     public void setGeneticInformation(Object geneticInformation) {
@@ -30,6 +36,7 @@ public class CustomBase implements GeneticInformationContainer {
 
     /**
      * Constructor that creates a deep copy of the GeneticInformationContainer.
+     *
      * @return GeneticInformationContainer containing the deep copy.
      */
     @Override
@@ -39,6 +46,7 @@ public class CustomBase implements GeneticInformationContainer {
 
     /**
      * Function to verbose the optimization process.
+     *
      * @return a string containing the Gen string representation.
      */
     @Override

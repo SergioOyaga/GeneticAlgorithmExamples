@@ -1,29 +1,31 @@
 package org.soyaga.examples.NQueenProblem.CustomGA;
 
 import lombok.AllArgsConstructor;
-import org.soyaga.ga.Evaluable.FeasibilityFunction;
+import org.soyaga.ga.Evaluable.Feasibility.FeasibilityFunction;
 import org.soyaga.ga.GeneticInformationContainer.Genome.Genome;
 
 import java.util.HashSet;
 
 /**
- * This class Is in charge of providing an evaluate method to compute the feasibility of a solution. This is the
- * feasibility of an individuals' genome.
+ * This class is responsible for providing an 'evaluate' method to compute the feasibility of a solution.
+ * Specifically, it evaluates the feasibility of an individual's genome.
  */
 @AllArgsConstructor
-public class ChessFeasibilityFunction extends FeasibilityFunction {
+public class ChessFeasibilityFunction implements FeasibilityFunction {
     /**
      * Number of Queens.
      */
     private final Integer nQueens;
 
+
     /**
-     * Computes the feasibility of an individuals Genome. In this case  we consider that the solution is feasible
-     * when all rows and columns are contemplated in the solution.
-     * @param genome Genome object to evaluate.
-     * @param objects VarArgs Object that allow to keep/retain information from the evaluation to be used in the
-     *                 decision-making.
-     * @return Double with the Feasibility value.
+     * Computes the feasibility of an individual's genome.
+     * In this case, we consider the solution feasible if the genome contains all columns and rows of the board.
+     * Each Queen is represented by the combinations of CustomBases in each CustomGen.
+     *
+     * @param genome The Genome object to be evaluated.
+     * @param objects VarArgs object that allows retaining information from the evaluation for use in decision-making.
+     * @return A Double representing the feasibility value.
      */
     @Override
     public Double evaluate(Genome genome, Object... objects) {

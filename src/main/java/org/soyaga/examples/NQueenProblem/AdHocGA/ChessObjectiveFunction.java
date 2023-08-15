@@ -1,29 +1,30 @@
 package org.soyaga.examples.NQueenProblem.AdHocGA;
 
-import org.soyaga.ga.Evaluable.ObjectiveFunction;
+import org.soyaga.ga.Evaluable.Objective.ObjectiveFunction;
 import org.soyaga.ga.GeneticInformationContainer.Genome.Genome;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * This class Evaluates the objective function to an individuals Genome. This is the
- * well adapted is an individuals' genome to its environment (closer to the optimal solution).
+ * This class evaluates the objective function of an individual's genome.
+ * It measures how well adapted an individual's genome is to its environment,
+ * bringing it closer to the optimal solution.
  */
-public class ChessObjectiveFunction extends ObjectiveFunction {
+public class ChessObjectiveFunction implements ObjectiveFunction {
     /**
-     * Function that computes how good is this individuals' Genome. Checks collisions only in the diagonals.
-     * @param genome Genome object to evaluate.
-     * @param objects VarArgs Object that allow to keep/retain information from the evaluation to be used in the
-     *                 decision-making.
-     * @return a Double containing the value of the objective function to this individual.
+     * This function calculates the quality of an individual's genome
+     * by checking for collisions only along the diagonals.
+     *
+     * @param genome The Genome object to be evaluated.
+     * @param objects VarArgs Object that retains information from the evaluation for use in decision-making.
+     * @return A Double containing the value of the objective function for this individual.
      */
     @Override
-    public Double evaluate(Genome genome, Object... objects) {
-
+    public Double evaluate(Genome<?> genome, Object... objects) {
         ArrayList<Integer> chromosomes = (ArrayList<Integer>) genome.getGeneticInformation();
-        Double Objective=0.;
-        Integer numberOfQueens = chromosomes.size();
+        double Objective=0.;
+        int numberOfQueens = chromosomes.size();
         int [] f1=new int [numberOfQueens],f2=new int [numberOfQueens];//to store the altered genome.
 
         for(int i = 0; i< numberOfQueens; i++){

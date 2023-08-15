@@ -5,11 +5,11 @@ import lombok.Getter;
 import org.soyaga.ga.GeneticInformationContainer.Gen.Gen;
 
 /**
- * ChessGen containing the row and column numbers as Integers and tha presence of a queen in a Boolean.
+ * ChessGen containing the row and column numbers as Integers and indicating the presence of a queen with a Boolean.
  */
 @AllArgsConstructor
 @Getter
-public class ChessGen implements Gen {
+public class ChessGen implements Gen<Boolean> {
     /**
      * Row number immutable.
      */
@@ -25,24 +25,27 @@ public class ChessGen implements Gen {
 
     /**
      * Constructor that creates a deep copy of the Chromosome.
+     *
      * @return Chromosome containing the deep copy.
      */
     @Override
-    public Gen createCopy() {
+    public Gen<Boolean> createCopy() {
         return new ChessGen(this.row, this.column, this.value);
     }
 
     /**
      * Function that gathers the genetic information.
+     *
      * @return Object containing the genetic information. Typically, Genome, Chromosome or Gen.
      */
     @Override
-    public Object getGeneticInformation() {
+    public Boolean getGeneticInformation() {
         return this.value;
     }
 
     /**
      * Function that sets the genetic information.
+     *
      * @param geneticInformation Object containing the genetic information. Typically, Genome, Chromosome or Gen.
      */
     @Override

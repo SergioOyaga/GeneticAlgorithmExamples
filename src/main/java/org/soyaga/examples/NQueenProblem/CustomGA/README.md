@@ -1,13 +1,16 @@
 # CustomGA
-Solution of the NQueen optimization problem using Sets as base structure to store information.
+Solution of the NQueen optimization problem implementing all the interfaces needed to perform a GA following the
+OptimizationLib GA package guidelines. For a problem as simple as this one, it is not necessary to encapsulate the info 
+in deeper levels than the genome itself. However, this example aims to illustrate how the developer can create his/her
+own classes to fit a specific problem requirement.
 
 ## In this folder:
-We find 17 different classes that defines the problem structures that we decided to create (Implementing their 
+We find 17 different classes that define the problem structures that we decided to create (Implementing their
 corresponding OptimizationLib.ga interfaces).
 1. [CustomGeneticAlgorithm](#customgeneticalgorithm): Implements GeneticAlgorithm.
 2. [ChessGAInitializer](#chessgainitializer): Extends GAInitializer.
-3. [ChessFeasibilityFunction](#chessfeasibilityfunction):Extends FeasibilityFunction.
-4. [ChessObjectiveFunction](#chessobjectivefunction): Extends ObjectiveFunction.
+3. [ChessFeasibilityFunction](#chessfeasibilityfunction):Implements FeasibilityFunction.
+4. [ChessObjectiveFunction](#chessobjectivefunction): Implements ObjectiveFunction.
 5. [CustomGenome](#customgenome): Implements Genome.
 6. [CustomChromosome](#customchromosome): Implements Chromosome.
 7. [CustomGen](#customgen): Implements Gen.
@@ -20,11 +23,10 @@ corresponding OptimizationLib.ga interfaces).
 14. [CustomStoppingPolicy](#customstoppingpolicy): Implements StoppingCriteriaPolicy.
 15. [CustomElitismPolicy](#customelitismpolicy): Implements ElitismPolicy.
 16. [CustomNewbornPolicy](#customnewbornpolicy): Implements NewbornPolicy.
-17. [RunNQueenOptimization](#runnqueenoptimization): This is the main class. Here we instantiate our ChessGA Object with all his 
-components.
+17. [RunNQueenOptimization](#runnqueenoptimization): The main class for instantiation and optimization.
 
 ### [CustomGeneticAlgorithm](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/CustomGA/CustomGeneticAlgorithm.java):
-This class implements GeneticAlgorithm, which by extension makes it an Optimizer instance. In other words this class 
+This class implements GeneticAlgorithm, which by extension makes it an Optimizer instance. In other words, this class 
 can be optimized and its results can be gathered.
 ````code
 public void optimize(){...}
@@ -32,18 +34,19 @@ public Object getResult(){...}
 ````
 The <i>optimize</i> function is implemented in a way that the generation number is passed as VarArg to most the actions
 executed by the CustomGeneticAlgorithm parts (CrossoverPolicy, MutationPolicy...). The StoppingCriteria also receives the
-last best solution Fitness. The <i>getResults</i> function returns a String that will be [printed in the console](#result-example)
+last best Fitness solution. The <i>getResults</i> function returns a String that will be [printed in the console](#result-example)
 with the best solution found and the history of the best individual performance.
 
 ### [ChessGAInitializer](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/CustomGA/ChessGAInitializer.java):
-Initializes a new individual from zero. In our case, uses CustomGenome, CustomChromosome, CustomGen  and CustomBase to 
-store the information of a randomly initialized individual.
+This class initializes a new individual from scratch.
+It uses CustomGenome, CustomChromosome, CustomGen and CustomBase to store the information of a randomly 
+initialized individual.
 ````code
 public Individual initializeIndividual()
 ````
-In this case, all information is stored in the CustomBase. N/2 Chromosomes are created. Each Chromosome contains 2 
-CustomGenes (N Genes in total that represents where queens are placed). And each CustomGen contains 2 CustomBases. 
-This bases try to represent the DNA bases, but in our case each one represent one number, the colum or the row numbers. 
+In this scenario, all information is stored in the CustomBase. N/2 Chromosomes are created. Each Chromosome contains 2 
+CustomGenes (N Genes in total that represent where queens are placed). And each CustomGen contains 2 CustomBases. 
+These bases try to represent the DNA bases, but in our case, each one represents one number, the colum or the row numbers. 
 These 2 bases together represent a coordinate where the Queen is placed.  
 
 ````mermaid
@@ -79,23 +82,22 @@ flowchart TB
 ````
 
 ### [ChessFeasibilityFunction](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/CustomGA/ChessFeasibilityFunction.java):
-This function evaluates the feasibility of a solution. In the case of the NQueen problem it may or may not have sense 
-to talk about feasibility. We decided to give it the mission of ensuring that The N Queens are placed in different rows 
-and columns
+This function evaluates the feasibility of a solution.
+For the N-Queen problem, it ensures that all rows and columns are present in the solution.
+The function returns a double indicating the number of missing rows and columns in the solution.
 
 
 ### [ChessObjectiveFunction](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/CustomGA/ChessObjectiveFunction.java):
-This function evaluates the objective function of a solution. In the case of the NQueen problem in this design, 
-we have to only count the number of collisions (confronted Queens) looking in the diagonals.
-
-This function return a Double containing the number diagonal collisions between queens.
+This function evaluates the objective function of a solution.
+For the N-Queen problem in this map design, it counts the number of diagonal collisions (confronted Queens).
+The function returns a double indicating the number of diagonal collisions between queens.
 
 ### [CustomGenome](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/CustomGA/CustomGenome.java):
-A Genome that contains the genetic information contained in a HashSet &lt;CustomChromosome&gt;. It is composed of N/2 
+A Genome that contains the genetic information in a HashSet&lt;CustomChromosome&gt; . It is composed of N/2 
 CustomChromosomes.
 
 ### [CustomChromosome](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/CustomGA/CustomChromosome.java):
-A Chromosome that contains the genetic information contained in a HashSet &lt;CustomGen&gt;. It contains 2 CustomGenes.
+A Chromosome that contains the genetic information in a HashSet&lt;CustomGen&gt; . It contains 2 CustomGenes.
 
 ### [CustomGen](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/CustomGA/CustomGen.java):
 A Gen that contains the genetic information contained in two CustomBase variables:
@@ -111,40 +113,40 @@ A GeneticInformationContainer that contains an Integer that is interpreted as ro
 ````
 
 ### [CustomMutationPolicy](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/CustomGA/CustomMutationPolicy.java):
-A MutationPolicy that applies mutations to the CustomBase Objects. In even iterations columns are mutated and in odd 
-iterations rows.
+A MutationPolicy that applies mutations to the CustomBase objects. Columns are mutated during even iterations,
+and rows are mutated during odd iterations.
 
 ### [CustomMutation](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/CustomGA/CustomMutation.java):
-A Mutation that takes a CustomBase object and changes randomly its value between 0 and N-1.
+A Mutation that takes a CustomBase object and randomly changes its value between 0 and N-1.
 
 ### [CustomCrossoverPolicy](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/CustomGA/CustomCrossoverPolicy.java):
-A CrossoverPolicy that creates different number of crossed individuals depending on the iteration parity. 
+A CrossoverPolicy that generates a varying number of offspring individuals based on the parity of the iteration.
 
 ### [CustomCrossover](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/CustomGA/CustomCrossover.java):
-A Crossover that although receives the iteration number in the VarArgs, it just performs a HeuristicCrossover.
+A Crossover that, despite receiving the iteration number in the VarArgs, only executes a HeuristicCrossover.
 
 ### [CustomSelection](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/CustomGA/CustomSelection.java):
-A Selection that although receives the iteration number in the VarArgs, it just performs a TournamentSelection.
+A Selection that, despite receiving the iteration number in the VarArgs, only executes a TournamentSelection.
 
 ### [CustomStoppingPolicy](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/CustomGA/CustomStoppingPolicy.java):
-A StoppingCriteriaPolicy that stops if we have achieved the maximum number of iterations or if we have found an optimal 
-solution.
+A StoppingCriteriaPolicy that halts the process either upon reaching a maximum number of iterations or upon 
+discovering an optimal solution.
 
 ### [CustomElitismPolicy](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/CustomGA/CustomElitismPolicy.java):
-A ElitismPolicy that selects different number of individuals depending on the iteration parity.
+An ElitismPolicy that chooses a varying number of individuals based on the parity of the iteration.
 
 ### [CustomNewbornPolicy](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/CustomGA/CustomNewbornPolicy.java):
-A NewbornPolicy that creates different number of new individuals depending on the iteration parity.
+A NewbornPolicy that creates a varying number of individuals based on the parity of the iteration.
 
 ### [RunNQueenOptimization](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/CustomGA/RunNQueenOptimization.java):
-This is the main class. Is where the run starts. As simple as instantiate the ChessGA object (previously defined) filled
-with its components, optimize it, and retrieve the results.
+This is the main class where the program execution begins.
+It involves instantiating the ChessGA object (previously defined), optimizing it, and retrieving the results.
 
-The specific components for the ChessGA are:
+The specific components for ChessGA include:
 - CustomStoppingPolicy: The StoppingCriteria previously defined.
 - CustomCrossoverPolicy: The CrossoverPolicy previously defined.
   - CustomSelection: The Selection previously defined.
-  - CustomCrossover: The Crossover  previously defined.
+  - CustomCrossover: The Crossover previously defined.
 - CustomMutationPolicy: The MutationPolicy previously defined.
   - CustomMutation: The Mutation previously defined.
 - CustomElitismPolicy: The ElitismPolicy previously defined.
@@ -171,9 +173,9 @@ Generation = 0
 |Fitness= 207.0000
 \
 
-#############################
+##############################
 ## 2055 GENERATIONS OMITTED ##
-#############################
+##############################
 
 Generation = 2056
 /
@@ -199,10 +201,12 @@ Generation = 2057
 ````
 
 ## Comment:
-Notice that this example is far from being a good usage of the capabilities of the Genetic algorithm library. It's also
-a terrible approach to solve the N Queen problem (Genome with N/2 Chromosomes?? 2 Genes per Chromosome?? Bases to store 
-an Integer?? Random selections?? No Crossover??). This seems like a weird implementation, but even so, IT WORKS!!!
-This implementation is just to illustrate that we can define a totally custom GA that can implement daemon actions, 
-directed convergence strategies, intelligent mutations, complex policies, retrieve stats from the optimization process
-... We left the library classes open enough to allow the user play around (under his/her own responsibility :relaxed: ).
+Please note that this example is far from utilizing the capabilities of the Genetic Algorithm library optimally.
+It also represents a strange approach for solving the N Queen problem (using a Genome with N/2 Chromosomes, 
+2 Genes per Chromosome, Bases to store an Integer, random selections, and no crossover). 
+Despite its unconventional nature, it still WORKS!
 
+This example serves to illustrate that you can define a completely customized Genetic Algorithm that can incorporate 
+daemon actions, directed convergence strategies, intelligent mutations, complex policies, retrieve statistics from
+the optimization process, etc. We designed the library classes to be flexible enough to enable users to experiment 
+(though with their own responsibility :relaxed:) and explore various possibilities.

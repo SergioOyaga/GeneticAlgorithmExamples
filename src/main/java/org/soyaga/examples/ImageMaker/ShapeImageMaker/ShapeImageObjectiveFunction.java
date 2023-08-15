@@ -1,6 +1,6 @@
 package org.soyaga.examples.ImageMaker.ShapeImageMaker;
 
-import org.soyaga.ga.Evaluable.ObjectiveFunction;
+import org.soyaga.ga.Evaluable.Objective.ObjectiveFunction;
 import org.soyaga.ga.GeneticInformationContainer.Genome.Genome;
 
 import java.awt.*;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * This class Evaluates the objective function to an individuals Genome. This is how
  * well adapted is an individuals' genome to its environment (closer to the optimal solution).
  */
-public class ShapeImageObjectiveFunction extends ObjectiveFunction {
+public class ShapeImageObjectiveFunction implements ObjectiveFunction {
     /**
      * Array with the color of each pixel in the image in sRGB color space.
      */

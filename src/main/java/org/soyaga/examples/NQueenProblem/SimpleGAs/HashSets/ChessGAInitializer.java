@@ -2,8 +2,8 @@ package org.soyaga.examples.NQueenProblem.SimpleGAs.HashSets;
 
 import lombok.AllArgsConstructor;
 import org.soyaga.Initializer.GAInitializer;
-import org.soyaga.ga.Evaluable.FeasibilityFunction;
-import org.soyaga.ga.Evaluable.ObjectiveFunction;
+import org.soyaga.ga.Evaluable.Feasibility.FeasibilityFunction;
+import org.soyaga.ga.Evaluable.Objective.ObjectiveFunction;
 import org.soyaga.ga.GeneticInformationContainer.Chromosome.HashSetChromosome;
 import org.soyaga.ga.GeneticInformationContainer.Genome.HashSetGenome;
 import org.soyaga.ga.Individual;
@@ -11,7 +11,7 @@ import org.soyaga.ga.Individual;
 import java.util.random.RandomGenerator;
 
 /**
- * This class allow the initialization of new Individuals from scratch.
+ * This class enables the initialization of new individuals from scratch.
  */
 @AllArgsConstructor
 public class ChessGAInitializer extends GAInitializer {
@@ -19,11 +19,14 @@ public class ChessGAInitializer extends GAInitializer {
     private final FeasibilityFunction feasibilityFunction;
     private final ObjectiveFunction objectiveFunction;
 
+
     /**
-     * Function that initializes a new individual from scratch. In this case each individual have one HashSetGenome,
-     * composed of N HashSetChromosomes. And each Chromosome is composed of N ChessGenes that stores the position
-     * (row, col) and a random boolean representing the Queen.
-     * @return Individual randomly initialized.
+     * This function initializes a new individual from scratch.
+     * In this case, each individual has one HashSetGenome, composed of N HashSetChromosomes.
+     * Each Chromosome is further composed of N ChessGenes instances that store the position
+     * (row, column) and a boolean representing a Queen.
+     *
+     * @return A randomly initialized Individual.
      */
     @Override
     public Individual initializeIndividual() {
@@ -36,7 +39,7 @@ public class ChessGAInitializer extends GAInitializer {
             }
             genome.add(chromosome);
         }
-        return new Individual(genome,this.feasibilityFunction,this.objectiveFunction);
+        return new Individual(genome,this.feasibilityFunction,this.objectiveFunction, 100.);
 
     }
 }

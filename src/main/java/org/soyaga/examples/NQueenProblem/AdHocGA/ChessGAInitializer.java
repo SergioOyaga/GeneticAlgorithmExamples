@@ -2,15 +2,15 @@ package org.soyaga.examples.NQueenProblem.AdHocGA;
 
 import lombok.AllArgsConstructor;
 import org.soyaga.Initializer.GAInitializer;
-import org.soyaga.ga.Evaluable.FeasibilityFunction;
-import org.soyaga.ga.Evaluable.ObjectiveFunction;
+import org.soyaga.ga.Evaluable.Feasibility.FeasibilityFunction;
+import org.soyaga.ga.Evaluable.Objective.ObjectiveFunction;
 import org.soyaga.ga.GeneticInformationContainer.Genome.ArrayListGenome;
 import org.soyaga.ga.Individual;
 
 import java.util.random.RandomGenerator;
 
 /**
- * This class allow the initialization of new Individuals from scratch.
+ * This class enables the initialization of new individuals from scratch.
  */
 @AllArgsConstructor
 public class ChessGAInitializer extends GAInitializer {
@@ -19,10 +19,11 @@ public class ChessGAInitializer extends GAInitializer {
     private final ObjectiveFunction objectiveFunction;
 
     /**
-     * Function that initializes a new individual from scratch. In this case each individual have one ArrayListGenome,
-     * composed of an ArrayList&lt;Integers&gt; where each position in the array represents a row, and the value stores
-     * the column.
-     * @return Individual randomly initialized.
+     * This function initializes a new individual from scratch.
+     * In this case, each individual has one ArrayListGenome, composed of N Integers
+     * (where positions in the array represent rows and the integer value the column).
+     *
+     * @return A randomly initialized Individual.
      */
     @Override
     public Individual initializeIndividual() {
@@ -30,7 +31,7 @@ public class ChessGAInitializer extends GAInitializer {
         for (int i=0;i<this.numberOfQueens;i++){
             genome.add(RandomGenerator.getDefault().nextInt(numberOfQueens));
         }
-        return new Individual(genome,this.feasibilityFunction,this.objectiveFunction);
+        return new Individual(genome,this.feasibilityFunction,this.objectiveFunction, 100.);
 
     }
 }

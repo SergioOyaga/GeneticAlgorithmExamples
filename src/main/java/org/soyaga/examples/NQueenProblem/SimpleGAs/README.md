@@ -1,9 +1,14 @@
 # SimpleGA
-Examples using the OptimizationLib build-in classes for the Genetic Algorithm (GA) optimization methodology.
+Examples using the OptimizationLib built-in classes for the Genetic Algorithm (GA) optimization methodology.
 
-Although a complete Genetic algorithm consist in at least 16 different classes (view [CustomGA](https://github.com/SergioOyaga/GeneticAlgorithmExamples/tree/master/src/main/java/org/soyaga/examples/NQueenProblem/CustomGA)),
-with a minimal implementation of 4-5 classes (which are problem dependent) we can design a GA that allow us to "optimize" 
-some computationally "hard" problems (P, NP, NP-Complete and/or NP-Hard).
+While a complete Genetic Algorithm involves more than 16 different classes 
+(see [CustomGA](https://github.com/SergioOyaga/GeneticAlgorithmExamples/tree/master/src/main/java/org/soyaga/examples/NQueenProblem/CustomGA)),
+a minimal implementation with 4-5 classes (problem-dependent) can be used to design a GA capable of 
+optimizing computationally challenging problems (P, NP, NP-Complete, and/or NP-Hard).
+
+These implementations serve as an introduction for novice developers to the design of Genetic Algorithms 
+using the OptimizationLib framework.
+
 
 ## In this folder:
 We find 3 different implementations for solving the nQueen optimization problem.
@@ -15,11 +20,12 @@ Genomes and Chromosomes contain the genetic information stored in HashSets.
 Genomes and Chromosomes contain the genetic information stored in HashMaps.
 
 ## Comment:
-This three structures are the three most frequently used to store information. Most of the problems we will want to 
-optimize could be encapsulated in these structures.
+These three structures are the most frequently used for storing information. 
+Most of the problems we aim to optimize can be encapsulated within these structures.
 
-However, we do not force the use of these structures, you can have whatever you want as Genome, Chromosome, Gen or any 
-GeneticInformationContainer you define. See [CustomGA](https://github.com/SergioOyaga/GeneticAlgorithmExamples/tree/master/src/main/java/org/soyaga/examples/NQueenProblem/CustomGA)
-for an example of custom created 
-GeneticInformationContainers. See [AdHocGA](https://github.com/SergioOyaga/GeneticAlgorithmExamples/tree/master/src/main/java/org/soyaga/examples/NQueenProblem/AdHocGA)
-for an example where Chromosomes on the Genome are replaced by a more suitable structure.
+However, we do not mandate the use of these structures; you are free to use any Genome, Chromosome, Gen, or other 
+GeneticInformationContainer that you define. 
+For an example of custom-created GeneticInformationContainers, refer to 
+[CustomGA](https://github.com/SergioOyaga/GeneticAlgorithmExamples/tree/master/src/main/java/org/soyaga/examples/NQueenProblem/CustomGA).
+For instance, where Chromosomes in the Genome are replaced by a more suitable structure, an array of integers, see 
+[AdHocGA](https://github.com/SergioOyaga/GeneticAlgorithmExamples/tree/master/src/main/java/org/soyaga/examples/NQueenProblem/AdHocGA).

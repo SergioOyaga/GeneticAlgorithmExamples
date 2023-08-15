@@ -2,14 +2,14 @@ package org.soyaga.examples.NQueenProblem.CustomGA;
 
 import lombok.AllArgsConstructor;
 import org.soyaga.Initializer.GAInitializer;
-import org.soyaga.ga.Evaluable.FeasibilityFunction;
-import org.soyaga.ga.Evaluable.ObjectiveFunction;
+import org.soyaga.ga.Evaluable.Feasibility.FeasibilityFunction;
+import org.soyaga.ga.Evaluable.Objective.ObjectiveFunction;
 import org.soyaga.ga.Individual;
 
 import java.util.random.RandomGenerator;
 
 /**
- * This class allow the initialization of new Individuals from scratch.
+ * This class enables the initialization of new individuals from scratch.
  */
 @AllArgsConstructor
 public class ChessGAInitializer extends GAInitializer {
@@ -18,10 +18,12 @@ public class ChessGAInitializer extends GAInitializer {
     private final ObjectiveFunction objectiveFunction;
 
     /**
-     * Function that initializes a new individual from scratch. In this case each individual have one CustomGenome,
-     * composed of N/2 CustomChromosomes. And each Chromosome is composed of 2 ChessGenes that stores the position
-     * (row, col) using a CustomBase object.
-     * @return Individual randomly initialized.
+     * This function initializes a new individual from scratch.
+     * In this case, each individual has one CustomGenome, composed of N/2 CustomChromosomes.
+     * Each Chromosome is further composed of 2 ChessGenes instances that store the position
+     * (row, column) each in a CustomBase. The combination of customBases in a CustomGen defines a queen.
+     *
+     * @return A randomly initialized Individual.
      */
     @Override
     public Individual initializeIndividual() {
@@ -40,7 +42,7 @@ public class ChessGAInitializer extends GAInitializer {
             chromosome.add(gen);
             genome.add(chromosome);
         }
-        return new Individual(genome,this.feasibilityFunction,this.objectiveFunction);
+        return new Individual(genome,this.feasibilityFunction,this.objectiveFunction,100.);
 
     }
 }

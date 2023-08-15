@@ -10,12 +10,14 @@ import java.util.List;
 import java.util.random.RandomGenerator;
 
 /**
- * This class represents an TournamentSelection that could have been whatever we wanted.
+ * This class represents a TournamentSelection. In this case, this custom class is just a copy of the built-in class
+ * TournamentSelection.
  */
 public class CustomSelection implements Selection {
     /**
-     * Selection that although receives the generation number is just a copy of the HeuristicCrossover.
-     * We could have varied the behaviour of the selection based on the context (iterations, convergence...).
+     * Selection that although receives the generation number is just a copy of the TournamentSelection.
+     * We could have varied the behavior of the selection based on the context (iterations, convergence...).
+     *
      * @param population Population from where to pick the Individual.
      * @param crossArgs  Undefined Array of elements to perform the parent selection.
      * @return An <b>Individual</b> corresponding to the new parent.

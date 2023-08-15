@@ -5,6 +5,8 @@ import org.soyaga.ga.CrossoverPolicy.FixedCrossoverPolicy;
 import org.soyaga.ga.CrossoverPolicy.ParentSelection.TournamentSelection;
 import org.soyaga.ga.ElitismPolicy.FixedElitismPolicy;
 import org.soyaga.ga.NewbornPolicy.FixedNewbornPolicy;
+import org.soyaga.ga.StatsRetrievalPolicy.NIterationsStatsRetrievalPolicy;
+import org.soyaga.ga.StatsRetrievalPolicy.Stat.*;
 import org.soyaga.ga.StoppingPolicy.MaxIterationCriteriaPolicy;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -24,11 +26,13 @@ public class RunPolyImageOptimization {
         //Integer with the number of vertexes on the polygons.
         Integer numberOfVertexes = 7;
         //Integer with the number of iterations.
-        int maxGenerations = 20000;
+        int maxGenerations = 2000;
         //String with the path to the image we want to recreate.
         String imageToRecreate = "ImageMaker/monalisa.png";
-        //String with the path to the image we want to recreate, without the .png/.jpg, it is added by default.
+        //String with the path where to save the recreated image, without the .png/.jpg, it is added by default.
         String outputPath = "src/out/ImageMaker/image";
+        //String with the path to the folder where the stats .csv has to be saved.
+        String statOutputPath = "src/out/ImageMaker/stats";
 
 
         InputStream stream = RunPolyImageOptimization.class.getClassLoader().getResourceAsStream(imageToRecreate);
@@ -75,7 +79,23 @@ public class RunPolyImageOptimization {
                 new FixedNewbornPolicy(initialPopulationSize*10/100),
                 new PolyImageInitializer(initialNumberOfPolygons, numberOfVertexes, image.getHeight(), image.getWidth(),
                         new PolyImageObjectiveFunction(image,maxGenerations*95/100)),
-                image.getWidth(), image.getHeight(),10
+                image.getWidth(), image.getHeight(),10,
+                new NIterationsStatsRetrievalPolicy(
+                        1,new ArrayList<>(){{
+                    add(new CurrentMinFitnessStat(4));
+                    add(new CurrentMaxFitnessStat(4));
+                    add(new HistoricalMinFitnessStat(4));
+                    add(new HistoricalMaxFitnessStat(4));
+                    add(new MeanSdStat(4));
+                    add(new PercentileStat(4, new ArrayList<>(){{add(0);add(25);add(50);add(75);add(100);}}));
+                    add(new StepGradientStat(4));
+                    add(new TimeGradientStat(4));
+                    add(new ElapsedTimeStat(4));
+                }},
+                        statOutputPath,
+                        true,
+                        true
+                )
         );
         //Optimize the GeneticAlgorithm
         ga.optimize();

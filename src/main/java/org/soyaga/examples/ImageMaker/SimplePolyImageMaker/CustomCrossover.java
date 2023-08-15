@@ -49,7 +49,7 @@ public class CustomCrossover implements Crossover {
         }
         Color offspringBackground =mix(paren1Background,paren2Background);
         parent1Genome.setGeneticInformation(new ArrayList<>(){{add(offspringBackground);add(offspringGenomeList);}});
-        return new Individual(parent1Genome,parent1.getFeasibilityFunction(),parent1.getObjectiveFunction());
+        return new Individual(parent1Genome,parent1.getFeasibilityFunction(),parent1.getObjectiveFunction(), parent1.getPenalization());
     }
 
     /**

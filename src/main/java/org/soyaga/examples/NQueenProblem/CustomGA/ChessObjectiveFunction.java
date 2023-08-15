@@ -1,30 +1,31 @@
 package org.soyaga.examples.NQueenProblem.CustomGA;
 
 import lombok.AllArgsConstructor;
-import org.soyaga.ga.Evaluable.ObjectiveFunction;
+import org.soyaga.ga.Evaluable.Objective.ObjectiveFunction;
 import org.soyaga.ga.GeneticInformationContainer.Genome.Genome;
 
 /**
- * This class Evaluates the objective function to an individuals Genome. This is the
- * well adapted is an individuals' genome to its environment (closer to the optimal solution).
+ * This class evaluates the objective function of an individual's genome.
+ * It measures how well adapted an individual's genome is to its environment,
+ * bringing it closer to the optimal solution.
  */
 @AllArgsConstructor
-public class ChessObjectiveFunction extends ObjectiveFunction {
+public class ChessObjectiveFunction implements ObjectiveFunction {
     /**
      * Integer with the number of queens.
      */
     private final Integer nQueens;
 
     /**
-     * Function that computes how good is this individuals' Genome.
-     * @param genome Genome object to evaluate.
-     * @param objects VarArgs Object that allow to keep/retain information from the evaluation to be used in the
-     *                 decision-making.
-     * @return a Double containing the value of the objective function to this individual.
+     * This function calculates the quality of an individual's genome by checking for collisions.
+     *
+     * @param genome The Genome object to be evaluated.
+     * @param objects VarArgs Object that retains information from the evaluation for use in decision-making.
+     * @return A Double containing the value of the objective function for this individual.
      */
     @Override
-    public Double evaluate(Genome genome, Object... objects) {
-        Double objective=0.;
+    public Double evaluate(Genome<?> genome, Object... objects) {
+        double objective=0.;
         CustomGenome genomeObject = (CustomGenome) genome;
         boolean [][] matrix = new boolean[nQueens][nQueens];
        for(CustomChromosome chromosome:genomeObject.getGeneticInformation()){
@@ -45,11 +46,13 @@ public class ChessObjectiveFunction extends ObjectiveFunction {
     }
 
     /**
-     * Aux function that that computes the collisions (only diags) of a Queen in a certain position given a board.
-     * @param board Boolean[][]. with true where the queens are faced and false elsewhere.
-     * @param row row number of the Queen we want to check.
-     * @param col column number of the Queen we want to check.
-     * @return an int with the number of collisions.
+     * Auxiliary function that computes the collisions (only diagonals)
+     * of a Queen in a certain position on a given board.
+     *
+     * @param board A Boolean[][]. It has 'true' where the queens are placed and 'false' elsewhere.
+     * @param row Row number of the Queen to be checked.
+     * @param col Column number of the Queen to be checked.
+     * @return An int representing the number of collisions.
      */
     private int computeCollisions(boolean[][] board, int row, int col)
     {

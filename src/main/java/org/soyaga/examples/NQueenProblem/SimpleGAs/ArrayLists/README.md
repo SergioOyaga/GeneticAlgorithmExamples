@@ -1,36 +1,38 @@
 # ArrayLists
-Solution of the NQueen optimization problem using Arrays as base structure to store information.
+Solving the N-Queen optimization problem using arrays as the base structure to store information.
 
-## In this folder:
-We find 5 different classes that defines the problem dependent structures that we have to create (Implementing their 
-corresponding OptimizationLib.ga interfaces).
+## Contents:
+This folder contains 5 different classes that define the structures required for solving the problem. 
+These classes implement their respective interfaces from OptimizationLib.ga.
 1. [ChessGA](#chessga): Extends SimpleGeneticAlgorithm.
 2. [ChessGAInitializer](#chessgainitializer): Extends GAInitializer.
 3. [ChessFeasibilityFunction](#chessfeasibilityfunction): Extends FeasibilityFunction.
 4. [ChessObjectiveFunction](#chessobjectivefunction): Extends ObjectiveFunction.
-5. [RunNQueenOptimization](#runnqueenoptimization): This is the main class. Here we instantiate our ChessGA Object with all his 
-components.
+5. [RunNQueenOptimization](#runnqueenoptimization): The main class for instantiation and optimization.
 
 ### [ChessGA](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/SimpleGAs/ArrayLists/ChessGA.java):
-This class extends SimpleGeneticAlgorithm, which by extension makes it an Optimizer instance. In other words this class 
-can be optimized and its results can be gathered.
+This class extends SimpleGeneticAlgorithm, which by extension makes it an Optimizer instance. 
+In other words, this class can be optimized and its results can be gathered.
 ````code
 public void optimize(){...}
 public Object getResult(){...}
 ````
-The <i>optimize</i> function is already implemented by the abstract class SimpleGeneticAlgorithm, which defines a basic 
-optimization procedure. The <i>getResults</i> function returns a String that will be [printed in the console](#result-example)
-with the best solution found.
+The <i>optimize</i> method is inherited from the abstract class SimpleGeneticAlgorithm,
+which defines a basic optimization procedure. 
+The <i>getResults</i> method returns a string that will be [printed in the console](#result-example)
+to display the best solution found.
 
 ### [ChessGAInitializer](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/SimpleGAs/ArrayLists/ChessGA.java):
-Initializes a new individual from zero. In our case, uses ArrayListGenome, ArrayListChromosome and GenericGen to 
-store the information of a randomly initialized individual.
-````code
+This class initializes a new individual from scratch. 
+It uses ArrayListGenome, ArrayListChromosome, 
+and GenericGen to store the information of a randomly initialized individual.
+````java
 public Individual initializeIndividual()
 ````
-In this case, we already store implicitly the row position by knowing the position of the chromosome in the Genome
-ArrayList&lt;Chromosome&gt;. As consequence, only N Chromosomes with one Gen each one are created. Each Gen contains an
-integer with the column position.
+In this case, the row position is implicitly stored based on the position of the chromosome in the Genome 
+ArrayList<Chromosome>. 
+Therefore, only N Chromosomes, each with one Gen, are created. 
+Each Gen contains an integer representing the column position.
 
 ````mermaid
 flowchart LR
@@ -62,35 +64,33 @@ flowchart LR
 
 
 ### [ChessFeasibilityFunction](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/SimpleGAs/ArrayLists/ChessFeasibilityFunction.java):
-This function evaluates the feasibility of a solution. In the case of the NQueen problem it may or may not have sense 
-to talk about feasibility. We decided to give it the mission of ensuring that each queen is placed in a 
-different column and row than the other queens.
-
-This function return a Double containing the number of collisions (missing rows or columns where no queen is placed).
+This function evaluates the feasibility of a solution. 
+For the N-Queen problem, it ensures that each queen is placed in a different column and row from other queens. 
+The function returns a double indicating the number of collisions (missing rows or columns where no queen is placed).
 
 
 ### [ChessObjectiveFunction](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/SimpleGAs/ArrayLists/ChessObjectiveFunction.java):
-This function evaluates the objective function of a solution. In the case of the NQueen problem in this array design, 
-we only have to count the number of collisions (confronted Queens) looking at the diagonals.
-
-This function return a Double containing the number of diagonal collisions between queens.
+This function evaluates the objective function of a solution. 
+For the N-Queen problem in this array design, 
+it counts the number of collisions (confronted Queens) by looking at the diagonals. 
+The function returns a double indicating the number of diagonal collisions between queens.
 
 
 ### [RunNQueenOptimization](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/SimpleGAs/ArrayLists/RunNQueenOptimization.java):
-This is the main class. Is where the run starts. As simple as instantiate the ChessGA object (previously defined) filled
-with its components, optimize it, and retrieve the results.
+This is the main class where the program execution begins. 
+It involves instantiating the ChessGA object (previously defined), optimizing it, and retrieving the results.
 
-The specific components for the ChessGA are:
-- MaxIterationCriteriaPolicy: A StoppingCriteria based on a maximum number of iteration.
+The specific components for ChessGA include:
+- MaxIterationCriteriaPolicy: A StoppingCriteria based on a maximum number of iterations.
 - FixedCrossoverPolicy: A CrossoverPolicy that applies each iteration a fixed number of crossovers.
   - RandomSelection: A Selection procedure in which each parent is chosen randomly.
   - OnePointCrossover: A Crossover procedure in which the genome of the parents is combined by braking it in two pieces 
   and joining one part from one parent and the other part from the other parent in the child.
 - OrderedSingleProbabilityMutPol: A MutationPolicy that applies mutations stored in arrays sequentially and filters the
 probability of applying the mutation with a fixed probability.
-  - ChromosomeSwapMutation: A mutation that consist on interchanging Chromosomes stored in an ArrayList.
+  - ChromosomeSwapMutation: A mutation that consists of interchanging Chromosomes stored in an ArrayList.
 - FixedElitismPolicy: An ElitismPolicy that applies each iteration a fixed number of elitist individuals.
-- FixedNewbornPolicy: A newbornPolicy that applies each iteration a fixed number o newborn individuals.
+- FixedNewbornPolicy: A newbornPolicy that applies each iteration a fixed number of newborn individuals.
 - ChessGAInitializer: The Initializer previously defined.
   - ChessFeasibilityFunction: The FeasibilityFunction previously defined.
   - ChessObjectiveFunction: The ObjectiveFunction previously defined.

@@ -18,7 +18,24 @@ import java.util.Map;
  * Extends SimpleGeneticAlgorithm and defines how we gather the results.
  */
 public class ChessGA extends SimpleGeneticAlgorithm {
+    /**
+     * Integer with the number of queens.
+     */
     private final Integer  nQueens;
+
+    /**
+     * Constructor that matches its super constructor.
+     *
+     * @param ID String with the GA description.
+     * @param initialPopulationSize Integer with the initial population size.
+     * @param stoppingCriteriaPolicy StoppingCriteriaPolicy.
+     * @param crossoverPolicy CrossoverPolicy.
+     * @param mutationPolicy MutationPolicy.
+     * @param elitismPolicy ElitismPolicy.
+     * @param newbornPolicy NewbornPolicy.
+     * @param gaInitializer GAInitializer.
+     * @param nQueens Integer with the number of queens.
+     */
     public ChessGA(String ID, Integer initialPopulationSize, StoppingCriteriaPolicy stoppingCriteriaPolicy,
                    CrossoverPolicy crossoverPolicy, MutationPolicy mutationPolicy, ElitismPolicy elitismPolicy,
                    NewbornPolicy newbornPolicy, GAInitializer gaInitializer, Integer nQueens) {
@@ -28,23 +45,23 @@ public class ChessGA extends SimpleGeneticAlgorithm {
     }
 
     /**
-     * Transform the genome of the best individual to a String representing its value.
+     * Transform the genome of the best individual into a String representing its value.
+     *
      * @return String.
      */
     @Override
     public Object getResult() {
         String indInfo = this.population.getBestIndividual().toString();
         StringBuilder solution = new StringBuilder("\n");
-        HashMapGenome<Integer, HashMapChromosome> genomeObject = (HashMapGenome) this.population.getBestIndividual().getGenome();
+        HashMapGenome<Integer, HashMapChromosome<Integer,GenericGen<Boolean>>> genomeObject =
+                (HashMapGenome<Integer, HashMapChromosome<Integer,GenericGen<Boolean>>>) this.population.getBestIndividual().getGenome();
         String [][] matrix = new String[this.nQueens][this.nQueens];
 
-        for(Map.Entry<Integer,HashMapChromosome> chromosome:genomeObject.getGeneticInformation()){
+        for(Map.Entry<Integer,HashMapChromosome<Integer,GenericGen<Boolean>>> chromosome:genomeObject.getGeneticInformation()){
             Integer row= chromosome.getKey();
-            HashMapChromosome<Integer,GenericGen> genes = chromosome.getValue();
-            for(Map.Entry<Integer,GenericGen> gen:genes.getGeneticInformation()){
+            for(Map.Entry<Integer,GenericGen<Boolean>> gen: chromosome.getValue().getGeneticInformation()){
                 Integer col = gen.getKey();
-                GenericGen<Boolean> genVal = gen.getValue();
-                matrix[row][col] =genVal.getGeneticInformation()? " Q ":" _ ";
+                matrix[row][col] =gen.getValue().getGeneticInformation()? " Q ":" _ ";
             }
         }
         for(int i=0;i<this.nQueens;i++){

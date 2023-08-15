@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * Extends GeneticAlgorithm and defines how we perform the optimization cycles how we gather the results.
+ * Extends GeneticAlgorithm and defines how we perform the optimization cycles and how we gather the results.
  */
 public class CustomGeneticAlgorithm implements GeneticAlgorithm {
     /**
@@ -31,49 +31,49 @@ public class CustomGeneticAlgorithm implements GeneticAlgorithm {
     /**
      * StoppingCriteriaPolicy object of the GA.
      */
-    private StoppingCriteriaPolicy stoppingCriteriaPolicy;
+    private final StoppingCriteriaPolicy stoppingCriteriaPolicy;
     /**
      * CrossoverPolicy object of the GA.
      */
-    private CrossoverPolicy crossoverPolicy;
+    private final CrossoverPolicy crossoverPolicy;
     /**
      * MutationPolicy object of the GA.
      */
-    private MutationPolicy mutationPolicy;
+    private final MutationPolicy mutationPolicy;
     /**
      * ElitismPolicy object of the GA.
      */
-    private ElitismPolicy elitismPolicy;
+    private final ElitismPolicy elitismPolicy;
     /**
      * NewbornPolicy object of the GA.
      */
-    private NewbornPolicy newbornPolicy;
+    private final NewbornPolicy newbornPolicy;
     /**
      * GAInitializer Object used to initialize new individuals in each optimization
      * iteration.
      */
-    private GAInitializer gaInitializer;
-
+    private final GAInitializer gaInitializer;
     /**
      * ArrayList of Strings with the best Individual.toString() history.
      */
-    private ArrayList<String> history;
-
+    private final ArrayList<String> history;
     /**
      * Number of queens.
      */
     private final Integer nQueens;
 
     /**
-     * It receives all parameters needed to create an object of this class.
+     * Constructor.
+     *
      * @param ID String with the name of the GA.
-     * @param initialPopulationSize    Integer with the initial number of individuals of the
-     *                          population.
+     * @param initialPopulationSize    Integer with the initial number of individuals in the population.
      * @param stoppingCriteriaPolicy  StoppingCriteriaPolicy object with the criteria already defined.
      * @param crossoverPolicy CrossoverPolicy object with the crossoverPolicy already defined.
      * @param mutationPolicy MutationPolicy object with the mutation defined.
      * @param elitismPolicy ElitismPolicy object with the elitism defined.
      * @param newbornPolicy NewbornPolicy object with the newborns defined.
+     * @param gaInitializer GAInitializer.
+     * @param nQueens Integer with the number of queens.
      */
     public CustomGeneticAlgorithm(String ID, Integer initialPopulationSize, StoppingCriteriaPolicy stoppingCriteriaPolicy,
                                   CrossoverPolicy crossoverPolicy, MutationPolicy mutationPolicy, ElitismPolicy elitismPolicy,
@@ -118,6 +118,7 @@ public class CustomGeneticAlgorithm implements GeneticAlgorithm {
 
     /**
      * Transform the genome of the best individual to a String representing its value.
+     *
      * @return String.
      */
     @Override

@@ -16,6 +16,7 @@ public class CustomElitismPolicy implements ElitismPolicy {
      * Elitist number for odd generations.
      */
     private final Integer elitismNumberOdd;
+
     /**
      * Function that returns the number of elitist individuals to take into account.
      *

@@ -6,7 +6,7 @@ import jcuda.driver.CUdeviceptr;
 import jcuda.jcublas.JCublas2;
 import jcuda.jcublas.cublasHandle;
 import org.soyaga.examples.ImageMaker.CudaPolyImageMaker.Kernel.ColorDifKernel;
-import org.soyaga.ga.Evaluable.ObjectiveFunction;
+import org.soyaga.ga.Evaluable.Objective.ObjectiveFunction;
 import org.soyaga.ga.GeneticInformationContainer.Genome.Genome;
 
 import java.awt.*;
@@ -23,7 +23,7 @@ import static jcuda.jcublas.JCublas2.cublasCreate;
  * This class Evaluates the objective function to an individuals Genome. This is how
  * well adapted is an individuals' genome to its environment (closer to the optimal solution).
  */
-public class PolyImageObjectiveFunction extends ObjectiveFunction {
+public class PolyImageObjectiveFunction implements ObjectiveFunction {
     /**
      * Array with the color of each pixel in the image in sRGB color space.
      */

@@ -1,6 +1,6 @@
 package org.soyaga.examples.ImageMaker.SimplePolyImageMaker;
 
-import org.soyaga.ga.Evaluable.ObjectiveFunction;
+import org.soyaga.ga.Evaluable.Objective.ObjectiveFunction;
 import org.soyaga.ga.GeneticInformationContainer.Genome.Genome;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -10,17 +10,17 @@ import java.util.ArrayList;
  * This class Evaluates the objective function to an individuals Genome. This is how
  * well adapted is an individuals' genome to its environment (closer to the optimal solution).
  */
-public class PolyImageObjectiveFunction extends ObjectiveFunction {
+public class PolyImageObjectiveFunction implements ObjectiveFunction {
     /**
      * Array with the color of each pixel in the image in sRGB color space.
      */
     private final int[] imageArray;
     /**
-     * Integer with the width of the image, used to create teh images from the genomes.
+     * Integer with the width of the image, used to create the images from the genomes.
      */
     private final int width;
     /**
-     * Integer with the height of the image, used to create teh images from the genomes.
+     * Integer with the height of the image, used to create the images from the genomes.
      */
     private final int height;
     /**

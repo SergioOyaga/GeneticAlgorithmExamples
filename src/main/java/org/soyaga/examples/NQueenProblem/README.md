@@ -13,7 +13,7 @@ each other; thus, a solution requires that no two queens share the same row, col
   </tr>
 </table>
 
-There is no known formula for the exact number of solutions for placing n queens on an N × N board.
+There is no known formula for the exact number of solutions when placing n queens on an N × N board.
 The 27×27 board is the highest-order board that has been completely enumerated:
 
 | n  | fundamental solutions | all solutions      | total combinations                                 |
@@ -46,24 +46,30 @@ The 27×27 board is the highest-order board that has been completely enumerated:
 | 26 | 2789712466510289      | 22317699616364044  | 57746226578042013138408988185727715132037050952    |
 | 27 | 29363495934315694     | 234907967154122528 | 11091107763254898773425731705373527055193637625824 |
 
-As you can see, the number of solutions increases as we increase the number of queens. On the other hand our search space 
-increases dramatically. This makes inviable a Linear approach.
+As you can observe, the number of solutions increases as we raise the number of queens. 
+However, simultaneously, our search space expands significantly.
+This makes inviable a Linear approach for solving the N-Queen problem.
 
-For more information about the problem refer [Here](https://en.wikipedia.org/wiki/Eight_queens_puzzle#Counting_solutions_for_other_sizes_n)
 
-## In this folder:
-We find 3 different design approached for solving the nQueen optimization problem using the Genetic Algorithm (GA)
+For more information about the problem, refer 
+[Here](https://en.wikipedia.org/wiki/Eight_queens_puzzle#Counting_solutions_for_other_sizes_n)
+
+## In This Folder:
+We find 3 different design approaches for solving the N-Queen optimization problem using the Genetic Algorithm (GA) 
 from the OptimizationLib.
 1. [SimpleGA](https://github.com/SergioOyaga/GeneticAlgorithmExamples/tree/master/src/main/java/org/soyaga/examples/NQueenProblem/SimpleGAs):
-Three different ways of solving the problem using build.in structures.
+   Three different ways of solving the problem using built-in structures. These implementations aim to help developers 
+become familiar with the GA package of the OptimizationLib framework.
 2. [AdHocGA](https://github.com/SergioOyaga/GeneticAlgorithmExamples/tree/master/src/main/java/org/soyaga/examples/NQueenProblem/AdHocGA):
-Solve the problem adjusting the GeneticInformationContainers to minimal structures.
+   Solving the problem by adjusting the GeneticInformationContainers to minimal structures. 
+   Additionally, we introduce the StatsRetrievalPolicy here, which allows developers to gather information from the GA 
+   during execution.
 3. [CustomGA](https://github.com/SergioOyaga/GeneticAlgorithmExamples/tree/master/src/main/java/org/soyaga/examples/NQueenProblem/CustomGA):
-Opposite to AdHoc, a fully customized solverperforms the optimization. It implements (in dummy ways) most of the 
-capabilities of the GA package.
+   In contrast to AdHoc, a fully customized solver performs the optimization. It implements (in dummy ways) most of the 
+   capabilities of the GA package, showing how the developer can customize and fine-tune a GA.
 
 ## Comment:
-The examples in these folders are just to illustrate the power of GAs, and the simplicity of use/implementation
-that give us the ga library in the OptimizationLib framework. The problem is solved using 5 different configurations, 
-some configurations are more suitable for this problem and others are not. Just remember they are examples that you can 
-use as template to adapt for your specific problems. 
+The examples in these folders are meant to illustrate the power of GAs and the simplicity of use/implementation 
+that the GA library in the OptimizationLib framework provides. The problem is solved using 5 different configurations; 
+some configurations are more suitable for this problem than others. Just remember that these examples can serve as 
+templates that you can adapt for your specific problems.

@@ -20,13 +20,12 @@ public class CustomNewbornPolicy implements NewbornPolicy {
      * Elitist number for odd generations.
      */
     private final Integer newbornNumberOdd;
+
     /**
      * Function that returns the newborn number following a policy. Ej.:
      * <ul>
-     *      <li>Selects the best Individuals that will pass directly to the next generation.</li>
-     *      <li>In even iteration one number of best Individuals.</li>
-     *      <li>In Odd iteration other number of best Individuals.</li>
-     *      <li><b>***</b></li>
+     *      <li>In even iteration initialize one number of Individuals.</li>
+     *      <li>In Odd iteration initialize other number of Individuals.</li>
      * </ul>
      *
      * @param gaInitializer GAInitializer used to create the new individuals

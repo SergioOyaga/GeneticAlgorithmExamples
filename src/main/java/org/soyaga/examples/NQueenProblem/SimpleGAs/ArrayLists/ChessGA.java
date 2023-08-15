@@ -18,6 +18,18 @@ import java.util.ArrayList;
  * Extends SimpleGeneticAlgorithm and defines how we gather the results.
  */
 public class ChessGA extends SimpleGeneticAlgorithm {
+    /**
+     * Constructor that matches its super constructor.
+     *
+     * @param ID String with the GA description.
+     * @param initialPopulationSize Integer with the initial population size.
+     * @param stoppingCriteriaPolicy StoppingCriteriaPolicy.
+     * @param crossoverPolicy CrossoverPolicy.
+     * @param mutationPolicy MutationPolicy.
+     * @param elitismPolicy ElitismPolicy.
+     * @param newbornPolicy NewbornPolicy.
+     * @param gaInitializer GAInitializer.
+     */
     public ChessGA(String ID, Integer initialPopulationSize, StoppingCriteriaPolicy stoppingCriteriaPolicy,
                    CrossoverPolicy crossoverPolicy, MutationPolicy mutationPolicy, ElitismPolicy elitismPolicy,
                    NewbornPolicy newbornPolicy, GAInitializer gaInitializer) {
@@ -26,19 +38,20 @@ public class ChessGA extends SimpleGeneticAlgorithm {
     }
 
     /**
-     * Transform the genome of the best individual to a String representing its value.
+     * Transform the genome of the best individual into a String representing its value.
+     *
      * @return String.
      */
     @Override
     public Object getResult() {
         String indInfo = this.population.getBestIndividual().toString();
         StringBuilder solution = new StringBuilder("\n");
-        ArrayListGenome genomeObject = (ArrayListGenome) this.population.getBestIndividual().getGenome();
-        ArrayList genomeInformation = genomeObject.getGeneticInformation();
-        Integer nQueens = genomeInformation.size();
+        ArrayListGenome<?> genomeObject = (ArrayListGenome<?>) this.population.getBestIndividual().getGenome();
+        ArrayList<?> genomeInformation = genomeObject.getGeneticInformation();
+        int nQueens = genomeInformation.size();
         for (Object o : genomeInformation) {
-            ArrayListChromosome chromosomeObject = (ArrayListChromosome) o;
-            GenericGen gen = (GenericGen) chromosomeObject.getGeneticInformation().get(0);
+            ArrayListChromosome<?> chromosomeObject = (ArrayListChromosome<?>) o;
+            GenericGen<?> gen = (GenericGen<?>) chromosomeObject.getGeneticInformation().get(0);
             Integer queenPos = (Integer) gen.getGeneticInformation();
             for (int j = 0; j < nQueens; j++) {
                 if (j == queenPos) {

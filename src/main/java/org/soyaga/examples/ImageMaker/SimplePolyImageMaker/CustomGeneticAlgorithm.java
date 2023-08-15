@@ -8,6 +8,7 @@ import org.soyaga.ga.GeneticAlgorithm.GeneticAlgorithm;
 import org.soyaga.ga.MutationPolicy.MutationPolicy;
 import org.soyaga.ga.NewbornPolicy.NewbornPolicy;
 import org.soyaga.ga.Population;
+import org.soyaga.ga.StatsRetrievalPolicy.NIterationsStatsRetrievalPolicy;
 import org.soyaga.ga.StoppingPolicy.StoppingCriteriaPolicy;
 
 import java.awt.*;
@@ -78,7 +79,10 @@ public class CustomGeneticAlgorithm implements GeneticAlgorithm {
      * Integer with the number of steps between each frame of the GIF.
      */
     private final int gifStep;
-
+    /**
+     * StatsRetrievalPolicy to store stat information.
+     */
+    private final NIterationsStatsRetrievalPolicy nIterationsStatsRetrievalPolicy;
 
     /**
      * It receives all parameters needed to create an object of this class.
@@ -97,7 +101,7 @@ public class CustomGeneticAlgorithm implements GeneticAlgorithm {
     public CustomGeneticAlgorithm(String ID, Integer initialPopulationSize, StoppingCriteriaPolicy stoppingCriteriaPolicy,
                                   CrossoverPolicy crossoverPolicy, MutationPolicy mutationPolicy, ElitismPolicy elitismPolicy,
                                   NewbornPolicy newbornPolicy, GAInitializer gaInitializer, Integer width, Integer height,
-                                  Integer gifStep
+                                  Integer gifStep,NIterationsStatsRetrievalPolicy nIterationsStatsRetrievalPolicy
                                   ) {
         super();
         this.ID = ID;
@@ -112,6 +116,7 @@ public class CustomGeneticAlgorithm implements GeneticAlgorithm {
         this.width = width;
         this.height = height;
         this.gifStep = gifStep;
+        this.nIterationsStatsRetrievalPolicy = nIterationsStatsRetrievalPolicy;
     }
 
 
@@ -123,13 +128,8 @@ public class CustomGeneticAlgorithm implements GeneticAlgorithm {
     public void optimize() throws IOException {
         this.gaInitializer.initialize(this);
         this.population.evaluate(this.generation);
-        long start = System.currentTimeMillis();
         this.population.evaluate(this.generation);
-        long finish = System.currentTimeMillis();
-        long timeElapsed = finish - start;
-        System.out.println("Generation = "+this.generation +
-                ", Fitness = "+this.population.getBestIndividual().getFitnessValue()+
-                ", EvaluationTime = "+ timeElapsed);
+        this.nIterationsStatsRetrievalPolicy.apply(this.population,this.generation);
         this.bestImages.add((BufferedImage) this.getResult());
         while (this.stoppingCriteriaPolicy.hasToContinue(this.generation)){
             Population newPopulation = this.crossoverPolicy.apply(this.population, this.generation);
@@ -137,14 +137,9 @@ public class CustomGeneticAlgorithm implements GeneticAlgorithm {
             newPopulation.add(this.elitismPolicy.apply(this.population, this.generation));
             newPopulation.add(this.newbornPolicy.apply(this.gaInitializer, this.generation));
             this.population = newPopulation;
-            start = System.currentTimeMillis();
             this.population.evaluate(this.generation);
-            finish = System.currentTimeMillis();
-            timeElapsed = finish - start;
             this.generation++;
-            System.out.println("Generation = "+this.generation +
-                    ", Fitness = "+this.population.getBestIndividual().getFitnessValue()+
-                    ", EvaluationTime = "+ timeElapsed);
+            this.nIterationsStatsRetrievalPolicy.apply(this.population,this.generation);
             if(this.generation%this.gifStep==0)this.bestImages.add((BufferedImage) this.getResult());
         }
     }

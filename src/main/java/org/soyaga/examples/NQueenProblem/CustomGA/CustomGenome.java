@@ -7,10 +7,10 @@ import java.util.Collection;
 import java.util.HashSet;
 
 /**
- * CustomGenome that consist in a HashSet of CustomChromosomes.
+ * CustomGenome that consist of a HashSet of CustomChromosomes.
  */
 @AllArgsConstructor
-public class CustomGenome implements Genome {
+public class CustomGenome implements Genome<CustomChromosome> {
     /**
      * HashSet<CustomChromosome> representing the Genome.
      */
@@ -25,6 +25,7 @@ public class CustomGenome implements Genome {
 
     /**
      * Function that Gets the Chromosome structure value.
+     *
      * @return Collection<CustomChromosome> containing the chromosomeList.
      */
     @Override
@@ -34,6 +35,7 @@ public class CustomGenome implements Genome {
 
     /**
      * Function that Sets the Chromosome structure value.
+     *
      * @param chromosomes HashSet<CustomChromosome> to set.
      */
     @Override
@@ -42,7 +44,8 @@ public class CustomGenome implements Genome {
     }
 
     /**
-     * Constructor that creates a deep copy of the Genome
+     * Constructor that creates a deep copy of the Genome.
+     *
      * @return Genome containing the deep copy.
      */
     @Override

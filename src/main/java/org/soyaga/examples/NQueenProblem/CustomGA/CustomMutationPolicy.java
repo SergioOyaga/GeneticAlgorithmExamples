@@ -23,12 +23,12 @@ public class CustomMutationPolicy implements MutationPolicy {
 
     /**
      * Function that applies the mutations following a policy. Ej.:
+     *
      * <ul>
      *      <li>Mutates CustomBase Objects contained in each Gen.</li>
      *      <li>In even iteration mutate only rows.</li>
      *      <li>In Odd iteration mutate only columns.</li>
      *      <li>Only if the probability of mutate each base allow the mutation.</li>
-     *      <li><b>***</b></li>
      * </ul>
      *
      * @param population Population where to mutate Individuals.

@@ -2,7 +2,7 @@ package org.soyaga.examples.ImageMaker.SimplePolyImageMaker;
 
 import lombok.AllArgsConstructor;
 import org.soyaga.Initializer.GAInitializer;
-import org.soyaga.ga.Evaluable.ObjectiveFunction;
+import org.soyaga.ga.Evaluable.Objective.ObjectiveFunction;
 import org.soyaga.ga.Individual;
 import java.awt.*;
 import java.util.ArrayList;
@@ -43,7 +43,7 @@ public class PolyImageInitializer extends GAInitializer {
                     RandomGenerator.getDefault().nextFloat(),
                     RandomGenerator.getDefault().nextFloat()),
                 chromosomes);
-        return new Individual(genome,null, this.objectiveFunction);
+        return new Individual(genome,null, this.objectiveFunction,null);
 
     }
 }

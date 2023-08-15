@@ -10,7 +10,7 @@ import java.util.HashSet;
  * CustomChromosome that contains 2 CustomGen objects that represents 2 queens in the board.
  */
 @AllArgsConstructor
-public class CustomChromosome implements Chromosome {
+public class CustomChromosome implements Chromosome<CustomGen> {
     /**
      * HashSet&lt;CustomGen&gt; with just 2 Genes.
      */
@@ -32,7 +32,7 @@ public class CustomChromosome implements Chromosome {
     }
 
     /**
-     * Function that sets the chromosome value. Although it is not mandatory, it should assert the chromosome type.
+     * Function that sets the chromosome value.
      *
      * @param chromosome Object containing the Chromosome structure.
      */

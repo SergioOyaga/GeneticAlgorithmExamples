@@ -14,10 +14,12 @@ public class CustomMutation implements Mutation {
      * Integer with the number of queens.
      */
     private final Integer nQueens;
+
     /**
      * Function that applies the mutations to a CustomBase.
-     * We could have used different Mutation behaviours depending on the context (iterations, convergence...).
-     * @param gaPart       Genome, Chromosome or Gen to mutate.
+     * We could have used different Mutation behavior depending on the context (iterations, convergence...).
+     *
+     * @param gaPart CustomBase to mutate.
      * @param mutationArgs Undefined array of objects containing information needed to mutate the part.
      */
     @Override

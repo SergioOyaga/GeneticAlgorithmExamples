@@ -28,7 +28,8 @@ public class CustomCrossoverPolicy implements CrossoverPolicy {
     private final Crossover crossoverMethodology;
 
     /**
-     * Function that returns the number of crossover individuals to create depending on the generation`s parity.
+     * Function that returns the number of crossover individuals to create depending on the generations' parity.
+     *
      * @param policyArgs VarArgs containing the additional information needed to compute the crossover number.
      * @return Integer containing the number of crossover individuals to create.
      */
@@ -40,6 +41,7 @@ public class CustomCrossoverPolicy implements CrossoverPolicy {
     /**
      * Function that returns a Selection Instance containing the parent selection procedure.
      * We could have multiple Selection methodologies to choose from depending on the context (iterations, convergence...).
+     *
      * @param policyArgs VarArgs containing the additional information needed to obtain the Selection.
      * @return Selection procedure.
      */
@@ -51,6 +53,7 @@ public class CustomCrossoverPolicy implements CrossoverPolicy {
     /**
      * Function that returns a Crossover Instance containing the parent crossover procedure.
      * We could have multiple Cross methodologies to choose from depending on the context (iterations, convergence...).
+     *
      * @param policyArgs VarArgs containing the additional information needed to obtain the Crossover.
      * @return Crossover procedure.
      */

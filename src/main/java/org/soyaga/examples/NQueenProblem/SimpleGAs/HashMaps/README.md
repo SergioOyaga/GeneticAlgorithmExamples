@@ -1,37 +1,39 @@
 # HashMaps
-Solution of the NQueen optimization problem using Maps as base structure to store information.
+Solving the N-Queen optimization problem using maps as the base structure to store information.
 
 ## In this folder:
-We find 6 different classes that defines the problem dependent structures that we have to create (Implementing their 
-corresponding OptimizationLib.ga interfaces).
+This folder contains 6 different classes that define the structures required for solving the problem.
+These classes implement their respective interfaces from OptimizationLib.ga.
 1. [ChessGA](#chessga): Extends SimpleGeneticAlgorithm.
 2. [ChessGAInitializer](#chessgainitializer): Extends GAInitializer.
 3. [ChessFeasibilityFunction](#chessfeasibilityfunction):Extends FeasibilityFunction.
 4. [ChessObjectiveFunction](#chessobjectivefunction): Extends ObjectiveFunction.
 5. [MapCrossover](#mapcrossover): Extends Crossover.
-6. [RunNQueenOptimization](#runnqueenoptimization): This is the main class. Here we instantiate our ChessGA Object with all his 
-components.
+6. [RunNQueenOptimization](#runnqueenoptimization): The main class for instantiation and optimization.
 
 ### [ChessGA](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/SimpleGAs/HashMaps/ChessGA.java):
-This class extends SimpleGeneticAlgorithm, which by extension makes it an Optimizer instance. In other words this class 
-can be optimized and its results can be gathered.
+This class extends SimpleGeneticAlgorithm, which by extension makes it an Optimizer instance.
+In other words, this class can be optimized and its results can be gathered.
 ````code
 public void optimize(){...}
 public Object getResult(){...}
 ````
-The <i>optimize</i> function is already implemented by the abstract class SimpleGeneticAlgorithm, which defines a basic 
-optimization procedure. The <i>getResults</i> function returns a String that will be [printed in the console](#result-example)
-with the best solution found.
+The <i>optimize</i> method is inherited from the abstract class SimpleGeneticAlgorithm,
+which defines a basic optimization procedure.
+The <i>getResults</i> method returns a string that will be [printed in the console](#result-example)
+to display the best solution found.
 
 ### [ChessGAInitializer](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/SimpleGAs/HashMaps/ChessGAInitializer.java):
-Initializes a new individual from zero. In our case, uses HashMapGenome, HashMapChromosome and GenericGen to 
-store the information of a randomly initialized individual.
+This class initializes a new individual from scratch.
+It uses HashMapGenome, HashMapChromosome,
+and GenericGen to store the information of a randomly initialized individual.
 ````code
 public Individual initializeIndividual()
 ````
-In this case, all information is stored in the map keys and the Gen value. NxN Genes are created, one for each chess 
-square. The gen contains a random boolean that represent the queen. The row information is in the Genome Map key. The 
-column information in the Chromosome Map key.
+In this scenario, all information is stored in the map keys and the Gen value.
+NxN Genes are created, one for each chess square. 
+Each gene contains a random boolean representing the presence of a queen. 
+The row information is stored in the Genome Map key, and the column information is stored in the Chromosome Map key.
 
 ````mermaid
 flowchart TB
@@ -81,38 +83,38 @@ flowchart TB
 
 
 ### [ChessFeasibilityFunction](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/SimpleGAs/HashMaps/ChessFeasibilityFunction.java):
-This function evaluates the feasibility of a solution. In the case of the NQueen problem it may or may not have sense 
-to talk about feasibility. We decided to give it the mission of ensuring that only N queens are placed in the solution.
-
-This function return a Double containing the number of collisions (deficit or excess of Queens in the solution).
+This function evaluates the feasibility of a solution.
+For the N-Queen problem, it ensures that exactly N queens are placed on the board.
+The function returns a double indicating the number of missing or exceeding queens on the board.
 
 
 ### [ChessObjectiveFunction](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/SimpleGAs/HashMaps/ChessObjectiveFunction.java):
-This function evaluates the objective function of a solution. In the case of the NQueen problem in this map design, 
-we have to count the number of collisions (confronted Queens) looking in all directions (row, column and diagonals).
-
-This function return a Double containing the number collisions between queens.
+This function evaluates the objective function of a solution.
+For the N-Queen problem in this map design, it counts the number of collisions (confronted Queens).
+The function returns a double indicating the number of collisions between queens.
 
 
 ### [MapCrossover](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/SimpleGAs/HashMaps/MapCrossover.java):
-Crossover that interchanges random chromosomes between parents. In this case, it interchanges values associated to 
-the same key in the Entry Set of pairs &lt; Key, Val &gt; of the Genome Hashmap.
+Crossover that interchanges random chromosomes between parents. 
+In this case, it interchanges values associated with the same key in the Entry Set of pairs &lt; 
+Key, Val &gt; of the Genome HashMap.
 The same methodology is applied to the Genes inside a Chromosome.
 
-### [RunNQueenOptimization](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/SimpleGAs/HashMaps/RunNQueenOptimization.java):
-This is the main class. Is where the run starts. As simple as instantiate the ChessGA object (previously defined) filled
-with its components, optimize it, and retrieve the results.
 
-The specific components for the ChessGA are:
-- MaxIterationCriteriaPolicy: A StoppingCriteria based on a maximum number of iteration.
+### [RunNQueenOptimization](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/SimpleGAs/HashMaps/RunNQueenOptimization.java):
+This is the main class where the program execution begins.
+It involves instantiating the ChessGA object (previously defined), optimizing it, and retrieving the results.
+
+The specific components for ChessGA include:
+- MaxIterationCriteriaPolicy: A StoppingCriteria based on a maximum number of iterations.
 - FixedCrossoverPolicy: A CrossoverPolicy that applies each iteration a fixed number of crossovers.
   - RandomSelection: A Selection procedure in which each parent is chosen randomly.
   - MapCrossover: The Crossover previously defined.
 - UnorderedSingleProbabilityMutPol: A MutationPolicy that applies mutation stored in HasSets and filters the
 probability of applying the mutation with a fixed probability.
-  - GeneticMapSwapMutation: A mutation that consist on swapping values associated with a key of different HasMap.
+  - GeneticMapSwapMutation: A mutation that consists of swapping values associated with a key of different HasMap.
 - FixedElitismPolicy: An ElitismPolicy that applies each iteration a fixed number of elitist individuals.
-- FixedNewbornPolicy: A newbornPolicy that applies each iteration a fixed number o newborn individuals.
+- FixedNewbornPolicy: A newbornPolicy that applies each iteration a fixed number of newborn individuals.
 - ChessGAInitializer: The Initializer previously defined.
   - ChessFeasibilityFunction: The FeasibilityFunction previously defined.
   - ChessObjectiveFunction: The ObjectiveFunction previously defined.

@@ -2,8 +2,8 @@ package org.soyaga.examples.NQueenProblem.SimpleGAs.HashMaps;
 
 import lombok.AllArgsConstructor;
 import org.soyaga.Initializer.GAInitializer;
-import org.soyaga.ga.Evaluable.FeasibilityFunction;
-import org.soyaga.ga.Evaluable.ObjectiveFunction;
+import org.soyaga.ga.Evaluable.Feasibility.FeasibilityFunction;
+import org.soyaga.ga.Evaluable.Objective.ObjectiveFunction;
 import org.soyaga.ga.GeneticInformationContainer.Chromosome.HashMapChromosome;
 import org.soyaga.ga.GeneticInformationContainer.Gen.GenericGen;
 import org.soyaga.ga.GeneticInformationContainer.Genome.HashMapGenome;
@@ -13,7 +13,7 @@ import java.util.AbstractMap;
 import java.util.random.RandomGenerator;
 
 /**
- * This class allow the initialization of new Individuals from scratch.
+ * This class enables the initialization of new individuals from scratch.
  */
 @AllArgsConstructor
 public class ChessGAInitializer extends GAInitializer {
@@ -22,23 +22,26 @@ public class ChessGAInitializer extends GAInitializer {
     private final ObjectiveFunction objectiveFunction;
 
     /**
-     * Function that initializes a new individual from scratch. In this case each individual have one HashMspGenome,
-     * (the key sof this map represents rows) composed of N HashMspChromosomes (the keys of this map represents columns).
-     * And each Chromosome is composed of N GenericGen that stores random boolean representing the Queen.
-     * @return Individual randomly initialized.
+     * This function initializes a new individual from scratch.
+     * In this case, each individual has one HashMapGenome (where the keys of this map represent rows),
+     * composed of N HashMapChromosomes (where the keys of this map represent columns).
+     * Each Chromosome is further composed of N GenericGen instances that store random booleans representing the
+     * presence of a Queen.
+     *
+     * @return A randomly initialized Individual.
      */
     @Override
     public Individual initializeIndividual() {
-        HashMapGenome<Integer, HashMapChromosome> genome = new HashMapGenome<>();
+        HashMapGenome<Integer, HashMapChromosome<Integer,GenericGen<Boolean>>> genome = new HashMapGenome<>();
         for (int i=0;i<this.numberOfQueens;i++){
-            HashMapChromosome<Integer, GenericGen> chromosome= new HashMapChromosome<>();
+            HashMapChromosome<Integer, GenericGen<Boolean>> chromosome= new HashMapChromosome<>();
             for (int j=0;j<this.numberOfQueens;j++){
-                GenericGen<Boolean> gen = new GenericGen( RandomGenerator.getDefault().nextBoolean());
-                chromosome.add(new AbstractMap.SimpleEntry<Integer,GenericGen>(j,gen));
+                GenericGen<Boolean> gen = new GenericGen<>( RandomGenerator.getDefault().nextBoolean());
+                chromosome.add(new AbstractMap.SimpleEntry<>(j,gen));
             }
-            genome.add(new AbstractMap.SimpleEntry<Integer,HashMapChromosome>(i,chromosome));
+            genome.add(new AbstractMap.SimpleEntry<>(i,chromosome));
         }
-        return new Individual(genome,this.feasibilityFunction,this.objectiveFunction);
+        return new Individual(genome,this.feasibilityFunction,this.objectiveFunction, 100.);
 
     }
 }
