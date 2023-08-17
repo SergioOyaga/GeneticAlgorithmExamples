@@ -101,12 +101,6 @@ String cudaFileNamePath = "path/to/JCudaColorDistance.cu";
 ````
 
 ## Comment:
-Notice that this example is not a good practice for the use of the JCuda framework. In fact, the improvement in 
-performance is almost inappreciable because the time spent moving each image to the GPU is almost the same 
-time we would spend computing directly the distance in CPU. However, it is a good example on how we can connect the 
-optimization process with foreign precesses (GPU computing, IA forecasts, DeepLearning recommendations...).
-You know what they say, mixing technologies is powerful, but "With great power comes great responsibility" :triumph:
-
 Notice that this example does not exemplify good practice in the utilization of the JCuda framework. In fact, the 
 enhancement in performance is nearly imperceptible due to the comparable time spent transferring each image to the GPU 
 and the time it would take to directly compute the distance on the CPU. Nonetheless, it serves as a compelling 
