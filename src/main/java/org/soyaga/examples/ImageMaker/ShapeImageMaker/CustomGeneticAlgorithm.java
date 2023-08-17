@@ -81,7 +81,7 @@ public class CustomGeneticAlgorithm implements GeneticAlgorithm {
     /**
      * It receives all parameters needed to create an object of this class.
      * @param ID String with the name of the GA.
-     * @param initialPopulationSize    Integer with the initial number of individuals of the
+     * @param initialPopulationSize    Integer with the initial number of individuals in the
      *                          population.
      * @param stoppingCriteriaPolicy  StoppingCriteriaPolicy object with the criteria already defined.
      * @param crossoverPolicy CrossoverPolicy object with the crossoverPolicy already defined.

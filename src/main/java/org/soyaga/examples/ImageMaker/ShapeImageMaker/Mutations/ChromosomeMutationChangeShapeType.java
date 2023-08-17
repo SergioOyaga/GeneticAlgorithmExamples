@@ -132,7 +132,7 @@ public class ChromosomeMutationChangeShapeType implements Mutation {
                 );
         }
         else {
-            System.out.println("Shape: "+oldShape.toString()+" not supported.");
+            System.out.println("Shape: "+oldShape+" not supported.");
             newShape=null;
         }
         Shape finalShape = newShape;
