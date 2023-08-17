@@ -10,22 +10,22 @@ import java.util.ArrayList;
 import java.util.random.RandomGenerator;
 
 /**
- * This class performs Mutations in the Genome and Chromosome levels, considering a specific order in the
+ * Class that applies a CustomMutationPolicy in the optimization procedure.
+ * Performs Mutations in the Genome and Chromosome levels, considering a specific order in the
  * application of mutations and a fixed probability rate for each one.
  */
 @AllArgsConstructor
 public class CustomMutationPolicy implements MutationPolicy {
     /**
-     * List of Genome mutations. These are mutations that requires the known of the whole genome structure to be able to
+     * List of Genome mutations. These are mutations that require the known of the whole genome structure to be able to
      * happen.
      */
     private final ArrayList<Mutation> genomeMutations;
     /**
-     * List of Chromosome mutations. These are mutations that requires the known of a whole chromosome to be able to
+     * List of Chromosome mutations. These are mutations that require the known of a whole chromosome to be able to
      * happen.
      */
     private final ArrayList<Mutation> chromosomeMutations;
-
     /**
      * Array with doubles between [0.,1.] that defines the upper threshold for each Genome mutation.
      */
@@ -35,12 +35,13 @@ public class CustomMutationPolicy implements MutationPolicy {
      */
     private final double[] chromosomeMutationProb;
 
-
     /**
      * Function that applies the mutations following a policy.
      * In this case, a constant probability threshold is applied to each mutation.
-     * @param policyArgs context variables that allow to personalize the mutation application. In this case,
-     *                    an Integer with the iteration number that is passed to eah mutation.
+     *
+     * @param population Population object.
+     * @param policyArgs Context variables that allow to personalize the mutation application. In this case,
+     *                    an Integer with the iteration number that is passed to each mutation.
      */
     @Override
     public void apply(Population population, Object... policyArgs) {
@@ -50,12 +51,13 @@ public class CustomMutationPolicy implements MutationPolicy {
     /**
      * Function that mutates an individual following an ArrayList oder with different probability depending on the
      * mutation.
+     *
      * @param individual Individual object which genome we want to mutate.
-     * @param mutationArgs context variables that allow to personalize the mutation application. In this case,
-     *                    an Integer with the iteration number that is passed to eah mutation.
+     * @param mutationArgs Context variables that allow to personalize the mutation application. In this case,
+     *                    an Integer with the iteration number that is passed to each mutation.
      */
     private void mutateIndividual(Individual individual, Object... mutationArgs) {
-        //Mutate the  genome.
+        //Mutate the genome.
         if(this.genomeMutations.size()>0){
             for (int index=0;index<this.genomeMutations.size();index++){
                 Mutation genomeMutation=this.genomeMutations.get(index);

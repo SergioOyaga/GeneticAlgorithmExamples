@@ -122,7 +122,7 @@ public class CustomGeneticAlgorithm implements GeneticAlgorithm {
      * @return String.
      */
     @Override
-    public Object getResult() {
+    public Object getResult(Object... resultArgs) {
         StringBuilder solution = new StringBuilder("\n");
         CustomGenome genomeObject = (CustomGenome) this.population.getBestIndividual().getGenome();
         String [][] matrix = new String[nQueens][nQueens];

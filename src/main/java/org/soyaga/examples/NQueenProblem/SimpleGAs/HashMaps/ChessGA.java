@@ -50,7 +50,7 @@ public class ChessGA extends SimpleGeneticAlgorithm {
      * @return String.
      */
     @Override
-    public Object getResult() {
+    public Object getResult(Object... resultArgs) {
         String indInfo = this.population.getBestIndividual().toString();
         StringBuilder solution = new StringBuilder("\n");
         HashMapGenome<Integer, HashMapChromosome<Integer,GenericGen<Boolean>>> genomeObject =

@@ -47,7 +47,7 @@ public class ChessGA extends StatsGeneticAlgorithm {
      * @return String.
      */
     @Override
-    public Object getResult() {
+    public Object getResult(Object... resultArgs) {
         String indInfo = this.population.getBestIndividual().toString();
         StringBuilder solution = new StringBuilder("\n");
         ArrayListGenome<Integer> genomeObject = (ArrayListGenome<Integer>) this.population.getBestIndividual().getGenome();

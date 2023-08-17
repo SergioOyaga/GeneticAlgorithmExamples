@@ -8,9 +8,11 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+
 /**
- * This class Evaluates the objective function to an individuals Genome. This is how
- * well adapted is an individuals' genome to its environment (closer to the optimal solution).
+ * This class evaluates the objective function of an individual's genome.
+ * It measures how well adapted an individual's genome is to its environment,
+ * bringing it closer to the optimal solution.
  */
 public class ShapeImageObjectiveFunction implements ObjectiveFunction {
     /**
@@ -18,28 +20,30 @@ public class ShapeImageObjectiveFunction implements ObjectiveFunction {
      */
     private final int[] imageArray;
     /**
-     * Integer with the width of the image, used to create teh images from the genomes.
+     * Integer with the width of the image, used to create the images from the genomes.
      */
     private final int width;
     /**
-     * Integer with the height of the image, used to create teh images from the genomes.
+     * Integer with the height of the image, used to create the images from the genomes.
      */
     private final int height;
     /**
-     * Integer with the iteration when to start penalizing the number of shapes in the genome.
-     * In the beginning of the optimization we allow the addition of new shapes because we want to find new suitable
-     * shapes to represent the image in some good enough way. So in the iterations before the threshold there is no
-     * penalization, but after that iteration, two exact same images  composed with different number of shapes will
-     * have different fitnesses and the one with more shapes will be penalized.
-     * This approach keeps the execution time controlled and the number of shapes on the genome will not explode.
-     * On the other hand, we are compromising the definition of the result, because small details that could be covered
-     * by small shapes will never be covered (because the penalization of adding this new shape is bigger than the
-     * reward of placing it). So, there is a tradeoff between these two concepts.
+     * Integer indicating the iteration at which to begin penalizing the number of shapes in the genome.
+     * Initially, during optimization, we allow the addition of new shapes to discover suitable shapes that can
+     * adequately represent the image. Hence, in the iterations preceding the specified threshold, no penalization occurs.
+     * However, beyond this iteration threshold, two identical images composed of varying shape counts will exhibit
+     * distinct fitness levels, with a higher shape count resulting in penalization.
+     * This approach maintains controlled execution time and prevents an excessive proliferation of shapes in the genome.
+     * However, it also introduces a compromise in the final result's precision. This compromise stems from smaller details
+     * that could be captured by smaller shapes remaining uncovered. This is due to the larger penalization associated
+     * with introducing a new shape compared to the benefit gained by placing it. Thus, a tradeoff exists between these
+     * two concepts.
      */
     private final int threshold;
 
     /**
      * Constructor. Returns a new ShapeImageObjectiveFunction.
+     *
      * @param image BufferedImage with the image we want to use as reference.
      * @param threshold Iteration when we start to penalize long genomes.
      */
@@ -51,15 +55,16 @@ public class ShapeImageObjectiveFunction implements ObjectiveFunction {
     }
 
     /**
-     * Function that computes how good is this individuals' Genome.
-     * @param genome Genome object to evaluate.
-     * @param objects VarArgs Object that allow to keep/retain information from the evaluation to be used in the
-     *                 decision-making.
-     * @return a Double containing the value of the objective function to this individual. In this case,
-     *                     an Integer with the iteration number.
+     * This function calculates the quality of an individual's genome by comparing pixel by pixel the real image
+     * and the reconstructed one.
+     *
+     * @param genome The Genome object to be evaluated.
+     * @param objects VarArgs Object that retains information from the evaluation for use in decision-making.
+     * @return A Double containing the value of the objective function for this individual.In this case,
+     *      an Integer with the iteration number.
      */
     @Override
-    public Double evaluate(Genome genome, Object... objects) {
+    public Double evaluate(Genome<?> genome, Object... objects) {
         Integer iteration = (Integer) objects[0];
         double longGenomePenalization =iteration>=this.threshold?0.05:0;
         CustomGenome genomeObject = (CustomGenome) genome;
@@ -72,7 +77,7 @@ public class ShapeImageObjectiveFunction implements ObjectiveFunction {
         ArrayList<CustomChromosome> chromosome_set = (ArrayList<CustomChromosome>) genome_list.get(1);
         graphics2D.setBackground(background);
         graphics2D.clearRect(0, 0, image.getWidth(),image.getHeight());
-        Integer alphaCounter = 0; // Counter to penalize having transparent shapes
+        int alphaCounter = 0; // Counter to penalize having transparent shapes
         for(CustomChromosome chromosome:chromosome_set) {
             Color shapeColor = (Color) chromosome.getGeneticInformation().get(0);
             Double rotation = (Double) chromosome.getGeneticInformation().get(1);
@@ -90,28 +95,27 @@ public class ShapeImageObjectiveFunction implements ObjectiveFunction {
     }
 
     /**
-     * Function that computes the colour distance of an entire image pixel-wise.
+     * Function that computes the color distance of an entire image pixel-wise.
+     *
      * @param polyImageArray int[] with the image to compare to.
      * @return Double with the distance (averaged per pixel).
      */
     private Double computeColorDistance(int[] polyImageArray) {
-        Double distance=0.0;
+        double distance=0.0;
         for(int i =0;i<this.imageArray.length;i++){
-            // We normalize inside here because for big images, the distance overflows the precision. (bad for performance)
-            // we could take this computation to the GPU and the multi-thread will do its magic, improving drastically
-            // the performance.
             distance += colorDiffAlpha(this.imageArray[i],polyImageArray[i])/this.imageArray.length;
         }
         return distance;
     }
 
     /**
-     * Function that computes the Euclidean distance (l2-norm) for two colours stored in the default format,
+     * Function that computes the Euclidean distance (l2-norm) for two colors stored in the default format,
      * TYPE_INT_ARGB, that represents Color as an int (4 bytes) with alpha channel in bits 24-31,
      * red channels in 16-23, green in 8-15 and blue in 0-7.
+     *
      * @param color1 Integer with the color1 in TYPE_INT_ARGB format.
      * @param color2 Integer with the color2 in TYPE_INT_ARGB format.
-     * @return a double with the l2-norm distance between the two colours.
+     * @return a double with the l2-norm distance between the two colors.
      */
     private double colorDiffAlpha(int color1, int color2) {
         int color1b = color1 & 0xff;

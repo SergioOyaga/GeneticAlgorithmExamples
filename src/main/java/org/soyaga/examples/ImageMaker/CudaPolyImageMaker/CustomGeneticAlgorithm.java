@@ -26,36 +26,38 @@ public class CustomGeneticAlgorithm implements GeneticAlgorithm {
     /**
      * Integer with the initial populationSize.
      */
+    @Getter
     private final Integer initialPopulationSize;
     /**
      * Population object of the GA.
      */
+    @Getter
     private Population population;
     /**
      * StoppingCriteriaPolicy object of the GA.
      */
-    private StoppingCriteriaPolicy stoppingCriteriaPolicy;
+    private final StoppingCriteriaPolicy stoppingCriteriaPolicy;
     /**
      * CrossoverPolicy object of the GA.
      */
-    private CrossoverPolicy crossoverPolicy;
+    private final CrossoverPolicy crossoverPolicy;
     /**
      * MutationPolicy object of the GA.
      */
-    private MutationPolicy mutationPolicy;
+    private final MutationPolicy mutationPolicy;
     /**
      * ElitismPolicy object of the GA.
      */
-    private ElitismPolicy elitismPolicy;
+    private final ElitismPolicy elitismPolicy;
     /**
      * NewbornPolicy object of the GA.
      */
-    private NewbornPolicy newbornPolicy;
+    private final NewbornPolicy newbornPolicy;
     /**
      * GAInitializer Object used to initialize new individuals in each optimization
      * iteration.
      */
-    private GAInitializer gaInitializer;
+    private final GAInitializer gaInitializer;
     /**
      * Integer with the width of the image.
      */
@@ -64,11 +66,6 @@ public class CustomGeneticAlgorithm implements GeneticAlgorithm {
      * Integers with the height of the image.
      */
     private final Integer height;
-    /**
-     * Integer with the current iteration number. Needed as class parameter because in the getResults method is used to
-     * plot some useful information.
-     */
-    private int generation=0;
     /**
      * ArrayList&lt;BufferedImage&gt; containing the optimization intermediate steps.
      */
@@ -79,12 +76,10 @@ public class CustomGeneticAlgorithm implements GeneticAlgorithm {
      */
     private final int gifStep;
 
-
     /**
      * It receives all parameters needed to create an object of this class.
      * @param ID String with the name of the GA.
-     * @param initialPopulationSize    Integer with the initial number of individuals of the
-     *                          population.
+     * @param initialPopulationSize    Integer with the initial number of individuals in the population.
      * @param stoppingCriteriaPolicy  StoppingCriteriaPolicy object with the criteria already defined.
      * @param crossoverPolicy CrossoverPolicy object with the crossoverPolicy already defined.
      * @param mutationPolicy MutationPolicy object with the mutation defined.
@@ -93,6 +88,7 @@ public class CustomGeneticAlgorithm implements GeneticAlgorithm {
      * @param gaInitializer GAInitializer object with the initialization information.
      * @param width Integer with the width of the image.
      * @param height Integer with the height of the image.
+     * @param gifStep Integer with the number of steps to store the gif image.
      */
     public CustomGeneticAlgorithm(String ID, Integer initialPopulationSize, StoppingCriteriaPolicy stoppingCriteriaPolicy,
                                   CrossoverPolicy crossoverPolicy, MutationPolicy mutationPolicy, ElitismPolicy elitismPolicy,
@@ -114,38 +110,38 @@ public class CustomGeneticAlgorithm implements GeneticAlgorithm {
         this.gifStep = gifStep;
     }
 
-
     /**
      * Optimization procedure, similar to the SimpleGeneticAlgorithm procedure, but the iteration is passed along the
      * VarArgs and some steps of the evolution are stored to create a GIF.
      */
     @Override
     public void optimize() throws IOException {
+        Integer generation = 0;
         this.gaInitializer.initialize(this);
-        this.population.evaluate(this.generation);
+        this.population.evaluate(generation);
         long start = System.currentTimeMillis();
-        this.population.evaluate(this.generation);
+        this.population.evaluate(generation);
         long finish = System.currentTimeMillis();
         long timeElapsed = finish - start;
-        System.out.println("Generation = "+this.generation +
+        System.out.println("Generation = "+generation +
                 ", Fitness = "+this.population.getBestIndividual().getFitnessValue()+
                 ", EvaluationTime = "+ timeElapsed);
-        this.bestImages.add((BufferedImage) this.getResult());
-        while (this.stoppingCriteriaPolicy.hasToContinue(this.generation)){
-            Population newPopulation = this.crossoverPolicy.apply(this.population, this.generation);
-            this.mutationPolicy.apply(newPopulation, this.generation);
-            newPopulation.add(this.elitismPolicy.apply(this.population, this.generation));
-            newPopulation.add(this.newbornPolicy.apply(this.gaInitializer, this.generation));
+        this.bestImages.add((BufferedImage) this.getResult(generation));
+        while (this.stoppingCriteriaPolicy.hasToContinue(generation)){
+            Population newPopulation = this.crossoverPolicy.apply(this.population, generation);
+            this.mutationPolicy.apply(newPopulation, generation);
+            newPopulation.add(this.elitismPolicy.apply(this.population, generation));
+            newPopulation.add(this.newbornPolicy.apply(this.gaInitializer, generation));
             this.population = newPopulation;
             start = System.currentTimeMillis();
-            this.population.evaluate(this.generation);
+            this.population.evaluate(generation);
             finish = System.currentTimeMillis();
             timeElapsed = finish - start;
-            this.generation++;
-            System.out.println("Generation = "+this.generation +
+            generation++;
+            System.out.println("Generation = "+generation +
                     ", Fitness = "+this.population.getBestIndividual().getFitnessValue()+
                     ", EvaluationTime = "+ timeElapsed);
-            if(this.generation%this.gifStep==0)this.bestImages.add((BufferedImage) this.getResult());
+            if(generation%this.gifStep==0)this.bestImages.add((BufferedImage) this.getResult(generation));
         }
     }
 
@@ -154,7 +150,8 @@ public class CustomGeneticAlgorithm implements GeneticAlgorithm {
      * @return BufferedImage.
      */
     @Override
-    public Object getResult() {
+    public Object getResult(Object... resultArgs) {
+        Integer generation = (Integer) resultArgs[0];
         CustomGenome genomeObject = (CustomGenome) this.population.getBestIndividual().getGenome();
         BufferedImage image = new BufferedImage(this.width, this.height, BufferedImage.TYPE_INT_ARGB);
         Graphics2D graphics2D = image.createGraphics();
@@ -171,28 +168,10 @@ public class CustomGeneticAlgorithm implements GeneticAlgorithm {
             graphics2D.setColor(Color.GREEN);
             //graphics2D.drawPolygon(polygon);
         }
-        graphics2D.drawString("N of polygons= "+chromosome_set.size() + ", Generation= "+ this.generation,10,10);
+        graphics2D.drawString("N of polygons= "+chromosome_set.size() + ", Generation= "+ generation,10,10);
         graphics2D.drawString("Fitness= "+ this.population.getBestIndividual().getFitnessValue(),
                 10,10+graphics2D.getFontMetrics().getHeight());
         graphics2D.dispose();
         return image;
-    }
-
-    /**
-     * Population getter.
-     * @return current Population
-     */
-    @Override
-    public Population getPopulation() {
-        return this.population;
-    }
-
-    /**
-     * Initial population size getter.
-     * @return Integer with the initial population size.
-     */
-    @Override
-    public Integer getInitialPopulationSize() {
-        return this.initialPopulationSize;
     }
 }

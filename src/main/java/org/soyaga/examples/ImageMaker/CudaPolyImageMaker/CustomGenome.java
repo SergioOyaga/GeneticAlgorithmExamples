@@ -2,28 +2,27 @@ package org.soyaga.examples.ImageMaker.CudaPolyImageMaker;
 
 import lombok.AllArgsConstructor;
 import org.soyaga.ga.GeneticInformationContainer.Genome.Genome;
-
 import java.awt.*;
 import java.util.ArrayList;
 
 /**
- * Class that contains a Color and an ArrayList&lt;CustomChromosome&gt;. Those are the parts compose our image.
+ * CustomGenome that consist of a Color for the image background and an ArrayList of CustomChromosomes.
  */
 @AllArgsConstructor
-public class CustomGenome implements Genome {
+public class CustomGenome implements Genome<Object> {
     /**
      * Color representing the image background color.
      */
     private Color backgroundColor;
     /**
-     * ArrayList&lt;CustomChromosome&gt with the polygons and colors that paints our image.
+     * ArrayList&lt;CustomChromosome&gt with the polygons and colors.
      */
     private ArrayList<CustomChromosome> chromosomeList;
 
-
     /**
      * Function that gathers the genetic information. In this case ArrayList&lt;Color,ArrayList&lt;CustomChromosome&gt;&gt;.
-     * @return Object containing the genetic information. Typically, Genome, Chromosome or Gen.
+     *
+     * @return Object containing the genetic information.
      */
     @Override
     public ArrayList<Object> getGeneticInformation() {
@@ -34,7 +33,8 @@ public class CustomGenome implements Genome {
 
     /**
      * Function that sets the genetic information.
-     * @param chromosomes Object containing the genetic information. Typically, Genome, Chromosome or Gen.
+     *
+     * @param chromosomes Object containing the genetic information.
      *                           In this case ArrayList&lt;Color,ArrayList&lt;CustomChromosome&gt;&gt;.
      */
     @Override
@@ -46,6 +46,7 @@ public class CustomGenome implements Genome {
     /**
      * Constructor that creates a deep copy of the Genome. Color is effectively final, and each CustomChromosome
      * implements its own createCopy() method.
+     *
      * @return Chromosome containing the deep copy.
      */
     @Override

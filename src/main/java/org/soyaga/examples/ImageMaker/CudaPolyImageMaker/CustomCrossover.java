@@ -4,32 +4,35 @@ import org.soyaga.ga.CrossoverPolicy.ParentCross.Crossover;
 import org.soyaga.ga.GeneticInformationContainer.Chromosome.Chromosome;
 import org.soyaga.ga.GeneticInformationContainer.Genome.Genome;
 import org.soyaga.ga.Individual;
-
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.random.RandomGenerator;
 
 /**
- * Class that contains the information on how to cross two individuals. Similar to the TwoPointCrossover, but the
- * CustomGenome has to be split into background and polygons (Color, ArrayList&lt;CustomChromosome&gt). The background
- * color is the mix of the two parents background color. The list of Chromosomes are mixed using the typical two point
- * crossover, taking into account that parent can have different genome lengths.
+ * This class encapsulates the logic for crossing two individuals. It operates similarly to the TwoPointCrossover,
+ * but with the distinction that the CustomGenome needs to be divided into background color and polygons
+ * (Color, ArrayList&lt;CustomChromosome&gt;). The background color is a blend of the background colors of the two parents.
+ * The list of Chromosomes is subjected to the standard two-point crossover procedure, with consideration for the fact
+ * that the parents may have differing genome lengths.
  */
 public class CustomCrossover implements Crossover {
-    /** Function that computes an individual given two parents using something similar to the two points crossoverPolicy.
-     * @param parent1 Individual with the first parent.
-     * @param parent2 Individual with the second parent.
-     * @param crossArgs Undefined Array of elements to perform the crossover procedure (Not used here).
-     * @return Individual containing the offspring information.
-     */
+        /**
+         * This function calculates an individual by combining two parents using a mechanism akin to the two-point
+         * crossoverPolicy.
+         *
+         * @param parent1 The individual representing the first parent.
+         * @param parent2 The individual representing the second parent.
+         * @param crossArgs An array of unspecified elements for conducting the crossover procedure (not utilized in this context).
+         * @return An individual carrying the offspring's genetic information.
+         */
     @Override
     public Individual computeChild(Individual parent1, Individual parent2, Object ... crossArgs) {
-        Genome parent1Genome = parent1.getGenome().createCopy();
-        Genome parent2Genome = parent2.getGenome().createCopy();
+        Genome<?> parent1Genome = parent1.getGenome().createCopy();
+        Genome<?> parent2Genome = parent2.getGenome().createCopy();
         Color paren1Background = (Color)((ArrayList<Object>)parent1Genome.getGeneticInformation()).get(0);
-        ArrayList<Chromosome> parent1Chromosomes = (ArrayList<Chromosome>)((ArrayList<Object>)parent1Genome.getGeneticInformation()).get(1);
+        ArrayList<Chromosome<?>> parent1Chromosomes = (ArrayList<Chromosome<?>>)((ArrayList<Object>)parent1Genome.getGeneticInformation()).get(1);
         Color paren2Background = (Color)((ArrayList<Object>)parent2Genome.getGeneticInformation()).get(0);
-        ArrayList<Chromosome> parent2Chromosomes = (ArrayList<Chromosome>)((ArrayList<Object>)parent2Genome.getGeneticInformation()).get(1);
+        ArrayList<Chromosome<?>> parent2Chromosomes = (ArrayList<Chromosome<?>>)((ArrayList<Object>)parent2Genome.getGeneticInformation()).get(1);
 
         int sizeP1 = parent1Chromosomes.size();
         int sizeP2 = parent2Chromosomes.size();
@@ -55,6 +58,7 @@ public class CustomCrossover implements Crossover {
 
     /**
      * Function that mixes two colors assuming they are equally relevant.
+     *
      * @param Color1 Color with the first parent background.
      * @param Color2 Color with the second parent background.
      * @return Color resulting from the mis of the two previous colors.
@@ -65,4 +69,3 @@ public class CustomCrossover implements Crossover {
                 (int) ((Color1.getBlue() + Color2.getBlue()) * 0.5));
     }
 }
-

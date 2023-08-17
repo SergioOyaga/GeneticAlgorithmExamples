@@ -9,15 +9,15 @@ import java.util.ArrayList;
 import java.util.random.RandomGenerator;
 
 /**
- * Class that applies a mutation to a CustomChromosome (color,rotation, shape), by rotating the shape, something
- * close to the current rotation.
+ * Class that applies a mutation to a CustomChromosome (color, rotation, shape), by rotating the shape.
+ * We change the rotation randomly, the value is changed in a range close to the current value.
  */
 @AllArgsConstructor
 public class ChromosomeMutationRotateShape implements Mutation {
     /**
-     * Integer with the iteration when to stop looking for new colors. Typically, when we are finishing our
-     * optimization we want stop changing color of the already good shapes, and we want to focus on other tasks like
-     * moving a little the shape vertexes to try to improve the placement.
+     * This integer specifies the iteration at which to cease the search for new rotations. Generally, as the optimization reaches
+     * its conclusion, we intend to halt rotation adjustments for the shapes that are already well-represented. The emphasis shifts
+     * to other tasks, such as making minor adjustments to shape placement.
      */
     private final int maxIterations;
     /**
@@ -26,10 +26,12 @@ public class ChromosomeMutationRotateShape implements Mutation {
      * Something relatively small. Ej.: 0.18
      */
     private final Double arch;
+
     /**
      * Function that applies the mutations to the Chromosome rotation.
-     * We just rotate the shape randomly a little.
-     * @param gaPart       Genome, Chromosome or Gen to mutate. In this case CustomChromosome.
+     * We change the rotation randomly, the value is changed in a range close to the current value.
+     *
+     * @param gaPart ArrayList{@literal <Color,Double, Shape>}. In this case, the rotation is what we edit.
      * @param mutationArgs Undefined array of objects containing information needed to mutate the part. In this case,
      *                   an Integer with the iteration number.
      */

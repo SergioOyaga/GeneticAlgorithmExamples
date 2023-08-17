@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.random.RandomGenerator;
 
 /**
- * Class that applies a mutation to a CustomChromosome (color, rotation, shape), by moving  the shape, somewhere
- * close to the current position.
+ * Class that applies a mutation to a CustomChromosome (color, rotation, shape), by moving the shape.
+ * We moved the shape randomly, but in a range close to its current position.
  */
 @AllArgsConstructor
 public class ChromosomeMutationMoveShape implements Mutation {
@@ -24,8 +24,9 @@ public class ChromosomeMutationMoveShape implements Mutation {
      */
     private final int height;
     /**
-     * Integer with the iteration when to change from una "big" movement to one "small". Typically, when we are finishing our
-     * optimization we want to move less the vertexes in order to achieve little hard to find improvements.
+     * This integer specifies the iteration at which to transition from a "significant" movement to a "minor" movement of vertices.
+     * Typically, as the optimization nears completion, we aim to make smaller adjustments to vertices to attain subtle,
+     * challenging-to-find improvements.
      */
     private final int smallMovementsIteration;
     /**
@@ -38,7 +39,7 @@ public class ChromosomeMutationMoveShape implements Mutation {
     private Integer bigMove;
 
     /**
-     * Function that applies the mutations to the Chromosomes Shape.
+     * Function that applies the mutations to the CustomChromosome Shape.
      * We just move a little the shape.
      * <ul>
      *     <li><b>Polygon:</b> Move one vertex.</li>
@@ -50,7 +51,8 @@ public class ChromosomeMutationMoveShape implements Mutation {
      *     <li><b>RoundRectangle2D:</b> Move the position of the whole shape, or, change with and height, or, change
      *     arch with and height.</li>
      * </ul>
-     * @param gaPart       Genome, Chromosome or Gen to mutate. In this case CustomChromosome.
+     *
+     * @param gaPart       ArrayList{@literal <Color, Double, Shape>}. In this case,the shape is what we edit.
      * @param mutationArgs Undefined array of objects containing information needed to mutate the part. In this case,
      *                    an Integer with the iteration number.
      */

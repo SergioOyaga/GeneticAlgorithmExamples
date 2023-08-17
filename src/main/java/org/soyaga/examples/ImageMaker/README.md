@@ -1,6 +1,7 @@
 # Image Maker
-The recreation of an image can be approached in different ways. In these examples we want to recreate the images using 
-Shapes. Polygons are the ones more used in the literature, but we also provide a generalized Shape approach.  
+The recreation of an image can be approached in various ways. In the following examples, our aim is to recreate the 
+images using shapes. While polygons are the most commonly employed approach in the literature, we also present a more 
+generalized approach using shapes.
 
 <table>
   <tr>
@@ -16,27 +17,32 @@ Shapes. Polygons are the ones more used in the literature, but we also provide a
   </tr>
 </table>
 
-As you can see in our approach you can differentiate two phases:
-1. Exploratory convergence: the first par of the optimization, where new shapes are constantly included trying to 
-   improve the image representation.
-2. Adjustment: the second phase of the optimization focuses on improving those shapes that better fits, and removing the 
-   ones that give little improvement.
+In our approach, you can observe two distinct phases:
+1. Exploratory Convergence: This initial phase of optimization involves constantly incorporating new shapes to 
+enhance the image representation.
+2. Adjustment: The second phase of optimization focuses on refining shapes that best fit the image while removing those
+that contribute little improvement.
 
-You can see this two phases in the abrupt jump in the objective value. This jump is due to the consideration of the 
-number of shapes in the image as something negative. In addition to this image simplification, the reduction in the 
-number of shapes also reduces the evaluation time of the population (from 500ms to 250ms), something desirable.  
+These two phases become evident in the sudden increase in the objective value. This increase is attributed to 
+treating the number of shapes in the image as a negative factor. Besides simplifying the image, reducing the number of
+shapes also leads to quicker evaluation times for the population (from 500ms to 250ms), which is a desirable outcome.
 
 ## In this folder:
-We find 3 different design approached for solving the image maker optimization problem using the Genetic Algorithm (GA)
-from the OptimizationLib.
+You will find three distinct design approaches for solving the image replication optimization problem using the Genetic
+Algorithm (GA) from the OptimizationLib.
+
 1. [SimplePolyImageMaker](https://github.com/SergioOyaga/GeneticAlgorithmExamples/tree/master/src/main/java/org/soyaga/examples/ImageMaker/SimplePolyImageMaker):
-Initial approach to solve the image replication optimization problem with polygons of a fixed number of vertexes.
+   This is the initial approach to solve the image replication optimization problem using polygons with a fixed number
+of vertices.
 2. [CudaPolyImageMaker](https://github.com/SergioOyaga/GeneticAlgorithmExamples/tree/master/src/main/java/org/soyaga/examples/ImageMaker/CudaPolyImageMaker):
-Same problem approach as the SimplePolyImageMaker, but the color distance of each pixel is computed in the GPU using CUDA.
+   Similar to the SimplePolyImageMaker, this approach tackles the same problem. However, it leverages GPU-based CUDA 
+processing to compute the color distance of each pixel.
 3. [ShapeImageMaker](https://github.com/SergioOyaga/GeneticAlgorithmExamples/tree/master/src/main/java/org/soyaga/examples/ImageMaker/ShapeImageMaker):
-More general approach to the image recreation using Shapes. We mix different shapes and polygons to recreate the image.
+   This approach offers a more generalized method for image recreation. It combines various shapes and polygons 
+to achieve image replication.
 
 ## Comment:
-The examples in these folders are just to illustrate the power of GAs, and the simplicity of use/implementation
-that give us the ga library in the OptimizationLib framework. Just remember they are examples that you can 
-use as template to adapt for your specific problems. 
+The examples within these folders serve to showcase the capabilities of Genetic Algorithms (GAs) and highlight the 
+user-friendly and straightforward implementation facilitated by the GA library within the OptimizationLib framework. 
+It's important to keep in mind that these examples are intended to serve as templates, illustrating how to adapt the 
+concepts for your specific problems.

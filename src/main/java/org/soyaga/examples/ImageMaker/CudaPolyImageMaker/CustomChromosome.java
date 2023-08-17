@@ -2,15 +2,14 @@ package org.soyaga.examples.ImageMaker.CudaPolyImageMaker;
 
 import lombok.AllArgsConstructor;
 import org.soyaga.ga.GeneticInformationContainer.Chromosome.Chromosome;
-
 import java.awt.*;
 import java.util.ArrayList;
 
 /**
- * Class that contains a Polygon and a Color. Those are the fundamental parts of our image.
+ * CustomChromosome that contains Polygon and a Color. Those are the fundamental parts of our image.
  */
 @AllArgsConstructor
-public class CustomChromosome implements Chromosome {
+public class CustomChromosome implements Chromosome<Object> {
     /**
      * Color of the Polygon.
      */
@@ -20,10 +19,10 @@ public class CustomChromosome implements Chromosome {
      */
     private Polygon polygon;
 
-
     /**
      * Constructor that creates a deep copy of the Chromosome. Color is effectively final, and the polygon can be deep
      * copied using its constructor.
+     *
      * @return Chromosome containing the deep copy.
      */
     @Override
@@ -34,7 +33,8 @@ public class CustomChromosome implements Chromosome {
 
     /**
      * Function that gathers the genetic information. In this case ArrayList&lt;Color,Polygon&gt;.
-     * @return Object containing the genetic information. Typically, Genome, Chromosome or Gen.
+     *
+     * @return Object containing the genetic information.
      */
     @Override
     public ArrayList<Object> getGeneticInformation() {
@@ -45,17 +45,19 @@ public class CustomChromosome implements Chromosome {
 
     /**
      * Function that sets the genetic information.
-     * @param geneticInformation Object containing the genetic information. Typically, Genome, Chromosome or Gen.
+     *
+     * @param geneticInformation Object containing the genetic information.
      *                           In this case ArrayList&lt;Color,Polygon&gt;.
      */
     @Override
     public void setGeneticInformation(Object geneticInformation) {
-        this.color = (Color)(((ArrayList)geneticInformation).get(0));
-        this.polygon =  (Polygon)(((ArrayList)geneticInformation).get(1));
+        this.color = (Color)(((ArrayList<?>)geneticInformation).get(0));
+        this.polygon =  (Polygon)(((ArrayList<?>)geneticInformation).get(1));
     }
 
     /**
      * Function to verbose the optimization process.
+     *
      * @return a string containing the Gen string representation.
      */
     @Override

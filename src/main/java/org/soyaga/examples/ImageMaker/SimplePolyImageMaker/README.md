@@ -1,7 +1,8 @@
 # SimplePolyImageMaker
-The SimplePolyImageMaker is the problem of finding a set of colored polygons that represents an image.
-Classically this problem has been proposed for solving the Monalisa painting, however any image can be represented 
-as an overlap of polygons.
+The SimplePolyImageMaker addresses the task of discovering a collection of colored polygons that accurately represents 
+an image. Historically, this challenge has been commonly exemplified through the recreation of iconic artworks like the
+Mona Lisa painting. Nevertheless, it's crucial to recognize that this technique can be applied to virtually any image, 
+as images can be deconstructed into an arrangement of overlapping polygons.
 
 <table>
   <tr>
@@ -40,7 +41,7 @@ as an overlap of polygons.
     
 </table>
 
-Some hard shapes to replicate with triangles are curves.
+Replicating curves can be challenging when using triangles as building blocks.
 <table>
   <tr>
     <th colspan="2"> <b>Circle </b></th>
@@ -67,28 +68,29 @@ Some hard shapes to replicate with triangles are curves.
 </table>
 
 ## In this folder:
-We find 15 different classes that defines the problem structures that we decided to create (Implementing their 
-corresponding OptimizationLib.ga interfaces).
-1. [CustomGeneticAlgorithm](#customgeneticalgorithm): Implements GeneticAlgorithm.
-2. [PolyImageInitializer](#polyimageinitializer): Extends GAInitializer.
-3. [PolyImageObjectiveFunction](#polyimageobjectivefunction): Extends ObjectiveFunction.
-4. [CustomGenome](#customgenome): Implements Genome.
-5. [CustomChromosome](#customchromosome): Implements Chromosome.
-6. [CustomMutationPolicy](#custommutationpolicy): Implements MutationPolicy.
-7. [CustomCrossover](#customcrossover): Implements Crossover.
-8. [GifCreator](#gifcreator): Creates a gif.
-9. [Mutations](#mutations): Folder with the mutations.
-   1. [ChromosomeMutationColor](#chromosomemutationcolor):Implements Mutation.
-   2. [ChromosomeMutationMoveOneVertex](#chromosomemutationmoveonevertex): Implements Mutation.
-   3. [GenomeMutationAddChromosome](#genomemutationaddchromosome): Implements Mutation.
-   4. [GenomeMutationBackground](#genomemutationbackground): Implements Mutation.
-   5. [GenomeMutationPolygonOrder](#genomemutationpolygonorder): Implements Mutation.
-   6. [GenomeMutationRemoveChromosome](#genomemutationremovechromosome): Implements Mutation.
-10. [RunPolyImageOptimization](#runpolyimageoptimization): This is the main class. Here we instantiate our 
-CustomGeneticAlgorithm Object with all his components.
+We have created 15 distinct classes that define various problem structures, each of which implements the corresponding 
+interfaces from OptimizationLib.ga:
+
+1. [CustomGeneticAlgorithm](#customgeneticalgorithm): Implements the GeneticAlgorithm interface.
+2. [PolyImageInitializer](#polyimageinitializer): Extends the GAInitializer interface.
+3. [PolyImageObjectiveFunction](#polyimageobjectivefunction): Implements the ObjectiveFunction interface.
+4. [CustomGenome](#customgenome): Implements the Genome interface.
+5. [CustomChromosome](#customchromosome): Implements the Chromosome interface.
+6. [CustomMutationPolicy](#custommutationpolicy): Implements the MutationPolicy interface.
+7. [CustomCrossover](#customcrossover): Implements the Crossover interface.
+8. [GifCreator](#gifcreator): Utility for creating GIFs.
+9. [Mutations](#mutations): Folder containing mutation classes.
+    - [ChromosomeMutationColor](#chromosomemutationcolor): Implements the Mutation interface.
+    - [ChromosomeMutationMoveOneVertex](#chromosomemutationmoveonevertex): Implements the Mutation interface.
+    - [GenomeMutationAddChromosome](#genomemutationaddchromosome): Implements the Mutation interface.
+    - [GenomeMutationBackground](#genomemutationbackground): Implements the Mutation interface.
+    - [GenomeMutationPolygonOrder](#genomemutationpolygonorder): Implements the Mutation interface.
+    - [GenomeMutationRemoveChromosome](#genomemutationremovechromosome): Implements the Mutation interface.
+10. [RunPolyImageOptimization](#runpolyimageoptimization): The main class where we instantiate the CustomGeneticAlgorithm 
+object with all its components.
 
 ### [CustomGeneticAlgorithm](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/ImageMaker/SimplePolyImageMaker/CustomGeneticAlgorithm.java):
-This class implements GeneticAlgorithm, which by extension makes it an Optimizer instance. In other words this class 
+This class implements GeneticAlgorithm, which by extension makes it an Optimizer instance. In other words, this class
 can be optimized and its results can be gathered.
 ````code
 public void optimize(){...}
@@ -99,13 +101,18 @@ executed by the CustomGeneticAlgorithm parts (CrossoverPolicy, MutationPolicy...
 returns an Image that will be stored or used to build the gif.
 
 ### [PolyImageInitializer](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/ImageMaker/SimplePolyImageMaker/PolyImageInitializer.java):
-Initializes a new individual from zero. In our case, uses CustomGenome, CustomChromosome, Color and Polygon to 
-store the information of a randomly initialized individual.
+This class initializes a new individual from scratch.
+It uses CustomGenome, CustomChromosome, Color and Polygon to store the information of a randomly
+initialized individual.
 ````code
 public Individual initializeIndividual()
 ````
-In this case, the information is sparse in the GeneticInformationContainers.Genome and Chromosome contains information 
-needed to evaluate an individual.
+In this scenario, the GeneticInformationContainers contain relatively sparse information. Specifically:
+- The Genome holds the background color and an array of chromosomes.
+- Each Chromosome encapsulates a Polygon along with the corresponding fill Color.
+
+As a result of this structure, the data required for evaluating an individual is distributed sparsely within both the 
+Genome and its constituent Chromosomes.
 
 ````mermaid
 flowchart TB
@@ -130,11 +137,11 @@ flowchart TB
 ````
 
 ### [PolyImageObjectiveFunction](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/ImageMaker/SimplePolyImageMaker/PolyImageObjectiveFunction.java):
-This function evaluates the objective function of a solution. In this case we compute the l~2~ norm for the RGBA colors 
-from the image generated by the genome against the colors in the real image.
+This function is responsible for evaluating the objective function of a solution. In this context, the L~2~ norm is 
+computed for the RGBA colors in the image generated by the genome, contrasting them with the colors in the actual image.
 
-This function return a Double containing the ratio of Euclidean color deviation per pixel of the whole image compared 
-with the reference one.
+The outcome of this function is a Double value, representing the ratio of Euclidean color deviation per pixel across 
+the entire generated image when compared to the reference image.
 
 ### [CustomGenome](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/ImageMaker/SimplePolyImageMaker/CustomGenome.java):
 A Genome that contains the genetic information:
@@ -144,43 +151,43 @@ A Genome that contains the genetic information:
 ### [CustomChromosome](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/ImageMaker/SimplePolyImageMaker/CustomChromosome.java):
 A Chromosome that contains the genetic information:
   * color (Color): Contains the Polygon filling color.
-  * polygon (Polygon): Shape that we want to fray in the image.
+  * polygon (Polygon): Shape that we want to incorporate into the image.
 
 ### [CustomMutationPolicy](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/ImageMaker/SimplePolyImageMaker/CustomMutationPolicy.java):
-A MutationPolicy that applies mutations to the CustomGenome and CustomChromosome Objects. Each mutation class have a 
-specific mutation probability rate. 
+A MutationPolicy is responsible for implementing mutations on CustomGenome and CustomChromosome objects. Each mutation 
+class is characterized by a particular mutation probability rate and a predefined maximum number of iterations during 
+which it can be applied.
 
 ### [CustomCrossover](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/ImageMaker/SimplePolyImageMaker/CustomCrossover.java):
-A Crossover that mixes the background of the two parents genomes and performs a two point crossover for the 
-CustomChromosome ArrayLists (Ordered Lists but with dynamic size).
+A Crossover operation combines the backgrounds of the two parent genomes and executes a two-point crossover on the 
+ArrayLists of CustomChromosomes. These ArrayLists function as dynamic-sized Ordered Lists.
 
 ### [GifCreator](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/ImageMaker/SimplePolyImageMaker/GifCreator.java):
-An auxiliary class that has only one static method that allow the construction of a gif from an 
+An auxiliary class that contains a single static method designed for constructing a GIF from an 
 ArrayList&lt;BufferedImage&gt;.
 
 ### [Mutations](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/ImageMaker/SimplePolyImageMaker/Mutations):
-Folder that contains all the mutations that are applied to the genomes.
+This folder contains all the mutations that are applied to the genomes.
 
 1. #### [ChromosomeMutationColor](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/ImageMaker/SimplePolyImageMaker/Mutations/ChromosomeMutationColor.java):
-   Class that mutates a Chromosome. It slightly changes the color of that fills the polygon randomly.
+   This class mutates a Chromosome. It slightly changes the color that fills the polygon randomly.
 2. #### [ChromosomeMutationMoveOneVertex](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/ImageMaker/SimplePolyImageMaker/Mutations/ChromosomeMutationMoveOneVertex.java):
-   Class that mutates a Chromosome. It slightly moves one random vertex of the polygon.
+   This class mutates a Chromosome. It slightly moves one random vertex of the polygon.
 3. #### [GenomeMutationAddChromosome](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/ImageMaker/SimplePolyImageMaker/Mutations/GenomeMutationAddChromosome.java):
-   Class that mutates the Genome. Randomly creates and adds a Chromosome tho the genome (add one new polygon).
+   This class mutates the Genome. It randomly creates and adds a Chromosome to the genome (adding one new polygon).
 4. #### [GenomeMutationBackground](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/ImageMaker/SimplePolyImageMaker/Mutations/GenomeMutationBackground.java):
-   Class that mutates the Genome. It slightly changes the color of that fills the image background.
+   This class mutates the Genome. It slightly changes the color that fills the image background.
 5. #### [GenomeMutationPolygonOrder](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/ImageMaker/SimplePolyImageMaker/Mutations/GenomeMutationPolygonOrder.java):
-   Class that mutates the Genome. It swaps the position of two random Chromosomes.
+   This class mutates the Genome. It swaps the position of two random Chromosomes.
 6. #### [GenomeMutationRemoveChromosome](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/ImageMaker/SimplePolyImageMaker/Mutations/GenomeMutationRemoveChromosome.java):
-   Class that mutates the Genome. Randomly removes one Chromosome from the genome.
-
+   This class mutates the Genome. It randomly removes one Chromosome from the genome.
 
 ### [RunPolyImageOptimization](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/ImageMaker/SimplePolyImageMaker/RunPolyImageOptimization.java):
-This is the main class. Is where the run starts. As simple as instantiate the CustomGeneticAlgorithm object (previously defined) filled
-with its components, optimize it, and retrieve the results.
+This is the main class where the program execution begins.
+It involves instantiating the ChessGA object (previously defined), optimizing it, and retrieving the results.
 
-The specific components for the CustomGeneticAlgorithm are:
-- MaxIterationCriteriaPolicy: A StoppingCriteria based on a maximum number of iteration.
+The specific components for CustomGeneticAlgorithm include:
+- MaxIterationCriteriaPolicy: A StoppingCriteria based on a maximum number of iterations.
 - FixedCrossoverPolicy: A CrossoverPolicy that applies each iteration a fixed number of crossovers.
   - TournamentSelection: A Selection procedure in which each parent is chosen by the tournament method.
   - CustomCrossover: The Crossover  previously defined.
@@ -195,7 +202,16 @@ The specific components for the CustomGeneticAlgorithm are:
 - FixedNewbornPolicy: A newbornPolicy that applies each iteration a fixed number of newborn individuals.
 - PolyImageInitializer: The Initializer previously defined.
   - PolyImageObjectiveFunction: The ObjectiveFunction previously defined.
-
+-  NIterationsStatsRetrievalPolicy: A StatsRetrievalPolicy that applies the evaluation of the Stats every N iterations.
+  - CurrentMinFitnessStat: A Stat that computes the current minimal fitness value.
+  - CurrentMaxFitnessStat: A Stat that computes the current maximal fitness value.
+  - HistoricalMinFitnessStat: A Stat that computes the historical minimal fitness value.
+  - HistoricalMaxFitnessStat: A Stat that computes the historical maximal fitness value.
+  - MeanSdStat: A Stat that computes the population's mean fitness along with the standard deviation.
+  - PercentileStat: A Stat that computes the fitness values for specific percentiles.
+  - StepGradientStat: A Stat that computes the step-gradient of the mean fitness.
+  - TimeGradientStat: A Stat that computes the time-gradient of the mean fitness.
+  - ElapsedTimeStat: A Stat that computes the elapsed time.
 
 ## Result example:
 For:
@@ -256,10 +272,13 @@ We have:
 </table>
 
 ## Comment:
-Notice that this example is a hard approach to image recreation. Most of the examples that we found in the literature
-solve the problem losing track of the actual shapes that form the images. Those approaches tend to use images as 
-genomes and the Crossovers mixe the images in different ways. Mutations perform simple additions of new polygons, or add
-random colored pixels. The objective in that case is simply to reproduce the image. In our case we want to reproduce the
-image, but we want to be able to identify the polygons that constitute it. So our optimization has to find the right 
-number of unique polygons and colors that best represent the image (a way harder task :relaxed: ).
+It's important to note that this example represents a more challenging approach to image recreation. Many existing 
+methods in the literature tend to solve the problem by disregarding the actual shapes that compose the images. 
+In these approaches, images are often treated as genomes, and crossovers blend images in various ways. Mutations may 
+involve simple additions of new polygons or the introduction of randomly colored pixels. The primary objective in these 
+cases is to replicate the image itself.
 
+In contrast, our approach aims not only to replicate the image but also to preserve the identity of the individual 
+polygons that collectively form the image. Thus, our optimization process seeks to determine the optimal number of 
+unique polygons and colors that faithfully represent the image. This task is considerably more challenging and nuanced.
+:relaxed:

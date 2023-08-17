@@ -9,28 +9,30 @@ import java.util.ArrayList;
 import java.util.random.RandomGenerator;
 
 /**
- * Class that applies a mutation to a CustomChromosome (color, polygon), by randomly changing the polygon color,
- * somewhere close to the current color.
+ * Class that applies a mutation to a CustomChromosome (polygonColor, Polygon), by changing the color.
+ * We change the color randomly, the RGB values are changed in a range close to the current position.
  */
 @AllArgsConstructor
 public class ChromosomeMutationColor implements Mutation {
     /**
-     * Integer with the iteration when to stop looking for new colors. Typically, when we are finishing our
-     * optimization we want stop changing color of the already good polygons, and we want to focus on other tasks like
-     * moving a little the polygon vertexes to try to improve the placement.
+     * This integer specifies the iteration at which to cease the search for new colors. Generally, as the optimization reaches
+     * its conclusion, we intend to halt color adjustments for polygons that are already well-represented. The emphasis shifts
+     * to other tasks, such as making minor adjustments to polygon vertices to potentially enhance their placements.
      */
     private final int maxIterations;
     /**
-     * Integer with the range we want to explore in each time we mutate the color. Something between 0 and 255, usually
-     * something relatively small. Ej.: 10
+     * This integer specifies the range to be explored each time the color is mutated. Typically, this value lies between 0 and 255,
+     * and is relatively small. For example: 10.
      */
     private final int move;
+
     /**
-     * Function that applies the mutations to the Chromosome color.
-     * We just change the color randomly by moving a little one of the RGBA values.
-     * @param gaPart       Genome, Chromosome or Gen to mutate. In this case CustomChromosome.
+     * Function that applies the mutations to the CustomChromosome color.
+     * We change the color randomly, the RGB values are changed in a range close to the current position.
+     *
+     * @param gaPart ArrayList{@literal <Color,Polygon>}. In this case,the color is what we edit.
      * @param mutationArgs Undefined array of objects containing information needed to mutate the part. In this case,
-     *                   an Integer with the iteration number.
+     *                    an Integer with the iteration number.
      */
     @Override
     public void apply(Object gaPart, Object... mutationArgs) {

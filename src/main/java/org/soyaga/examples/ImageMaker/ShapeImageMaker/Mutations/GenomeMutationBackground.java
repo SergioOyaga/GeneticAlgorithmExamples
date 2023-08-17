@@ -2,6 +2,7 @@ package org.soyaga.examples.ImageMaker.ShapeImageMaker.Mutations;
 
 import lombok.AllArgsConstructor;
 import org.soyaga.examples.ImageMaker.ShapeImageMaker.CustomGenome;
+import org.soyaga.examples.ImageMaker.SimplePolyImageMaker.CustomChromosome;
 import org.soyaga.ga.MutationPolicy.Mutations.Mutation;
 
 import java.awt.*;
@@ -9,25 +10,29 @@ import java.util.ArrayList;
 import java.util.random.RandomGenerator;
 
 /**
- * Class that applies a mutation to a CustomGenome (backgroundColor, ArrayList&lt;CustomChromosome&gt;),
- * by randomly changing the background color, somewhere close to its current color.
+ * Class that applies a mutation to a CustomGenome (backgroundColor, ArrayList{@literal <CustomChromosome>}),
+ * by changing the background color. We change the RGB values of the background randomly, but only in a range close to
+ * the current values.
  */
 @AllArgsConstructor
 public class GenomeMutationBackground implements Mutation {
     /**
-     * Integer with the iteration when to stop looking for new colors. Typically, the background color is the first
-     * thing the optimization achieves, so we suggest to suppress this mutation the first one.
+     * This integer specifies the iteration at which to halt the search for new colors. Generally, the optimization process
+     * initially attains the background color, making it advisable to disable this mutation at the outset.
      */
     private final int maxIterations;
     /**
-     * Integer with the range we want to explore in each time we mutate the color. Something between 0 and 255, usually
-     * something relatively small. Ej.: 10
+     * This integer specifies the range to be explored each time the color is mutated. Typically, this value lies
+     * between 0 and 255, and is relatively small. For example: 10.
      */
     private final int move;
+
     /**
-     * Function that applies the mutations to the Genomes Background.
-     * We just change the color randomly by moving a little one of the RGB values.
-     * @param gaPart       Genome, Chromosome or Gen to mutate. In this case CustomGenome.
+     * Function that applies the mutations to the Genomes ArrayList{@literal <CustomChromosome>};
+     * We change the RGB values of the background randomly, but only in a range close to
+     * the current values.
+     *
+     * @param gaPart ArrayList{@literal <Color,ArrayList<CustomChromosome>>}. In this case,the color is what we edit.
      * @param mutationArgs Undefined array of objects containing information needed to mutate the part. In this case,
      *                    an Integer with the iteration number.
      */
@@ -36,7 +41,7 @@ public class GenomeMutationBackground implements Mutation {
         Integer iteration = (Integer)mutationArgs[0];
         if(iteration>this.maxIterations) return;
         Color oldBackground = ((Color)((CustomGenome) gaPart).getGeneticInformation().get(0));
-        ArrayList oldGenome = (ArrayList) ((CustomGenome) gaPart).getGeneticInformation().get(1);
+        ArrayList<CustomChromosome> oldGenome = (ArrayList<CustomChromosome>) ((CustomGenome) gaPart).getGeneticInformation().get(1);
         int [] rgb= new int[]{oldBackground.getRed(),oldBackground.getGreen(),oldBackground.getBlue()};
         int index=RandomGenerator.getDefault().nextInt(0,rgb.length);
         rgb[index]+= RandomGenerator.getDefault().nextInt(-this.move, this.move+1);

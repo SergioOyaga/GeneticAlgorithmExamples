@@ -19,7 +19,7 @@ import java.util.ArrayList;
 /**
  * Instantiates and optimize a CustomGeneticAlgorithm Object. Fills it with all the Custom GA classes needed to perform
  * the optimization. Optimizes given the previous configuration and prints the result in the console.
- * In this case the optimization performs an image recreation using different shapes. The shapes implemented are:
+ * In this case, the optimization performs an image recreation using different shapes. The shapes implemented are:
  * <ul>
  *     <li>Polygon.</li>
  *     <li>Ellipse2D.</li>
@@ -85,39 +85,70 @@ public class RunShapeImageOptimization {
         // You can see where we put the threshold for each mutation (iteration when they stop to apply), and the actual
         // probabilities of each mutation. You can also see the iteration when the length of the genome starts to
         // penalize the objective function.
-        CustomGeneticAlgorithm ga = new CustomGeneticAlgorithm("CustomShapeImageMaker", initialPopulationSize,
-                new MaxIterationCriteriaPolicy(maxGenerations),
-                new FixedCrossoverPolicy(initialPopulationSize*90/100,
-                        new TournamentSelection(),
-                        new CustomCrossover()),
-                new CustomMutationPolicy(
-                        new ArrayList<>(){{
-                            add(new GenomeMutationBackground(maxGenerations*30/100, 10));
-                            add(new GenomeMutationShapeOrder(maxGenerations*50/100));
-                            add(new GenomeMutationAddChromosome(image.getWidth(), image.getHeight(),
-                                    maxGenerations*90/100,availableShapes, limitations));
-                            add(new GenomeMutationRemoveChromosome(maxGenerations));
+        CustomGeneticAlgorithm ga = new CustomGeneticAlgorithm(
+                "CustomShapeImageMaker",                    // ID.
+                initialPopulationSize,                          // Initial population size.
+                new MaxIterationCriteriaPolicy(                 // Stopping policy, max iterations.
+                        maxGenerations                              // Max iterations.
+                ),
+                new FixedCrossoverPolicy(                       // Crossover policy, fixed number.
+                        initialPopulationSize*90/100,               // Number of crossed individuals.
+                        new TournamentSelection(),                  // Selection, tournament.
+                        new CustomCrossover()),                     // Custom Crossover.
+                new CustomMutationPolicy(                       // Custom Mutation policy.
+                        new ArrayList<>(){{                         // Array of mutations to the genome.
+                            add(new GenomeMutationBackground(           // Mutation, change background color.
+                                    maxGenerations*30/100,                  // Max number of iterations that this mutation applies.
+                                    10));                                   // Number of units to change the RGB value.
+                            add(new GenomeMutationShapeOrder(           // Mutation, swap shape order.
+                                    maxGenerations*50/100));                // Max number of iterations that this mutation applies.
+                            add(new GenomeMutationAddChromosome(        // Mutation, add new shape.
+                                    image.getWidth(), image.getHeight(),    // Size of the image.
+                                    maxGenerations*90/100,                  // Max number of iterations that this mutation applies.
+                                    availableShapes,                        // Available shapes.
+                                    limitations));                          // Limitations of the shapes.
+                            add(new GenomeMutationRemoveChromosome(     // Mutation, removes a shape.
+                                    maxGenerations));                       // Max number of iterations that this mutation applies.
                         }},
-                        new ArrayList<>(){{
-                            add(new ChromosomeMutationColor(maxGenerations*90/100, 10));
-                            add(new ChromosomeMutationMoveShape(image.getWidth(), image.getHeight(),
-                                    maxGenerations*80/100, 10, 20));
-                            add(new ChromosomeMutationRotateShape(maxGenerations,0.18));
-                            add(new ChromosomeMutationChangeShapeType(maxGenerations*80/100,availableShapes,limitations));
+                        new ArrayList<>(){{                             // Array of mutations to the chromosome.
+                            add(new ChromosomeMutationColor(                // Mutation, change shape color.
+                                    maxGenerations*90/100,                      // Max number of iterations that this mutation applies.
+                                    10));                                       // Number of units to change the RGB value.
+                            add(new ChromosomeMutationMoveShape(            // Mutation, move the shape.
+                                    image.getWidth(), image.getHeight(),        // Size of the image.
+                                    maxGenerations*80/100,                      // Iterations when the move decreases in size.
+                                    10,                                         // Number of pixels to move the shape in the small phase.
+                                    20));                                       // Number of pixels to move the shape in the big phase.
+                            add(new ChromosomeMutationRotateShape(          // Mutation, rotate the shape.
+                                    maxGenerations,                             // Max number of iterations that this mutation applies.
+                                    0.18));                                     // Max arch radians that the shape can rotate.
+                            add(new ChromosomeMutationChangeShapeType(      // Mutation, change the shape type.
+                                    maxGenerations*80/100,                      // Max number of iterations that this mutation applies.
+                                    availableShapes,                            // Available shapes.
+                                    limitations));                              // Limitations of the shapes.
                         }},
-                        new double[]{0.02,0.05,0.08,0.05},new double[]{0.001,0.002,0.002, 0.002}),
-                new FixedElitismPolicy(initialPopulationSize*4/100),
-                new FixedNewbornPolicy(initialPopulationSize*10/100),
-                new ShapeImageInitializer(initialNumberOfShapes, image.getHeight(), image.getWidth(),
-                        availableShapes, limitations,
-                        new ShapeImageObjectiveFunction(image,maxGenerations*50/100)),
-                image.getWidth(), image.getHeight(),10
+                        new double[]{0.02,0.05,0.08,0.05},              // Probabilities for the Genome mutations.
+                        new double[]{0.001,0.002,0.002, 0.002}),        // Probabilities for the Genome mutations.
+                new FixedElitismPolicy(                             // Elitism policy, fixed number.
+                        initialPopulationSize*4/100),                   // Number of elitists.
+                new FixedNewbornPolicy(                             // Newborn policy, fixed number.
+                        initialPopulationSize*10/100),                  // Number of newborns.
+                new ShapeImageInitializer(                          // GAInitializer.
+                        initialNumberOfShapes,                          // Initial number of shapes.
+                        image.getHeight(), image.getWidth(),            // Size of the image
+                        availableShapes,                                // Available shapes.
+                        limitations,                                    // Limitations of the shapes.
+                        new ShapeImageObjectiveFunction(                // Objective function.
+                                image,                                      // Image to compare with.
+                                maxGenerations*50/100)),                    // Limit when the number of shapes is minimized.
+                image.getWidth(), image.getHeight(),                // Size of the image.
+                10                                                  // Number of iterations to store a GIF image.
         );
         //Optimize the GeneticAlgorithm
         ga.optimize();
         //Plot the results
         GifCreator.createGif(ga.getBestImages(),outputPath+".gif",10);
-        ImageIO.write((BufferedImage)ga.getResult(), "png",  new File(outputPath+".png"));
+        ImageIO.write((BufferedImage)ga.getResult(maxGenerations), "png",  new File(outputPath+".png"));
 
     }
 }

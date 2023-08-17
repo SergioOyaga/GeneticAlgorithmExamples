@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.random.RandomGenerator;
 
 /**
- * Class that applies a mutation to a CustomGenome (backgroundColor, ArrayList&lt;CustomChromosome&gt;),
- * by appending one CustomChromosome at the end of the genome.
+ * Class that applies a mutation to a CustomGenome (backgroundColor, ArrayList{@literal <CustomChromosome>}),
+ * by adding one new CustomChromosome at the end of the genome.
  */
 @AllArgsConstructor
 public class GenomeMutationAddChromosome implements Mutation {
@@ -19,25 +19,28 @@ public class GenomeMutationAddChromosome implements Mutation {
      */
     private final int width;
     /**
-     * Integer with the height of the image, delimits the y the polygon vertexes.
+     * Integer with the height of the image, delimits the y in the polygon vertexes.
      */
     private final int height;
     /**
-     * Integer with the iteration when to stop looking for new Polygons. In the beginning of the optimization we allow
-     * the addition of new polygons because we want to find new suitable  polygons to represent the image in some good
-     * enough way. Typically, we remove this mutation before we remove its counterpart "GenomeMutationRemoveChromosome",
-     * because we want to remove some "unnecessary" polygons (alpha=1.0, very small polygons, polygons hidden behind
-     * others...) and avoid the addition of new ones.
+     * This integer specifies the iteration at which the search for new polygons should cease. Initially, during optimization,
+     * the addition of new polygons is allowed to identify suitable shapes for adequately representing the image. This approach
+     * often results in the addition of numerous similar polygons, contributing to the proximity of polygons (due to the crossover
+     * operation). Typically, this mutation is disabled before its counterpart, "GenomeMutationRemoveChromosome," is removed.
+     * The objective is to eliminate some "unnecessary" polygons (e.g., those with alpha=1.0, very small polygons, or polygons
+     * concealed behind others) and prevent the introduction of new ones.
      */
     private final int maxIterations;
     /**
      * Integer with the number of vertexes that each polygon must have.
      */
     private final int numberOfVertexes;
+
     /**
-     * Function that applies the mutations to the Genomes ArrayList&lt;customChromosome&gt;.
-     * We just append one new CustomChromosome.
-     * @param gaPart       Genome, Chromosome or Gen to mutate. In this case CustomGenome.
+     * Function that applies the mutations to the Genomes ArrayList{@literal <CustomChromosome>};
+     * We just add one new random CustomChromosome at the end of the list.
+     *
+     * @param gaPart ArrayList{@literal <Color,ArrayList<CustomChromosome>>}. In this case,the array is what we edit.
      * @param mutationArgs Undefined array of objects containing information needed to mutate the part. In this case,
      *                    an Integer with the iteration number.
      */
@@ -46,7 +49,7 @@ public class GenomeMutationAddChromosome implements Mutation {
         Integer iteration = (Integer)mutationArgs[0];
         if(iteration>this.maxIterations) return;
         Color background =(Color) ((CustomGenome) gaPart).getGeneticInformation().get(0);
-        ArrayList genome = (ArrayList) ((CustomGenome) gaPart).getGeneticInformation().get(1);
+        ArrayList<CustomChromosome> genome = (ArrayList<CustomChromosome>) ((CustomGenome) gaPart).getGeneticInformation().get(1);
         Polygon newPolygon = new Polygon();
         for (int i = 0; i < this.numberOfVertexes; i++) {
             newPolygon.addPoint(

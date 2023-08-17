@@ -16,10 +16,10 @@ import java.util.random.RandomGenerator;
 @AllArgsConstructor
 public class ChromosomeMutationChangeShapeType implements Mutation {
     /**
-     * Integer with the iteration when to stop looking for new Shapes. In the beginning of the optimization we allow
-     * the addition of new shapes because we want to find new suitable  shapes to represent the image in some good
-     * enough way. Typically, we remove this mutation in the late stages of the optimization, leaving the last
-     * iterations to remove and move a little the shapes.
+     * This integer specifies the iteration at which to halt the search for new shapes. Initially, during optimization,
+     * we permit the addition of new shapes to discover suitable representations for the image. However, as the optimization
+     * progresses, this mutation is generally removed in the later stages. In these final iterations, the focus shifts to the
+     * removal and minor adjustment of existing shapes.
      */
     private final int maxIterations;
     /**
@@ -51,10 +51,11 @@ public class ChromosomeMutationChangeShapeType implements Mutation {
     ArrayList<Object[]> limitations;
 
     /**
-     * Function that applies the mutations to the Chromosomes Shape.
+     * Function that applies the mutations to the CustomChromosome Shape.
      * We change one shape type to another. We use the bounding box of the current shape to randomly create a new shape
      * that fits inside this bounding box.
-     * @param gaPart       Genome, Chromosome or Gen to mutate. In this case CustomChromosome.
+     *
+     * @param gaPart ArrayList{@literal <Color,Double, Shape>}. In this case, the Shape is what we edit.
      * @param mutationArgs Undefined array of objects containing information needed to mutate the part. In this case,
      *                    an Integer with the iteration number.
      */
@@ -70,7 +71,7 @@ public class ChromosomeMutationChangeShapeType implements Mutation {
         Rectangle2D boundingBox = oldShape.getBounds2D();
         if (newShape instanceof Polygon) {
             Polygon tempShape = new Polygon();
-            Integer numberOfVertexes = RandomGenerator.getDefault().nextInt(
+            int numberOfVertexes = RandomGenerator.getDefault().nextInt(
                     3,(Integer)this.limitations.get(shapeIndex)[0]+1);
             for (int i = 0; i < numberOfVertexes; i++){
                 tempShape.addPoint(

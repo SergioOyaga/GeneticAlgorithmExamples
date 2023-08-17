@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * Class that contains a Shape, rotation of the shape and a Color. Those are the fundamental parts of our image.
  */
 @AllArgsConstructor
-public class CustomChromosome implements Chromosome {
+public class CustomChromosome implements Chromosome<Object> {
     /**
      * Color of the Shape.
      */
@@ -26,7 +26,7 @@ public class CustomChromosome implements Chromosome {
     private Shape shape;
 
     /**
-     * Constructor that creates a deep copy of the Chromosome. Color  and Rotation are effectively finals,
+     * Constructor that creates a deep copy of the Chromosome. Color and Rotation are effectively finals,
      * and the Shape can be deep copied using the constructor of the not abstract class. Currently, the shapes
      * implemented are:
      * <ul>
@@ -107,8 +107,9 @@ public class CustomChromosome implements Chromosome {
     }
 
     /**
-     * Function that gathers the genetic information. In this case ArrayList&lt;Color,Shape&gt;.
-     * @return Object containing the genetic information. Typically, Genome, Chromosome or Gen.
+     * Function that gathers the genetic information. In this case ArrayList&lt;Color, Double, Shape&gt;.
+     *
+     * @return Object containing the genetic information.
      */
     @Override
     public ArrayList<Object> getGeneticInformation() {
@@ -120,18 +121,20 @@ public class CustomChromosome implements Chromosome {
 
     /**
      * Function that sets the genetic information.
-     * @param geneticInformation Object containing the genetic information. Typically, Genome, Chromosome or Gen.
+     *
+     * @param geneticInformation Object containing the genetic information.
      *                           In this case ArrayList&lt;Color,Shape&gt;.
      */
     @Override
     public void setGeneticInformation(Object geneticInformation) {
-        this.color = (Color)(((ArrayList)geneticInformation).get(0));
-        this.rotation = (Double) (((ArrayList)geneticInformation).get(1));
-        this.shape =  (Shape)(((ArrayList)geneticInformation).get(2));
+        this.color = (Color)(((ArrayList<?>)geneticInformation).get(0));
+        this.rotation = (Double) (((ArrayList<?>)geneticInformation).get(1));
+        this.shape =  (Shape)(((ArrayList<?>)geneticInformation).get(2));
     }
 
     /**
      * Function to verbose the optimization process.
+     *
      * @return a string containing the Gen string representation.
      */
     @Override

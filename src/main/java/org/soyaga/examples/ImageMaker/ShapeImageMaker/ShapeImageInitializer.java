@@ -11,9 +11,10 @@ import java.util.ArrayList;
 import java.util.random.RandomGenerator;
 
 /**
- * This class allow the initialization of new Individuals from scratch.We initialize individuals by selecting a random
- * background color, and an ArrayList of CustomChromosomes of length initialNumberOfShapes. Each CustomChromosome
- * is composed of a Color, a rotation angle (Double in radians) and a Shape. Currently, the shapes implemented are:
+ * This class facilitates the initialization of new Individuals from scratch.
+ * When initializing individuals, we select a random background color and create an ArrayList of CustomChromosomes with a
+ * length of initialNumberOfShapes. Each CustomChromosome comprises a Color, a rotation angle (expressed in radians), and a Shape.
+ * Currently, the implemented shapes include:
  * <ul>
  *     <li>Polygon.</li>
  *     <li>Ellipse2D.</li>
@@ -71,10 +72,10 @@ public class ShapeImageInitializer extends GAInitializer {
     private final ObjectiveFunction objectiveFunction;
 
     /**
-     * Function that initializes a new individual from scratch. In this case each individual have one CustomGenome,
-     * composed of a background Color and a list of CustomChromosomes (Color, ArrayList&lt;CustomChromosomes&gt;).
-     * At the same time, each CustomChromosome is composed of one Color, the rotating angle (radians) and one Shape
-     * (Color,Double, Shape). The shapes to initialize are selected randomly. Currently, the shapes implemented are:
+     * Function that initializes a new individual from scratch.
+     * In this case, each individual has one CustomGenome, composed of a background Color and a list of CustomChromosomes.
+     * Each CustomChromosome is further composed of one Color, the rotating angle (radians) and one Shape.
+     * The shapes to initialize are selected randomly. Currently, the shapes implemented are:
      * <ul>
      *     <li>Polygon.</li>
      *     <li>Ellipse2D.</li>

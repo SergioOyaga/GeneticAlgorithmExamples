@@ -59,7 +59,7 @@ public class RunNQueenOptimization {
                             add(new HistoricalMaxFitnessStat(4));   // Hist Max Fitness Stat.
                             add(new MeanSdStat(4));                 // Fitness Mean and Standard Dev Stat.
                             add(new PercentileStat(4,               // Interpolated Percentile Fitness Stat.
-                                    new ArrayList<>(){{                             // Array ff percentiles.
+                                    new ArrayList<>(){{                             // Array of percentiles.
                                         add(0);add(25);add(50);add(75);add(100);        // Percentiles values.
                             }}));
                             add(new StepGradientStat(4));           // Step Gradient Stat.

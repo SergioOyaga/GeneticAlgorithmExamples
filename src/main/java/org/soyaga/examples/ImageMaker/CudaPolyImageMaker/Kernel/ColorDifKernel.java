@@ -11,11 +11,10 @@ import static jcuda.driver.JCudaDriver.*;
 import static jcuda.nvrtc.JNvrtc.*;
 
 /**
- * Class that contains the information of the CUDA kernel and perform tasks such as initialize tha kernel program, pass
- * the pointers and launch the kernel.
+ * Class that contains the information of the CUDA kernel and perform tasks such as initialize the kernel, pass
+ * the pointer references and launch the kernel.
  */
 public class ColorDifKernel {
-
     /**
      * Grid size in the X direction.
      */
@@ -25,7 +24,7 @@ public class ColorDifKernel {
      */
     int gridSizeY=1;
     /**
-     * Grid size in the z direction.
+     * Grid size in the Z direction.
      */
     int gridSizeZ=1;
     /**
@@ -49,7 +48,7 @@ public class ColorDifKernel {
      */
     CUstream hStream=null;
     /**
-     * extra params for the launcher.
+     * Extra params for the launcher.
      */
     Pointer extra=null;
     /**
@@ -59,16 +58,17 @@ public class ColorDifKernel {
 
     /**
      * This function sets the kernel and creates the function that is going to be executed in the GPU.
-     * It reads a Cuda file "example.cu".
-     * @param cudaFileNamePath : String with the path name of the cuda file Ej.: "C://your/path/example.cu".
-     * @throws IOException
+     * It reads a Cuda file "example.cu."
+     *
+     * @param cudaFileNamePath String with the path name of the cuda file Ej.: "C://your/path/example.cu".
      */
     public ColorDifKernel(String cudaFileNamePath) throws IOException {
         this.function = computeKernelFunction(cudaFileNamePath);
     }
 
     /**
-     * This function fills the Kernel with grid/block parameters to know threads and block executing those threads
+     * This function fills the Kernel with grid/block parameters to know threads and blocks executing those threads
+     *
      * @param gridSizeX Grid size in the X direction.
      * @param gridSizeY Grid size in the Y direction.
      * @param gridSizeZ Grid size in the Z direction.
@@ -77,7 +77,7 @@ public class ColorDifKernel {
      * @param blockSizeZ Block size in the Z direction.
      * @param sharedMemBytes  Amount of dynamic shared memory that will be available to each thread block.
      * @param hStream cuLaunchKernel() can optionally be associated to a stream by passing a non-zero hStream argument.
-     * @param extra
+     * @param extra Pointer.
      */
     public void fillKernel(int gridSizeX, int gridSizeY, int gridSizeZ, int blockSizeX, int blockSizeY, int blockSizeZ,
                            int sharedMemBytes, CUstream hStream, Pointer extra) {
@@ -94,9 +94,9 @@ public class ColorDifKernel {
 
     /**
      * Computes the kernel function by compiling the .cu file that contains what the kernel has to do.
+     *
      * @param cudaFileNamePath  String with the cuda filepath-name.
      * @return  CUfunction with the cuda function that can be "called" to perform a computation.
-     * @throws IOException
      */
     public static CUfunction computeKernelFunction(String cudaFileNamePath) throws IOException {
         //String programSourceCode = new String(ColorDifKernel.class.getClassLoader().getResourceAsStream(cudaFileName).readAllBytes());
@@ -105,34 +105,27 @@ public class ColorDifKernel {
         // Enable exceptions and omit all subsequent error checks
         JCudaDriver.setExceptionsEnabled(true);
         JNvrtc.setExceptionsEnabled(true);
-
         // Initialize the driver and create a context for the first device.
         cuInit(0);
         CUdevice device = new CUdevice();
         cuDeviceGet(device, 0);
         CUcontext context = new CUcontext();
         cuCtxCreate(context, 0, device);
-
-
         // Use the NVRTC to create a program by compiling the source code
         nvrtcProgram program = new nvrtcProgram();
         nvrtcCreateProgram(
                 program, programSourceCode, null, 0, null, null);
         nvrtcCompileProgram(program, 0, null);
-
-        // Print the compilation log (for the case there are any warnings)
-        String programLog[] = new String[1];
+        // Print the compilation log (for the case, there are any warnings)
+        String[] programLog = new String[1];
         nvrtcGetProgramLog(program, programLog);
-
         // Obtain the PTX ("CUDA Assembler") code of the compiled program
         String[] ptx = new String[1];
         nvrtcGetPTX(program, ptx);
         nvrtcDestroyProgram(program);
-
         // Create a CUDA module from the PTX code
         CUmodule module = new CUmodule();
         cuModuleLoadData(module, ptx[0]);
-
         // Obtain the function pointer to the "add" function from the module
         CUfunction function = new CUfunction();
         cuModuleGetFunction(function, module, "computeColorDif");
@@ -140,15 +133,15 @@ public class ColorDifKernel {
     }
 
     /**
-     * Function that launches the kerel with the pointer to the memory chunks that over which the computations are performed.
-     * @param length    Integer with the length of the array of pixels.
+     * Function that launches the kernel with the pointer to the memory chunks that over which the computations are performed.
+     *
+     * @param length    Integer with the length of the array in pixels.
      * @param deviceReferenceImage Pointer that references the device memory-chunk with the original image.
      * @param devicePolyImage Pointer that references the device memory-chunk with the poly-image.
      * @param deviceInternalDifferenceVector Pointer that references the device memory-chunk with the vector that contains the distance for each pixel.
      */
     public  void runKernel( int length, CUdeviceptr deviceReferenceImage,CUdeviceptr devicePolyImage,
                            CUdeviceptr deviceInternalDifferenceVector){
-
         // Set up the kernel parameters: A pointer to an array
         // of pointers which point to the actual values.
         Pointer kernelParams = Pointer.to(
@@ -157,7 +150,6 @@ public class ColorDifKernel {
                 Pointer.to(devicePolyImage),
                 Pointer.to(deviceInternalDifferenceVector)
         );
-
         // Call the kernel function, which was obtained from the
         // module that was compiled at runtime
         cuLaunchKernel(function,
