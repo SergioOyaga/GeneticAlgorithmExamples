@@ -54,7 +54,7 @@ public class RunPolyImageOptimization {
                         new TournamentSelection(),                  // Selection, tournament.
                         new CustomCrossover()),                     // Custom Crossover.
                 new CustomMutationPolicy(                       // Custom Mutation policy.
-                        new ArrayList<>(){{                         // Array of mutations to the genome.
+                        new ArrayList<>(){{                         // Array of Mutations to the genome.
                             add(new GenomeMutationBackground(           // Mutation, change background color.
                                     maxGenerations*50/100,                  // Max number of iterations that this mutation applies.
                                     10));                           // Number of units to change the RGB value.
@@ -67,7 +67,7 @@ public class RunPolyImageOptimization {
                             add(new GenomeMutationRemoveChromosome(     // Mutation, removes a polygon.
                                     maxGenerations*80/100));                // Max number of iterations that this mutation applies.
                         }},
-                        new ArrayList<>(){{                         // Array of mutations to the chromosome.
+                        new ArrayList<>(){{                         // Array of Mutations to the chromosome.
                             add(new ChromosomeMutationColor(            // Mutation, change polygon color.
                                     maxGenerations*90/100,                  // Max number of iterations that this mutation applies.
                                     10));                                   // Number of units to change the RGB value.
@@ -77,8 +77,8 @@ public class RunPolyImageOptimization {
                                     10,                                     // Number of pixels to move the vertex in the small phase.
                                     20));                                   // Number of pixels to move the vertex in the big phase.
                         }},
-                        new double[]{0.02,0.05,0.08,0.05},          // Probabilities for the Genome mutations.
-                        new double[]{0.01,0.02}),                   // Probabilities for the Genome mutations.
+                        new double[]{0.02,0.05,0.08,0.05},          // Probabilities for the Genome Mutations.
+                        new double[]{0.01,0.02}),                   // Probabilities for the Genome Mutations.
                 new FixedElitismPolicy(                         // Elitism policy, fixed number.
                         initialPopulationSize*4/100),               // Number of elitists.
                 new FixedNewbornPolicy(                         // Newborn policy, fixed number.
@@ -92,7 +92,7 @@ public class RunPolyImageOptimization {
                                 maxGenerations*95/100,                  // Limit when the number of polygons is minimized.
                                 cudaFileNamePath)),                     // String where to look for the Cuda C code.
                 image.getWidth(), image.getHeight(),            // Size of the image
-                2                                                // Number of iterations to store a GIF image.
+                2                                                // Number of iterations to Stores a GIF image.
         );
         //Optimize the GeneticAlgorithm
         ga.optimize();

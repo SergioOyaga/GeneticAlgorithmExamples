@@ -39,7 +39,7 @@ public class ChromosomeMutationMoveShape implements Mutation {
     private Integer bigMove;
 
     /**
-     * Function that applies the mutations to the CustomChromosome Shape.
+     * Function that applies the Mutations to the CustomChromosome Shape.
      * We just move a little the shape.
      * <ul>
      *     <li><b>Polygon:</b> Move one vertex.</li>

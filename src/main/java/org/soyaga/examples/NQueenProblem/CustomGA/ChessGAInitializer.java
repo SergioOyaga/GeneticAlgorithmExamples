@@ -20,7 +20,7 @@ public class ChessGAInitializer extends GAInitializer {
     /**
      * This function initializes a new individual from scratch.
      * In this case, each individual has one CustomGenome, composed of N/2 CustomChromosomes.
-     * Each Chromosome is further composed of 2 ChessGenes instances that store the position
+     * Each Chromosome is further composed of 2 ChessGenes instances that Stores the position
      * (row, column) each in a CustomBase. The combination of customBases in a CustomGen defines a queen.
      *
      * @return A randomly initialized Individual.

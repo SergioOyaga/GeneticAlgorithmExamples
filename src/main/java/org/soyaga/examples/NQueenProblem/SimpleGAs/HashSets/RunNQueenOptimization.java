@@ -38,7 +38,7 @@ public class RunNQueenOptimization {
                         }},
                         0.01,                           // Mutation probability.
                         false,                                      // Hash To shuffle levels.
-                        false),                                     // Hash To shuffle mutations.
+                        false),                                     // Hash To shuffle Mutations.
                 new FixedElitismPolicy(                         // Elitism Policy, fixed number.
                         1                                           // Number of elitists.
                 ),

@@ -22,7 +22,7 @@ public class CustomMutationPolicy implements MutationPolicy {
     private final CustomMutation mutation;
 
     /**
-     * Function that applies the mutations following a policy. Ej.:
+     * Function that applies the Mutations following a policy. Ej.:
      *
      * <ul>
      *      <li>Mutates CustomBase Objects contained in each Gen.</li>

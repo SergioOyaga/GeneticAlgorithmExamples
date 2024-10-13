@@ -26,7 +26,7 @@ public class GenomeMutationRemoveChromosome implements Mutation {
     private final int maxIterations;
 
     /**
-     * Function that applies the mutations to the Genomes ArrayList{@literal <CustomChromosome>};
+     * Function that applies the Mutations to the Genomes ArrayList{@literal <CustomChromosome>};
      * We just remove one random CustomChromosome.
      *
      * @param gaPart ArrayList{@literal <Color,ArrayList<CustomChromosome>>}. In this case,the array is what we edit.

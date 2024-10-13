@@ -16,7 +16,7 @@ public class CustomMutation implements Mutation {
     private final Integer nQueens;
 
     /**
-     * Function that applies the mutations to a CustomBase.
+     * Function that applies the Mutations to a CustomBase.
      * We could have used different Mutation behavior depending on the context (iterations, convergence...).
      *
      * @param gaPart CustomBase to mutate.

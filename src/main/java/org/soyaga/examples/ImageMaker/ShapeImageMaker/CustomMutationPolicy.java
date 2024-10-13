@@ -12,17 +12,17 @@ import java.util.random.RandomGenerator;
 /**
  * Class that applies a CustomMutationPolicy in the optimization procedure.
  * Performs Mutations in the Genome and Chromosome levels, considering a specific order in the
- * application of mutations and a fixed probability rate for each one.
+ * application of Mutations and a fixed probability rate for each one.
  */
 @AllArgsConstructor
 public class CustomMutationPolicy implements MutationPolicy {
     /**
-     * List of Genome mutations. These are mutations that require the known of the whole genome structure to be able to
+     * List of Genome Mutations. These are Mutations that require the known of the whole genome structure to be able to
      * happen.
      */
     private final ArrayList<Mutation> genomeMutations;
     /**
-     * List of Chromosome mutations. These are mutations that require the known of a whole chromosome to be able to
+     * List of Chromosome Mutations. These are Mutations that require the known of a whole chromosome to be able to
      * happen.
      */
     private final ArrayList<Mutation> chromosomeMutations;
@@ -36,7 +36,7 @@ public class CustomMutationPolicy implements MutationPolicy {
     private final double[] chromosomeMutationProb;
 
     /**
-     * Function that applies the mutations following a policy.
+     * Function that applies the Mutations following a policy.
      * In this case, a constant probability threshold is applied to each mutation.
      *
      * @param population Population object.

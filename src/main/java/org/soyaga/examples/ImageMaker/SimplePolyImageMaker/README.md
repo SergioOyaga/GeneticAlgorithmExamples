@@ -28,10 +28,10 @@ as images can be deconstructed into an arrangement of overlapping polygons.
     <td> <img src="https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/resources/ImageMaker/geom.png"  title="Reference geometric shapes" alt="Reference geometric shapes" width="300" height="300" /></td>
   </tr>
   <tr>
-    <th colspan="2"> <b>Monalisa </b></th>
+    <th colspan="2"> <b>Mona Lisa </b></th>
   </tr>
   <tr>
-    <td> <b>Monalisa evolution </b></td>
+    <td> <b>Mona Lisa evolution </b></td>
     <td> <b>Reference</b> </td>
   </tr>
   <tr>
@@ -244,29 +244,29 @@ CustomGeneticAlgorithm ga = new CustomGeneticAlgorithm("CustomPolyImageMaker", i
                 add(new ChromosomeMutationMoveOneVertex(image.getWidth(), image.getHeight(),
                             maxGenerations*80/100, 10, 20)); // Move Polygon vertex from large to small
                 }},
-            new double[]{0.02,0.05,0.08,0.05}, // Genome mutations probabilities
-            new double[]{0.01,0.02}), // Chromosome mutations probabilities
+            new double[]{0.02,0.05,0.08,0.05}, // Genome Mutations probabilities
+            new double[]{0.01,0.02}), // Chromosome Mutations probabilities
         new FixedElitismPolicy(initialPopulationSize*4/100), // NºOfElitist
         new FixedNewbornPolicy(initialPopulationSize*10/100), // NºOfNewborns
         new PolyImageInitializer(initialNumberOfPolygons, numberOfVertexes, image.getHeight(), image.getWidth(),
         new PolyImageObjectiveFunction(image,maxGenerations*95/100)), // Start to penalize genome length
-        image.getWidth(), image.getHeight(), 10 // step to store intermediate images
+        image.getWidth(), image.getHeight(), 10 // step to Stores intermediate images
         );
 ```
 We have:
 <table>
   <tr>
-    <th colspan="2"> <b>Monalisa </b></th>
+    <th colspan="2"> <b>Mona Lisa </b></th>
     <th colspan="1"> <b>Convergence</b> </th>
   </tr>
   <tr>
-    <td> <b>Monalisa evolution </b></td>
-    <td> <b>Monalisa final</b> </td>
+    <td> <b>Mona Lisa evolution </b></td>
+    <td> <b>Mona Lisa final</b> </td>
     <td> <b>Convergence Graph </b></td>
   </tr>
   <tr>
-    <td> <img src="https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/out/ImageMaker/monalisa_cubes.gif"  title="Evolution monalisa" alt="Evolution monalisa" width="200" height="300" /></td>
-    <td> <img src="https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/out/ImageMaker/monalisa_cubes.png"  title="Solution monalisa" alt="Solution monalisa" width="200" height="300" /></td>
+    <td> <img src="https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/out/ImageMaker/monalisa_cubes.gif"  title="Evolution Mona Lisa" alt="Evolution Mona Lisa" width="200" height="300" /></td>
+    <td> <img src="https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/out/ImageMaker/monalisa_cubes.png"  title="Solution Mona Lisa" alt="Solution Mona Lisa" width="200" height="300" /></td>
     <td> <img src="https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/out/ImageMaker/graph.png"  title="Convergence graph" alt="Convergence graph" width="500" height="300" /></td>
   </tr>
 </table>
@@ -278,7 +278,7 @@ In these approaches, images are often treated as genomes, and crossovers blend i
 involve simple additions of new polygons or the introduction of randomly colored pixels. The primary objective in these 
 cases is to replicate the image itself.
 
-In contrast, our approach aims not only to replicate the image but also to preserve the identity of the individual 
+In contrast, our approach aims, not only to replicate the image, but also to preserve the identity of the individual 
 polygons that collectively form the image. Thus, our optimization process seeks to determine the optimal number of 
 unique polygons and colors that faithfully represent the image. This task is considerably more challenging and nuanced.
-:relaxed:
+:snail:

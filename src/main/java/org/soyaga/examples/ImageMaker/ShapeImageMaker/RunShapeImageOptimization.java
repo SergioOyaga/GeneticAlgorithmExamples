@@ -96,7 +96,7 @@ public class RunShapeImageOptimization {
                         new TournamentSelection(),                  // Selection, tournament.
                         new CustomCrossover()),                     // Custom Crossover.
                 new CustomMutationPolicy(                       // Custom Mutation policy.
-                        new ArrayList<>(){{                         // Array of mutations to the genome.
+                        new ArrayList<>(){{                         // Array of Mutations to the genome.
                             add(new GenomeMutationBackground(           // Mutation, change background color.
                                     maxGenerations*30/100,                  // Max number of iterations that this mutation applies.
                                     10));                                   // Number of units to change the RGB value.
@@ -110,7 +110,7 @@ public class RunShapeImageOptimization {
                             add(new GenomeMutationRemoveChromosome(     // Mutation, removes a shape.
                                     maxGenerations));                       // Max number of iterations that this mutation applies.
                         }},
-                        new ArrayList<>(){{                             // Array of mutations to the chromosome.
+                        new ArrayList<>(){{                             // Array of Mutations to the chromosome.
                             add(new ChromosomeMutationColor(                // Mutation, change shape color.
                                     maxGenerations*90/100,                      // Max number of iterations that this mutation applies.
                                     10));                                       // Number of units to change the RGB value.
@@ -127,8 +127,8 @@ public class RunShapeImageOptimization {
                                     availableShapes,                            // Available shapes.
                                     limitations));                              // Limitations of the shapes.
                         }},
-                        new double[]{0.02,0.05,0.08,0.05},              // Probabilities for the Genome mutations.
-                        new double[]{0.001,0.002,0.002, 0.002}),        // Probabilities for the Genome mutations.
+                        new double[]{0.02,0.05,0.08,0.05},              // Probabilities for the Genome Mutations.
+                        new double[]{0.001,0.002,0.002, 0.002}),        // Probabilities for the Genome Mutations.
                 new FixedElitismPolicy(                             // Elitism policy, fixed number.
                         initialPopulationSize*4/100),                   // Number of elitists.
                 new FixedNewbornPolicy(                             // Newborn policy, fixed number.
@@ -142,7 +142,7 @@ public class RunShapeImageOptimization {
                                 image,                                      // Image to compare with.
                                 maxGenerations*50/100)),                    // Limit when the number of shapes is minimized.
                 image.getWidth(), image.getHeight(),                // Size of the image.
-                10                                                  // Number of iterations to store a GIF image.
+                10                                                  // Number of iterations to Stores a GIF image.
         );
         //Optimize the GeneticAlgorithm
         ga.optimize();

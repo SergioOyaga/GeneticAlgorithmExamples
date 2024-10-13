@@ -35,7 +35,7 @@ public class ChromosomeMutationChangeShapeType implements Mutation {
      */
     private final ArrayList<Shape>  availableShapes;
     /**
-     * Arraylist with the constraints of each shape if any. Contains the editable params used to build the objects.
+     * Arraylist with the Constraints of each shape if any. Contains the editable params used to build the objects.
      * <ul>
      *     <li><b>params for the Polygon [maxVertex]</b>: Maximum number of vertex that a Polygon can have. The minimum is 3.</li>
      *     <li><b>params for the ellipse [maxSizeRatio]</b>: Integer that divides the max width and height (image width and height)
@@ -51,7 +51,7 @@ public class ChromosomeMutationChangeShapeType implements Mutation {
     ArrayList<Object[]> limitations;
 
     /**
-     * Function that applies the mutations to the CustomChromosome Shape.
+     * Function that applies the Mutations to the CustomChromosome Shape.
      * We change one shape type to another. We use the bounding box of the current shape to randomly create a new shape
      * that fits inside this bounding box.
      *

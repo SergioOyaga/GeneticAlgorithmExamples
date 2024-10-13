@@ -37,7 +37,7 @@ public class ChromosomeMutationMoveOneVertex implements Mutation {
     private Integer bigMove;
 
     /**
-     * Function that applies the mutations to the CustomChromosome Polygon.
+     * Function that applies the Mutations to the CustomChromosome Polygon.
      * We change one vertex position randomly, but moving it in a range close to the current position.
      *
      * @param gaPart ArrayList{@literal <Color,Polygon>}. In this case,the polygon is what we edit.

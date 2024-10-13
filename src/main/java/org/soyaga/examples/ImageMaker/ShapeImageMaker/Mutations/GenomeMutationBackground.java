@@ -28,7 +28,7 @@ public class GenomeMutationBackground implements Mutation {
     private final int move;
 
     /**
-     * Function that applies the mutations to the Genomes ArrayList{@literal <CustomChromosome>};
+     * Function that applies the Mutations to the Genomes ArrayList{@literal <CustomChromosome>};
      * We change the RGB values of the background randomly, but only in a range close to
      * the current values.
      *

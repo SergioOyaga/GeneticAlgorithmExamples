@@ -28,7 +28,7 @@ public class ChessObjectiveFunction implements ObjectiveFunction {
                 (ArrayList<ArrayListChromosome<GenericGen<Integer>>>) genome.getGeneticInformation();
         double Objective=0.;
         int numberOfQueens = chromosomes.size();
-        int [] f1=new int [numberOfQueens],f2=new int [numberOfQueens];//to store the altered genome.
+        int [] f1=new int [numberOfQueens],f2=new int [numberOfQueens];//to Stores the altered genome.
 
         for(int i = 0; i< numberOfQueens; i++){
             Integer row = ((chromosomes.get(i).getGeneticInformation()).get(0)).getGeneticInformation();

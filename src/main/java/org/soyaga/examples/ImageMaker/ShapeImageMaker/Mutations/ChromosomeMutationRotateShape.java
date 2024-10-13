@@ -28,7 +28,7 @@ public class ChromosomeMutationRotateShape implements Mutation {
     private final Double arch;
 
     /**
-     * Function that applies the mutations to the Chromosome rotation.
+     * Function that applies the Mutations to the Chromosome rotation.
      * We change the rotation randomly, the value is changed in a range close to the current value.
      *
      * @param gaPart ArrayList{@literal <Color,Double, Shape>}. In this case, the rotation is what we edit.

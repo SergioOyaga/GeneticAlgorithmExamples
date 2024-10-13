@@ -77,7 +77,7 @@ public class CustomGeneticAlgorithm implements GeneticAlgorithm {
      */
     private final int gifStep;
     /**
-     * StatsRetrievalPolicy to store stat information.
+     * StatsRetrievalPolicy to Stores stat information.
      */
     private final NIterationsStatsRetrievalPolicy nIterationsStatsRetrievalPolicy;
 
@@ -93,7 +93,7 @@ public class CustomGeneticAlgorithm implements GeneticAlgorithm {
      * @param gaInitializer GAInitializer object with the initialization information.
      * @param width Integer with the width of the image.
      * @param height Integer with the height of the image.
-     * @param gifStep Integer with the number of steps to store the gif image.
+     * @param gifStep Integer with the number of steps to Stores the gif image.
      * @param nIterationsStatsRetrievalPolicy StatsRetrievalPolicy object with the Stats already defined.
      */
     public CustomGeneticAlgorithm(String ID, Integer initialPopulationSize, StoppingCriteriaPolicy stoppingCriteriaPolicy,

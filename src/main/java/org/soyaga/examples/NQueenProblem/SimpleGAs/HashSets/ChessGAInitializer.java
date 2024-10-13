@@ -23,7 +23,7 @@ public class ChessGAInitializer extends GAInitializer {
     /**
      * This function initializes a new individual from scratch.
      * In this case, each individual has one HashSetGenome, composed of N HashSetChromosomes.
-     * Each Chromosome is further composed of N ChessGenes instances that store the position
+     * Each Chromosome is further composed of N ChessGenes instances that Stores the position
      * (row, column) and a boolean representing a Queen.
      *
      * @return A randomly initialized Individual.

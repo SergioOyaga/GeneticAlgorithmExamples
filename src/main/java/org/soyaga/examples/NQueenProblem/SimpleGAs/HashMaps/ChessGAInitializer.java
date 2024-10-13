@@ -25,7 +25,7 @@ public class ChessGAInitializer extends GAInitializer {
      * This function initializes a new individual from scratch.
      * In this case, each individual has one HashMapGenome (where the keys of this map represent rows),
      * composed of N HashMapChromosomes (where the keys of this map represent columns).
-     * Each Chromosome is further composed of N GenericGen instances that store random booleans representing the
+     * Each Chromosome is further composed of N GenericGen instances that Stores random booleans representing the
      * presence of a Queen.
      *
      * @return A randomly initialized Individual.

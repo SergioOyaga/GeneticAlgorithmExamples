@@ -63,7 +63,7 @@ public class GenomeMutationAddChromosome implements Mutation {
     private final ArrayList<Object[]> limitations;
 
     /**
-     * Function that applies the mutations to the Genomes ArrayList{@literal <CustomChromosome>};
+     * Function that applies the Mutations to the Genomes ArrayList{@literal <CustomChromosome>};
      * We just add one new random CustomChromosome at the end of the list.
      *
      * @param gaPart ArrayList{@literal <Color,ArrayList<CustomChromosome>>}. In this case,the array is what we edit.

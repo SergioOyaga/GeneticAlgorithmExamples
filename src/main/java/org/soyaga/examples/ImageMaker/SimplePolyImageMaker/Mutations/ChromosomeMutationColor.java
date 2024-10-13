@@ -26,7 +26,7 @@ public class ChromosomeMutationColor implements Mutation {
     private final int move;
 
     /**
-     * Function that applies the mutations to the CustomChromosome color.
+     * Function that applies the Mutations to the CustomChromosome color.
      * We change the color randomly, the RGB values are changed in a range close to the current position.
      *
      * @param gaPart ArrayList{@literal <Color,Polygon>}. In this case,the color is what we edit.

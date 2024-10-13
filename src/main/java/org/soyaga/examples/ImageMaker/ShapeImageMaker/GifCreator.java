@@ -20,7 +20,7 @@ public class GifCreator {
      * Static function that enables the creation of a GIF from an array of images.
      *
      * @param images ArrayList&lt;BufferedImage&gt; containing the images used to create the gif.
-     * @param outputPath String where to store the gif.
+     * @param outputPath String where to Stores the gif.
      * @param delay Integer with the time in ms between each frame.
      */
     public static void createGif(ArrayList<BufferedImage> images, String outputPath, int delay) throws IOException {
