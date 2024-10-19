@@ -92,7 +92,7 @@ object with all its components.
 ### [CustomGeneticAlgorithm](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/ImageMaker/SimplePolyImageMaker/CustomGeneticAlgorithm.java):
 This class implements GeneticAlgorithm, which by extension makes it an Optimizer instance. In other words, this class
 can be optimized and its results can be gathered.
-````code
+````java
 public void optimize(){...}
 public Object getResult(){...}
 ````
@@ -104,7 +104,7 @@ returns an Image that will be stored or used to build the gif.
 This class initializes a new individual from scratch.
 It uses CustomGenome, CustomChromosome, Color and Polygon to store the information of a randomly
 initialized individual.
-````code
+````java
 public Individual initializeIndividual()
 ````
 In this scenario, the GeneticInformationContainers contain relatively sparse information. Specifically:

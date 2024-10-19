@@ -1,38 +1,35 @@
-# HashSets
-Solving the N-Queen optimization problem using sets as the base structure to store information.
+# HashSets Implementation
 
-## In this folder:
-This folder contains 6 different classes that define the structures required for solving the problem.
-These classes implement their respective interfaces from OptimizationLib.ga.
-1. [ChessGA](#chessga): Extends SimpleGeneticAlgorithm.
-2. [ChessGAInitializer](#chessgainitializer): Extends GAInitializer.
-3. [ChessFeasibilityFunction](#chessfeasibilityfunction):Extends FeasibilityFunction.
-4. [ChessObjectiveFunction](#chessobjectivefunction): Extends ObjectiveFunction.
-5. [ChessGen](#chessgen): Extends Gen.
-6. [RunNQueenOptimization](#runnqueenoptimization): The main class for instantiation and optimization.
+This implementation solves the N-Queens optimization problem using sets (`HashSets`) as the fundamental data structure for storing information.
 
-### [ChessGA](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/SimpleGAs/HashSets/ChessGA.java):
-This class extends SimpleGeneticAlgorithm, which by extension makes it an Optimizer instance.
-In other words, this class can be optimized and its results can be gathered.
-````code
+## Class Structure
+
+This folder contains six classes that define the structures required for solving the problem. Each class implements its respective interface from `OptimizationLib.ga`:
+
+1. **[ChessGA](#chessga):** Extends `SimpleGeneticAlgorithm`.
+2. **[ChessGAInitializer](#chessgainitializer):** Extends `GAInitializer`.
+3. **[ChessFeasibilityFunction](#chessfeasibilityfunction):** Extends `FeasibilityFunction`.
+4. **[ChessObjectiveFunction](#chessobjectivefunction):** Extends `ObjectiveFunction`.
+5. **[ChessGen](#chessgen):** Extends `Gen`.
+6. **[RunNQueenOptimization](#runnqueenoptimization):** The main class for instantiation and optimization.
+
+### ChessGA
+
+This class extends `SimpleGeneticAlgorithm`, making it an `Optimizer` instance. This means the class can be optimized, and its results can be retrieved.
+
+```java
 public void optimize(){...}
 public Object getResult(){...}
 ````
-The <i>optimize</i> method is inherited from the abstract class SimpleGeneticAlgorithm,
-which defines a basic optimization procedure.
-The <i>getResults</i> method returns a string that will be [printed in the console](#result-example)
-to display the best solution found.
+The `optimize()` method, inherited from `SimpleGeneticAlgorithm`, defines a basic optimization procedure. The `getResults()` method returns a string representing the best solution found, which is then [printed to the console](#result-example).
 
 ### [ChessGAInitializer](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/SimpleGAs/HashSets/ChessGAInitializer.java):
-This class initializes a new individual from scratch.
-It uses HashSetGenome, HashSetChromosome,
-and ChessGen to store the information of a randomly initialized individual.
-````code
+This class initializes a new individual from scratch. It utilizes `HashSetGenome`, `HashSetChromosome`, and `ChessGen` to store the information of a randomly initialized individual.
+
+````java
 public Individual initializeIndividual()
 ````
-In this scenario, all information is stored within the ChessGen instances. A total of NxN genes are created, 
-with one gene corresponding to each square on the chessboard. Each gene carries the information of the row, column, 
-and a randomly generated boolean representing the presence of a queen.
+In this implementation, all information is stored within `ChessGen` instances. A total of *N×N* genes are created, one for each square on the chessboard. Each gene holds the row and column information for its corresponding square and a randomly generated boolean value indicating the presence or absence of a queen.
 
 ````mermaid
 flowchart TB
@@ -57,52 +54,46 @@ flowchart TB
 
 
 ### [ChessFeasibilityFunction](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/SimpleGAs/HashSets/ChessFeasibilityFunction.java):
-This function evaluates the feasibility of a solution.
-For the N-Queen problem, it ensures that exactly N queens are placed on the board.
-The function returns a double indicating the number of missing or exceeding queens on the board.
-
+This function evaluates the feasibility of a solution. For the N-Queens problem, it ensures that exactly *N* queens are placed on the board. The function returns a double value indicating the number of missing or exceeding queens.
 
 ### [ChessObjectiveFunction](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/SimpleGAs/HashSets/ChessObjectiveFunction.java):
-This function evaluates the objective function of a solution.
-For the N-Queen problem in this set design, it counts the number of collisions (confronted Queens).
-The function returns a double indicating the number of collisions between queens.
-
+This function evaluates the objective function of a solution. In this set-based design for the N-Queens problem, it counts the number of collisions between queens. The function returns a double value representing the total number of collisions.
 
 ### [ChessGen](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/SimpleGAs/HashSets/ChessGen.java):
-This class defines a Gen containing three variables: two immutables as Integers for the row and column numbers, 
-and a Boolean indicating the presence of a Queen in that square (`true` for queen, `false` for no queen). 
-Mutations will exclusively affect the boolean parameter, altering its value.
+This class defines a `Gen` containing three variables:
 
+- Two immutable integers representing the row and column numbers.
+- A boolean value indicating the presence (`true`) or absence (`false`) of a queen on that square.
+
+Mutations will exclusively affect the boolean parameter, toggling its value.
 
 ### [RunNQueenOptimization](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/SimpleGAs/HashSets/RunNQueenOptimization.java):
-This is the main class where the program execution begins.
-It involves instantiating the ChessGA object (previously defined), optimizing it, and retrieving the results.
+This is the main class where program execution begins. It involves instantiating the `ChessGA` object, optimizing it, and retrieving the results.
 
-The specific components for ChessGA include:
-- MaxIterationCriteriaPolicy: A StoppingCriteria based on a maximum number of iterations.
-- FixedCrossoverPolicy: A CrossoverPolicy that applies each iteration a fixed number of crossovers.
-  - RandomSelection: A Selection procedure in which each parent is chosen randomly.
-  - HeuristicCrossover: A crossover that copies the whole genome of only one parent into the child. This makes the 
-  semi-heuristic a more heuristic process by removing the cross between individuals.
-- UnorderedSingleProbabilityMutPol: A MutationPolicy that applies mutations stored in HasSets and filters the
-probability of applying the mutation with a fixed probability.
-  - BoolGenDenialMutation: A mutation that consist on negating a Gen with its information in a boolean type.
-- FixedElitismPolicy: An ElitismPolicy that applies each iteration a fixed number of elitist individuals.
-- FixedNewbornPolicy: A newbornPolicy that applies each iteration a fixed number of newborn individuals.
-- ChessGAInitializer: The Initializer previously defined.
-  - ChessFeasibilityFunction: The FeasibilityFunction previously defined.
-  - ChessObjectiveFunction: The ObjectiveFunction previously defined.
+The specific components for `ChessGA` include:
 
+- **MaxIterationCriteriaPolicy:** A `StoppingCriteria` based on a maximum number of iterations.
+- **FixedCrossoverPolicy:** A `CrossoverPolicy` that applies a fixed number of crossovers per iteration.
+  - **RandomSelection:** A selection procedure where each parent is chosen randomly.
+  - **HeuristicCrossover:** A crossover that copies the entire genome of only one parent into the child. This makes the semi-heuristic approach more heuristic by eliminating the exchange of genetic material between individuals.
+- **UnorderedSingleProbabilityMutPol:** A `MutationPolicy` that applies mutations stored in `HashSets` and filters the probability of applying each mutation with a fixed probability.
+  - **BoolGenDenialMutation:** A mutation that negates the boolean value stored within a `Gen`.
+- **FixedElitismPolicy:** An `ElitismPolicy` that selects a fixed number of elite individuals per iteration.
+- **FixedNewbornPolicy:** A `NewbornPolicy` that introduces a fixed number of new individuals per iteration.
+- **ChessGAInitializer:** The `Initializer` previously defined.
+  - **ChessFeasibilityFunction:** The `FeasibilityFunction` previously defined.
+  - **ChessObjectiveFunction:** The `ObjectiveFunction` previously defined.
 
 ## Result example:
-For:
-- numberOfQueens = 8
-- populationSize = 3
-- iterations = 20000
-- Pmut = 0.02
-- crossed = 1
-- elitist = 1
-- newborns = 1
+Using the following parameters:
+
+- `numberOfQueens = 8`
+- `populationSize = 3`
+- `iterations = 20000`
+- `Pmut = 0.02`
+- `crossed = 1`
+- `elitist = 1`
+- `newborns = 1`
 ````
 /
 |Feasibility= 0.0000
@@ -118,8 +109,5 @@ For:
  _  _  _  _  _  Q  _  _ 
  _  Q  _  _  _  _  _  _ 
 ````
-While the solution is nearly satisfactory, as evident, 
-the absence of crossover makes it challenging to attain the optimal outcome. 
-This exemplifies the significance of devising a robust strategy to address your problem. 
-We could have employed a more intricate crossover procedure that elegantly blends the genomes, 
-but for the sake of simplicity, we chose to keep this example as straightforward as possible.
+The solution obtained might be nearly satisfactory. However, the absence of a proper crossover mechanism can make it challenging to achieve the optimal solution. This highlights the importance of designing a robust strategy tailored to the specific problem. While a more sophisticated crossover procedure could have been employed to effectively combine genomes, this example prioritizes simplicity and clarity. 
+

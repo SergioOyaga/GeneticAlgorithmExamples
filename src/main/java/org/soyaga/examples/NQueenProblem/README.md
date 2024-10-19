@@ -1,20 +1,13 @@
-# N Queen Problem
-The n queens puzzle is the problem of placing n chess queens on an N×N chessboard so that no two queens threaten
-each other; thus, a solution requires that no two queens share the same row, column, or diagonals.
+# N-Queens Problem
 
-<table>
-  <tr>
-    <td> <b>Solution for 8-Queens </b></td>
-    <td> <b>Solution for 32-Queens </b> </td>
-  </tr>
-  <tr>
-    <td> <img src="https://github.com/SergioOyaga/N-Queen_Problem/blob/master/out/image/8QueenSolution.png"  title="Solution for 8-Queens" alt="Solution for 8-Queens" width="400" height="400" /></td>
-    <td> <img src="https://github.com/SergioOyaga/N-Queen_Problem/blob/master/out/image/32QueenSolution.png"  title="Solution for 32-Queens" alt="Solution for 32-Queens" width="400" height="400" /></td>
-  </tr>
-</table>
+The N-Queens puzzle presents the challenge of positioning *N* chess queens on an *N×N* chessboard such that no two queens threaten each other. A valid solution requires that no two queens occupy the same row, column, or diagonal.
 
-There is no known formula for the exact number of solutions when placing n queens on an N × N board.
-The 27×27 board is the highest-order board that has been completely enumerated:
+| Solution for 8-Queens                                                                                                                                                                     | Solution for 32-Queens                                                                                                                                                                       |
+|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| <img src="https://github.com/SergioOyaga/N-Queen_Problem/blob/master/out/image/8QueenSolution.png"  title="Solution for 8-Queens" alt="Solution for 8-Queens" width="400" height="400" /> | <img src="https://github.com/SergioOyaga/N-Queen_Problem/blob/master/out/image/32QueenSolution.png"  title="Solution for 32-Queens" alt="Solution for 32-Queens" width="400" height="400" /> |
+
+Currently, there is no known formula to determine the exact number of solutions for placing *N* queens on an *N × N* board. The largest board size (*N*) for which all possible solutions have been enumerated is 27×27. 
+
 
 | n  | fundamental solutions | all solutions      | total combinations                                 |
 |----|-----------------------|--------------------|----------------------------------------------------|
@@ -46,30 +39,21 @@ The 27×27 board is the highest-order board that has been completely enumerated:
 | 26 | 2789712466510289      | 22317699616364044  | 57746226578042013138408988185727715132037050952    |
 | 27 | 29363495934315694     | 234907967154122528 | 11091107763254898773425731705373527055193637625824 |
 
-As you can observe, the number of solutions increases as we raise the number of queens. 
-However, simultaneously, our search space expands significantly.
-This makes inviable a Linear approach for solving the N-Queen problem.
+As you can observe, the number of possible solutions increases as the board size (and the number of queens) grows. However, this also leads to a significant expansion of the search space, making linear approaches to solving the N-Queens problem computationally infeasible.
 
+For more information about the problem, refer to the [Eight Queens Puzzle Wikipedia page](https://en.wikipedia.org/wiki/Eight_queens_puzzle#Counting_solutions_for_other_sizes_n).
 
-For more information about the problem, refer 
-[Here](https://en.wikipedia.org/wiki/Eight_queens_puzzle#Counting_solutions_for_other_sizes_n)
+## Solution Approaches
 
-## In This Folder:
-We find 3 different design approaches for solving the N-Queen optimization problem using the Genetic Algorithm (GA) 
-from the OptimizationLib.
-1. [SimpleGA](https://github.com/SergioOyaga/GeneticAlgorithmExamples/tree/master/src/main/java/org/soyaga/examples/NQueenProblem/SimpleGAs):
-   Three different ways of solving the problem using built-in structures. These implementations aim to help developers 
-become familiar with the GA package of the OptimizationLib framework.
-2. [AdHocGA](https://github.com/SergioOyaga/GeneticAlgorithmExamples/tree/master/src/main/java/org/soyaga/examples/NQueenProblem/AdHocGA):
-   Solving the problem by adjusting the GeneticInformationContainers to minimal structures. 
-   Additionally, we introduce the StatsRetrievalPolicy here, which allows developers to gather information from the GA 
-   during execution.
-3. [CustomGA](https://github.com/SergioOyaga/GeneticAlgorithmExamples/tree/master/src/main/java/org/soyaga/examples/NQueenProblem/CustomGA):
-   In contrast to AdHoc, a fully customized solver performs the optimization. It implements (in dummy ways) most of the 
-   capabilities of the GA package, showing how the developer can customize and fine-tune a GA.
+This folder contains three different design approaches for solving the N-Queens optimization problem using Genetic Algorithms (GA) from the OptimizationLib framework:
 
-## Comment:
-The examples in these folders are meant to illustrate the power of GAs and the simplicity of use/implementation 
-that the GA library in the OptimizationLib framework provides. The problem is solved using 5 different configurations; 
-some configurations are more suitable for this problem than others. Just remember that these examples can serve as 
-templates that you can adapt for your specific problems.
+1. **[SimpleGA](https://github.com/SergioOyaga/GeneticAlgorithmExamples/tree/master/src/main/java/org/soyaga/examples/NQueenProblem/SimpleGAs):** Demonstrates three straightforward solutions using built-in structures. These implementations are ideal for developers new to the OptimizationLib GA package.
+
+2. **[AdHocGA](https://github.com/SergioOyaga/GeneticAlgorithmExamples/tree/master/src/main/java/org/soyaga/examples/NQueenProblem/AdHocGA):**  Solves the problem by tailoring the `GeneticInformationContainers` to minimal structures. This approach also introduces the `StatsRetrievalPolicy`, allowing developers to gather runtime information from the GA.
+
+3. **[CustomGA](https://github.com/SergioOyaga/GeneticAlgorithmExamples/tree/master/src/main/java/org/soyaga/examples/NQueenProblem/CustomGA):**  Presents a fully customized solver for the optimization problem. It provides simplified implementations of most GA package capabilities, showcasing how developers can customize and fine-tune a GA for their specific needs.
+
+## Note on Examples
+
+The examples in these folders highlight the power and flexibility of Genetic Algorithms and the ease of use offered by the OptimizationLib GA library. While the problem is solved using different configurations, remember that these examples serve as adaptable templates for your own optimization challenges. 
+

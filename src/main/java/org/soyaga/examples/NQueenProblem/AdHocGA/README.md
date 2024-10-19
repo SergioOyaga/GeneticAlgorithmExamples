@@ -1,37 +1,37 @@
 # AdHocGA
-Solution of the NQueen optimization problem cutting the genetic information at the Genome level. For a problem as simple
-as this one, it is not necessary to encapsulate the info in deeper levels than the genome itself. This example 
-uses an ArrayList&lt;Integer&gt; as a genetic information container.
+This solution to the N-Queens puzzle cuts the genetic information at the `Genome` level. For a problem as simple
+as this one, it is not necessary to encapsulate the information in deeper levels than the genome itself. This example 
+uses an `ArrayList<Integer>` as a genetic information container.
 
-## In this folder:
-We find 5 different classes that define the problem-dependent structures that we have to create (Implementing their 
+## In this folder
+We find five different classes that define the problem-dependent structures that we have to create (implementing their 
 corresponding OptimizationLib.ga interfaces).
-1. [ChessGA](#chessga): Extends StatsGeneticAlgorithm.
-2. [ChessGAInitializer](#chessgainitializer): Extends GAInitializer.
-3. [ChessFeasibilityFunction](#chessfeasibilityfunction): Extends FeasibilityFunction.
-4. [ChessObjectiveFunction](#chessobjectivefunction): Extends ObjectiveFunction.
-5. [RunNQueenOptimization](#runnqueenoptimization):  The main class for instantiation and optimization.
 
-### [ChessGA](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/AdHocGA/ChessGA.java):
-This class extends StatsGeneticAlgorithm, which by extension makes it an Optimizer instance. In other words, this class 
-can be optimized and its results can be gathered.
-````code
+1.  [ChessGA](#chessga): Extends `StatsGeneticAlgorithm`.
+2.  [ChessGAInitializer](#chessgainitializer): Extends `GAInitializer`.
+3.  [ChessFeasibilityFunction](#chessfeasibilityfunction): Extends `FeasibilityFunction`.
+4.  [ChessObjectiveFunction](#chessobjectivefunction): Extends `ObjectiveFunction`.
+5.  [RunNQueenOptimization](#runnqueenoptimization): The main class for instantiation and optimization.
+
+### [ChessGA](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/AdHocGA/ChessGA.java)
+This class extends `StatsGeneticAlgorithm`, which by extension makes it an `Optimizer` instance. In other words, this class 
+can be optimized, and its results can be gathered.
+````java
 public void optimize(){...}
 public Object getResult(){...}
 ````
-The <i>optimize</i> function is already implemented by the abstract class StatsGeneticAlgorithm, which defines a basic 
-optimization procedure. The <i>getResults</i> function returns a String that will be [printed in the console](#result-example)
-with the best solution found. And the stats will be both printed and saved in a cvs file with a name format: "summary__YYYY-MM-DD__hh-mm.csv".
+The `optimize` function is already implemented by the abstract class `StatsGeneticAlgorithm`, which defines a basic 
+optimization procedure. The `getResults` function returns a string that will be [printed in the console](#result-example)
+with the best solution found. The optimization statistics will be both printed to the console and saved in a CSV file with a name format: "summary__YYYY-MM-DD__hh-mm.csv".
 
-### [ChessGAInitializer](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/AdHocGA/ChessGAInitializer.java):
+### [ChessGAInitializer](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/AdHocGA/ChessGAInitializer.java)
 This class initializes a new individual from scratch.
-It uses ArrayListGenome and Integers to store the information of a randomly initialized individual.
+It uses `ArrayListGenome` and integers to store the information of a randomly initialized individual.
 ````java
 public Individual initializeIndividual()
 ````
-In this case, the row position is implicitly stored based on the position of the Integer in the Genome
-ArrayList<Integer>.
-Each Integer represents the column position.
+In this case, the row position is implicitly stored based on the position of the integer in the `Genome` 
+(`ArrayList<Integer>`). Each integer represents the column position of the queen in that row.
 
 ````mermaid
 flowchart LR
@@ -42,61 +42,60 @@ flowchart LR
     end
 ````
 
-
-### [ChessFeasibilityFunction](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/AdHocGA/ChessFeasibilityFunction.java):
+### [ChessFeasibilityFunction](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/AdHocGA/ChessFeasibilityFunction.java)
 This function evaluates the feasibility of a solution.
-For the N-Queen problem, it ensures that each queen is placed in a different column and row from other queens.
+For the N-Queens problem, it ensures that each queen is placed in a different column and row from other queens.
 The function returns a double indicating the number of collisions (missing rows or columns where no queen is placed).
 
-
-### [ChessObjectiveFunction](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/AdHocGA/ChessObjectiveFunction.java):
+### [ChessObjectiveFunction](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/AdHocGA/ChessObjectiveFunction.java)
 This function evaluates the objective function of a solution.
-For the N-Queen problem in this array design,
-it counts the number of collisions (confronted Queens) by looking at the diagonals.
+For the N-Queens problem in this array design,
+it counts the number of collisions (queens that can attack each other diagonally) by looking at the diagonals.
 The function returns a double indicating the number of diagonal collisions between queens.
 
-
-### [RunNQueenOptimization](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/AdHocGA/RunNQueenOptimization.java):
+### [RunNQueenOptimization](https://github.com/SergioOyaga/GeneticAlgorithmExamples/blob/master/src/main/java/org/soyaga/examples/NQueenProblem/AdHocGA/RunNQueenOptimization.java)
 This is the main class where the program execution begins.
-It involves instantiating the ChessGA object (previously defined), optimizing it, and retrieving the results.
+It involves instantiating the `ChessGA` object (previously defined), optimizing it, and retrieving the results.
 
-The specific components for ChessGA include:
-- MaxIterationCriteriaPolicy: A StoppingCriteria based on a maximum number of iterations.
-- FixedCrossoverPolicy: A CrossoverPolicy that applies each iteration a fixed number of crossovers.
-  - RandomSelection: A Selection procedure in which each parent is chosen randomly.
-  - OnePointCrossover: A Crossover procedure in which the genome of the parents is combined by braking it in two pieces
-    and joining one part from one parent and the other part from the other parent in the child.
-- OrderedSingleProbabilityMutPol: A MutationPolicy that applies mutations stored in arrays sequentially and filters the
-  probability of applying the mutation with a fixed probability.
-  - ChromosomeSwapMutation: A mutation that consists of interchanging Chromosomes stored in an ArrayList.
-- FixedElitismPolicy: An ElitismPolicy that applies each iteration a fixed number of elitist individuals.
-- FixedNewbornPolicy: A NewbornPolicy that applies each iteration a fixed number of newborn individuals.
-- ChessGAInitializer: The Initializer previously defined.
-  - ChessFeasibilityFunction: The FeasibilityFunction previously defined.
-  - ChessObjectiveFunction: The ObjectiveFunction previously defined.
--  NIterationsStatsRetrievalPolicy: A StatsRetrievalPolicy that applies the evaluation of the Stats every N iterations.
-  - CurrentMinFitnessStat: A Stat that computes the current minimal fitness value.
-  - CurrentMaxFitnessStat: A Stat that computes the current maximal fitness value.
-  - HistoricalMinFitnessStat: A Stat that computes the historical minimal fitness value.
-  - HistoricalMaxFitnessStat: A Stat that computes the historical maximal fitness value.
-  - MeanSdStat: A Stat that computes the population's mean fitness along with the standard deviation.
-  - PercentileStat: A Stat that computes the fitness values for specific percentiles.
-  - StepGradientStat: A Stat that computes the step-gradient of the mean fitness.
-  - TimeGradientStat: A Stat that computes the time-gradient of the mean fitness.
-  - ElapsedTimeStat: A Stat that computes the elapsed time.
+The specific components for `ChessGA` include:
 
+-   `MaxIterationCriteriaPolicy`: A `StoppingCriteria` based on a maximum number of iterations.
+-   `FixedCrossoverPolicy`: A `CrossoverPolicy` that applies a fixed number of crossovers each iteration.
+    -   `RandomSelection`: A selection procedure in which each parent is chosen randomly.
+    -   `OnePointCrossover`: A crossover procedure in which the genome of the parents is combined by breaking it in two pieces
+        and joining one part from one parent and the other part from the other parent in the child.
+-   `OrderedSingleProbabilityMutPol`: A `MutationPolicy` that applies mutations stored in arrays sequentially and filters the
+    probability of applying the mutation with a fixed probability.
+    -   `ChromosomeSwapMutation`: A mutation that consists of interchanging `Chromosome`s stored in an `ArrayList`.
+-   `FixedElitismPolicy`: An `ElitismPolicy` that carries over a fixed number of elite individuals each iteration.
+-   `FixedNewbornPolicy`: A `NewbornPolicy` that creates a fixed number of newborn individuals each iteration.
+-   `ChessGAInitializer`: The `Initializer` previously defined.
+    -   `ChessFeasibilityFunction`: The `FeasibilityFunction` previously defined.
+    -   `ChessObjectiveFunction`: The `ObjectiveFunction` previously defined.
+-   `NIterationsStatsRetrievalPolicy`: A `StatsRetrievalPolicy` that applies the evaluation of the stats every N iterations.
+    -   `CurrentMinFitnessStat`: A `Stat` that computes the current minimal fitness value.
+    -   `CurrentMaxFitnessStat`: A `Stat` that computes the current maximal fitness value.
+    -   `HistoricalMinFitnessStat`: A `Stat` that computes the historical minimal fitness value.
+    -   `HistoricalMaxFitnessStat`: A `Stat` that computes the historical maximal fitness value.
+    -   `MeanSdStat`: A `Stat` that computes the population's mean fitness along with the standard deviation.
+    -   `PercentileStat`: A `Stat` that computes the fitness values for specific percentiles.
+    -   `StepGradientStat`: A `Stat` that computes the step-gradient of the mean fitness.
+    -   `TimeGradientStat`: A `Stat` that computes the time-gradient of the mean fitness.
+    -   `ElapsedTimeStat`: A `Stat` that computes the elapsed time.
 
-## Result example:
+## Result Example
 For:
-- numberOfQueens = 8
-- populationSize = 100
-- iterations = 1000
-- Pmut = 0.02
-- crossed = 80
-- elitist = 10
-- newborns = 10
 
-The CSV file is stored with a name with the format: "summary__YYYY-MM-DD__hh-mm.csv"
+-   `numberOfQueens = 8`
+-   `populationSize = 100`
+-   `iterations = 1000`
+-   `Pmut = 0.02`
+-   `crossed = 80`
+-   `elitist = 10`
+-   `newborns = 10`
+
+The CSV file is stored with a name with the format: "summary__YYYY-MM-DD__hh-mm.csv".
+
 ````
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Iteration | CurrentMin | CurrentMax | HistoricalMin | HistoricalMax | MeanFitness | StandardDev | P0 | P25 | P50 | P75 | P100 | StepGradient(u/iter) | TimeGradient(u/s) | ElapsedTime(s) |
